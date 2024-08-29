@@ -1,5 +1,5 @@
 import { AddOutlined } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Fab, IconButton } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import { startCreationNote } from "../../../store";
 import { JournalLayout } from "../layout";
@@ -17,21 +17,21 @@ export const JournalPage = () => {
     <JournalLayout>
       {!noteActive ? <NothingSelectedView /> : <NoteView />}
 
-      <IconButton
+      <Fab
         disabled={isSaving}
         onClick={onCreateNote}
         size='large'
         sx={{
           color: "white",
-          bgcolor: "error.main",
-          ":hover": { backgroundColor: "error.main", opacity: 0.85 },
           position: "fixed",
           right: 50,
           bottom: 50,
         }}
+        color='error'
+        aria-label='add'
       >
         <AddOutlined sx={{ fontSize: 30 }} />
-      </IconButton>
+      </Fab>
     </JournalLayout>
   );
 };

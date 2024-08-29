@@ -1,19 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  DeleteOutlined,
-  SaveOutlined,
-  UploadFileOutlined,
-} from "@mui/icons-material";
+import { DeleteOutlined, SaveOutlined } from "@mui/icons-material";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import { ChangeEvent, useEffect, useMemo, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
-import {
-  startDeleteNote,
-  startUpdateNote,
-  startUploadImages,
-} from "../../../store";
-import { StandardImageList } from "../components";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
+import { startDeleteNote, startUpdateNote } from "../../../../store";
+import { MultipleSelectChipNoteView } from "./components/MultipleSelectChipNoteView";
+import { SelectedTimeNoteView } from "./components/SelectedTimeNoteView";
+import { SelectRateForHourNoteView } from "./components/SelectRateForHourNoteView";
+import { TableNoteView } from "./components/TableNoteView";
+import Swal from "sweetalert2";
 
 interface Credentials {
   title: string;
@@ -23,7 +19,7 @@ interface Credentials {
 export const NoteView = () => {
   const { noteActive } = useAppSelector((state) => state.journal);
   const dispatch = useAppDispatch();
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // const fileInputRef = useRef<HTMLInputElement>(null);
 
   const initialValues: Credentials = {
     title: noteActive?.title || "",
@@ -36,29 +32,53 @@ export const NoteView = () => {
   });
 
   const onSaveNote = () => {
-    dispatch(startUpdateNote(values));
+    Swal.fire({
+      title: "Do you want to SAVE?",
+
+      icon: "question",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      cancelButtonText: "Cancel",
+    }).then((value) => {
+      if (value.value) {
+        dispatch(startUpdateNote(values));
+      }
+    });
   };
 
   const onDeleteNote = () => {
-    dispatch(startDeleteNote());
+    Swal.fire({
+      title: "Do you want to DELETE?",
+
+      icon: "error",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+    }).then((value) => {
+      if (value.value) {
+        dispatch(startDeleteNote());
+      }
+    });
   };
 
   useEffect(() => {
     setValues(initialValues);
   }, [noteActive]);
 
-  const dateString = useMemo(
-    () => (date: number | undefined) => {
-      if (!date) throw new Error("Date is empty");
-      return new Date(date).toUTCString();
-    },
-    [noteActive?.date]
-  );
+  // const dateString = useMemo(
+  //   () => (date: number | undefined) => {
+  //     if (!date) throw new Error("Date is empty");
+  //     return new Date(date).toUTCString();
+  //   },
+  //   [noteActive?.date]
+  // );
 
-  const onFileInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    if (!target.files) throw new Error("$Files is empty");
-    dispatch(startUploadImages(target.files));
-  };
+  // const onFileInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+  //   if (!target.files) throw new Error("$Files is empty");
+  //   dispatch(startUploadImages(target.files));
+  // };
 
   return (
     <Grid
@@ -77,7 +97,7 @@ export const NoteView = () => {
         </Typography>
       </Grid>
       <Grid item>
-        <input
+        {/* <input
           type='file'
           multiple
           ref={fileInputRef}
@@ -86,13 +106,13 @@ export const NoteView = () => {
         />
         <Button
           onClick={() => fileInputRef.current?.click()}
-          color='primary'
+          color='inherit'
           sx={{ p: 2 }}
         >
           <UploadFileOutlined sx={{ fontSize: 30, mr: 1 }} />
           Upload
-        </Button>
-        <Button onClick={onSaveNote} color='primary' sx={{ p: 2 }}>
+        </Button> */}
+        <Button onClick={onSaveNote} color='inherit' sx={{ p: 2 }}>
           <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
           Save
         </Button>
@@ -117,14 +137,21 @@ export const NoteView = () => {
           variant='filled'
           fullWidth
           multiline
-          placeholder='What have happend today?'
+          placeholder='What do you need?'
           minRows={5}
           onChange={handleChange}
           name='body'
           value={values.body}
         />
+        <SelectedTimeNoteView />
+        <SelectRateForHourNoteView />
+        <MultipleSelectChipNoteView />
       </Grid>
-      <StandardImageList />
+      {/* <StandardImageList /> */}
+
+      <Grid container>
+        <TableNoteView />
+      </Grid>
     </Grid>
   );
 };
