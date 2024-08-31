@@ -33,6 +33,10 @@ const names = [
   "Kubernetes",
 ];
 
+interface Props {
+  onChangeTechnologies: (technologies: string[]) => void;
+}
+
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
@@ -42,7 +46,7 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
-export const MultipleSelectChipNoteView = () => {
+export const MultipleSelectChipNoteView = ({ onChangeTechnologies }: Props) => {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
@@ -50,10 +54,9 @@ export const MultipleSelectChipNoteView = () => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    const result = typeof value === "string" ? value.split(",") : value;
+    setPersonName(result);
+    onChangeTechnologies(result);
   };
 
   return (

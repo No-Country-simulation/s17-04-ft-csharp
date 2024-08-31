@@ -15,7 +15,7 @@ export const useCheckAuth = () => {
 
       const { displayName, email, photoURL, uid } = user;
       dispatch(login({ displayName, email, photoURL, uid }));
-      dispatch(startLoadingNotes());
+      // dispatch(startLoadingNotes());
     });
   }, []);
 

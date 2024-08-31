@@ -9,11 +9,11 @@ import {
 import { setActiveNote } from "../../../store";
 
 import { useMemo } from "react";
-import { Note } from "../../../@types/types";
+import { Offer } from "../../../@types/types";
 import { useAppDispatch } from "../../../hooks/hooks";
 
 interface Props {
-  note: Note;
+  note: Offer;
 }
 
 export const SideBarItem = ({ note }: Props) => {
@@ -33,11 +33,11 @@ export const SideBarItem = ({ note }: Props) => {
     <ListItem onClick={onActiveNote} disablePadding>
       <ListItemButton>
         <ListItemIcon>
-          <TurnedInNot />
+          <TurnedInNot color='info' />
         </ListItemIcon>
-        <Grid container>
+        <Grid container display={"flex"} flexDirection={"column"}>
           <ListItemText primary={fixTitle} />
-          <ListItemText secondary={note.body} />
+          <ListItemText secondary={note.description} />
         </Grid>
       </ListItemButton>
     </ListItem>

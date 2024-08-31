@@ -111,6 +111,7 @@ export const RegisterFormComponent = () => {
             </Grid>
             <Grid item xs={12}>
               <Button
+                color={"secondary"}
                 disabled={isAuthentication}
                 type='submit'
                 variant='contained'

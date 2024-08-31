@@ -1,16 +1,18 @@
 import { AddOutlined } from "@mui/icons-material";
-import { Fab, IconButton } from "@mui/material";
+import { Fab } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
-import { startCreationNote } from "../../../store";
+import { startCreationOffer } from "../../../store";
 import { JournalLayout } from "../layout";
 import { NoteView, NothingSelectedView } from "../views";
 
 export const JournalPage = () => {
   const dispatch = useAppDispatch();
-  const { isSaving, noteActive } = useAppSelector((state) => state.journal);
+  const { isSaving, offerActive: noteActive } = useAppSelector(
+    (state) => state.offer
+  );
 
   const onCreateNote = () => {
-    dispatch(startCreationNote());
+    dispatch(startCreationOffer());
   };
 
   return (
@@ -22,12 +24,11 @@ export const JournalPage = () => {
         onClick={onCreateNote}
         size='large'
         sx={{
-          color: "white",
           position: "fixed",
           right: 50,
           bottom: 50,
         }}
-        color='error'
+        color='secondary'
         aria-label='add'
       >
         <AddOutlined sx={{ fontSize: 30 }} />

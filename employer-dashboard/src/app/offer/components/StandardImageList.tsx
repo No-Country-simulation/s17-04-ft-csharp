@@ -2,7 +2,7 @@ import { ImageList, ImageListItem } from "@mui/material";
 import { useAppSelector } from "../../../hooks/hooks";
 
 export default function StandardImageList() {
-  const { noteActive } = useAppSelector((state) => state.journal);
+  const { offerActive: noteActive } = useAppSelector((state) => state.offer);
   if (!noteActive || noteActive.imageURLs === undefined)
     throw new Error("$noteActive is empty");
 

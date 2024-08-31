@@ -1,7 +1,10 @@
-export interface Note {
-  id?: string;
+export interface Offer {
+  id?: number;
   title: string;
-  body: string;
-  date?: number;
-  imageURLs?: string[];
+  description: string;
+  price: number;
+  estimatedTime: number;
+  state: number;
+  difficult: number;
+  technology: string[];
 }

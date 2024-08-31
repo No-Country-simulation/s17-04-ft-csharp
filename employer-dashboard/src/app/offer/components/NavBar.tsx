@@ -42,7 +42,7 @@ export const NavBar = ({ drawerWidth = 240 }: Props) => {
           <Typography variant='h6' color={"text.secondary"}>
             JuniorHub
           </Typography>
-          <IconButton onClick={onLogOut} color='error'>
+          <IconButton onClick={onLogOut} color='secondary'>
             <LogoutOutlined />
           </IconButton>
         </Grid>

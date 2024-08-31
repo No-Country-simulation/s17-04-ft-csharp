@@ -1,29 +1,31 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { DeleteOutlined, SaveOutlined } from "@mui/icons-material";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
 import { startDeleteNote, startUpdateNote } from "../../../../store";
+import { DifficultSelectNoteView } from "./components/DifficultSelectNoteView";
 import { MultipleSelectChipNoteView } from "./components/MultipleSelectChipNoteView";
-import { SelectedTimeNoteView } from "./components/SelectedTimeNoteView";
+import { TimeSelectorNoteView } from "./components/TimeSelectorNoteView";
 import { SelectRateForHourNoteView } from "./components/SelectRateForHourNoteView";
+import { StatusSelectNoteView } from "./components/StatusSelectNoteView";
 import { TableNoteView } from "./components/TableNoteView";
-import Swal from "sweetalert2";
-
-interface Credentials {
-  title: string;
-  body: string;
-}
+import { Offer } from "../../../../@types/types";
 
 export const NoteView = () => {
-  const { noteActive } = useAppSelector((state) => state.journal);
+  const { offerActive } = useAppSelector((state) => state.offer);
   const dispatch = useAppDispatch();
   // const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const initialValues: Credentials = {
-    title: noteActive?.title || "",
-    body: noteActive?.body || "",
+  const initialValues: Offer = {
+    title: offerActive?.title || "",
+    description: offerActive?.description || "",
+    price: offerActive?.price || 0,
+    estimatedTime: offerActive?.estimatedTime || 0,
+    state: offerActive?.state || 0,
+    difficult: offerActive?.difficult || 0,
+    technology: offerActive?.technology || [],
   };
 
   const { handleChange, values, setValues } = useFormik({
@@ -32,9 +34,11 @@ export const NoteView = () => {
   });
 
   const onSaveNote = () => {
+    values.price = Number(values.price);
+    // console.table(values);
+
     Swal.fire({
       title: "Do you want to SAVE?",
-
       icon: "question",
       showConfirmButton: true,
       showCancelButton: true,
@@ -45,6 +49,10 @@ export const NoteView = () => {
         dispatch(startUpdateNote(values));
       }
     });
+  };
+
+  const onChangeTechnologies = (technologies: string[]) => {
+    values.technology = technologies;
   };
 
   const onDeleteNote = () => {
@@ -65,7 +73,7 @@ export const NoteView = () => {
 
   useEffect(() => {
     setValues(initialValues);
-  }, [noteActive]);
+  }, [offerActive]);
 
   // const dateString = useMemo(
   //   () => (date: number | undefined) => {
@@ -112,11 +120,11 @@ export const NoteView = () => {
           <UploadFileOutlined sx={{ fontSize: 30, mr: 1 }} />
           Upload
         </Button> */}
-        <Button onClick={onSaveNote} color='inherit' sx={{ p: 2 }}>
+        <Button onClick={onSaveNote} color={"info"} sx={{ p: 2 }}>
           <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
           Save
         </Button>
-        <Button onClick={onDeleteNote} color='error' sx={{ p: 2 }}>
+        <Button onClick={onDeleteNote} color='secondary' sx={{ p: 2 }}>
           <DeleteOutlined sx={{ fontSize: 30, mr: 1 }} />
           Delete
         </Button>
@@ -140,12 +148,32 @@ export const NoteView = () => {
           placeholder='What do you need?'
           minRows={5}
           onChange={handleChange}
-          name='body'
-          value={values.body}
+          name='description'
+          value={values.description}
         />
-        <SelectedTimeNoteView />
-        <SelectRateForHourNoteView />
-        <MultipleSelectChipNoteView />
+        <TimeSelectorNoteView
+          handleChange={handleChange}
+          name='estimatedTime'
+          values={values.estimatedTime}
+        />
+        <StatusSelectNoteView
+          handleChange={handleChange}
+          name='state'
+          values={values.state}
+        />
+        <DifficultSelectNoteView
+          handleChange={handleChange}
+          name='difficult'
+          values={values.difficult}
+        />
+        <SelectRateForHourNoteView
+          handleChange={handleChange}
+          name='price'
+          values={values.price}
+        />
+        <MultipleSelectChipNoteView
+          onChangeTechnologies={onChangeTechnologies}
+        />
       </Grid>
       {/* <StandardImageList /> */}
 

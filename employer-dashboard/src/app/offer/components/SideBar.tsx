@@ -7,7 +7,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Note } from "../../../@types/types";
+import { Offer } from "../../../@types/types";
 import { useAppSelector } from "../../../hooks/hooks";
 import { SideBarItem } from "./SideBarItem";
 
@@ -17,7 +17,7 @@ interface Props {
 
 export const SideBar = ({ drawerWidth }: Props) => {
   const { displayName, photoURL } = useAppSelector((state) => state.auth);
-  const { notes } = useAppSelector((state) => state.journal);
+  const { offers: notes } = useAppSelector((state) => state.offer);
 
   return (
     <Box flexShrink={{ sm: 0 }} component={"nav"} width={{ sm: drawerWidth }}>
@@ -43,7 +43,7 @@ export const SideBar = ({ drawerWidth }: Props) => {
         <Divider />
 
         <List>
-          {notes.map((note: Note) => (
+          {notes.map((note: Offer) => (
             <SideBarItem key={note.id} note={note} />
           ))}
         </List>

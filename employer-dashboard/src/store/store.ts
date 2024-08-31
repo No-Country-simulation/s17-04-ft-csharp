@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./slice/auth";
-import { journalSlice } from "./slice/journal";
+import { offerSlice } from "./slice/offer";
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
-    journal: journalSlice.reducer,
+    offer: offerSlice.reducer,
+    // [juniorHubApi.reducerPath]: juniorHubApi.reducer,
   },
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(juniorHubApi.middleware),
 });
 
 export type AppStore = typeof store;

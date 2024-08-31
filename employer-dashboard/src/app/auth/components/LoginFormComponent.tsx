@@ -96,6 +96,7 @@ export const LoginFormComponent = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button
+                color={"secondary"}
                 disabled={isAuthentication}
                 type='submit'
                 variant='contained'
@@ -106,6 +107,7 @@ export const LoginFormComponent = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button
+                color={"secondary"}
                 disabled={isAuthentication}
                 onClick={onGoogleSignIn}
                 variant='contained'
