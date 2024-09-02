@@ -1,15 +1,14 @@
-```markdown
-# Group: s17-04-ft-csharp
+Group: s17-04-ft-csharp
 
-# Project: JuniorHub
+# JuniorHub
 
-## 1. Descripción General del Proyecto
+### 1. Descripción General del Proyecto
 
 **Brand:** JuniorHub
 
 **Idea:** JuniorHub es una plataforma web diseñada para conectar programadores y diseñadores junior con empresas y clientes que buscan talento fresco y asequible. Facilita el proceso de trabajo freelance, permitiendo que freelancers junior encuentren oportunidades adecuadas a su nivel de experiencia y que los empleadores accedan a un grupo de talentos emergentes. JuniorHub no solo conecta a ambas partes, sino que también ofrece herramientas para gestionar proyectos, desde la publicación y postulación hasta la evaluación y retroalimentación final, asegurando una experiencia fluida y enriquecedora para todos los usuarios.
 
-## 2. Roles y Funcionalidades
+### 2. Roles y Funcionalidades
 
 ### Roles Disponibles
 
@@ -17,7 +16,7 @@
 - **Employer:** Registro, inicio de sesión, publicación y gestión de ofertas de trabajo, búsqueda de freelancers, evaluación y calificación de freelancers tras la finalización de un proyecto.
 - **Freelancer:** Registro, inicio de sesión, creación y gestión de un perfil profesional, búsqueda de ofertas de trabajo, postulación a proyectos, evaluación y calificación de empleadores tras la finalización de un proyecto.
 
-## 3. Flujo de Trabajo
+### 3. Flujo de Trabajo
 
 ### Admin
 
@@ -38,7 +37,7 @@
 - Aplicación a proyectos.
 - Evaluación y calificación de employers tras la finalización del proyecto, con la posibilidad de dejar comentarios y reseñas.
 
-## 4. Requerimientos Funcionales
+### 4. Requerimientos Funcionales
 
 ### Employer
 
@@ -64,7 +63,7 @@
 - **Evaluación de Employers:**
   - Calificar a los employers al finalizar un proyecto con una puntuación de 1 a 5 y dejar comentarios sobre la experiencia de trabajo.
 
-## 5. Páginas del Proyecto
+### 5. Páginas del Proyecto
 
 ### Página inicial
 
@@ -93,10 +92,7 @@
   - **Detalle de la Oferta** (P1)
     - **Aplicar a la Oferta** (P1)
 
-## 6. Filtros de Búsqueda
+### 6. Filtros de Búsqueda
 
 - **Employer:** Capacidad de buscar freelancers dentro de cada oferta publicada, filtrando por habilidades, tecnologías y rol principal.
 - **Freelancer:** Posibilidad de filtrar ofertas de trabajo por título, tecnologías requeridas, presupuesto y plazo de entrega.
-```
-
-Este `README.md` ofrece una visión general clara y estructurada del proyecto JuniorHub, detallando la idea, los roles, el flujo de trabajo, los requerimientos funcionales y las páginas disponibles en la plataforma. Es adecuado para que otros desarrolladores y colaboradores potenciales puedan entender el proyecto y contribuir al desarrollo de la plataforma.
