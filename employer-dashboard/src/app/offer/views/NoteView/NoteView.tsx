@@ -73,6 +73,7 @@ export const NoteView = () => {
 
   useEffect(() => {
     setValues(initialValues);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerActive]);
 
   // const dateString = useMemo(
@@ -154,25 +155,26 @@ export const NoteView = () => {
         <TimeSelectorNoteView
           handleChange={handleChange}
           name='estimatedTime'
-          values={values.estimatedTime}
+          estimatedTime={values.estimatedTime}
         />
         <StatusSelectNoteView
           handleChange={handleChange}
           name='state'
-          values={values.state}
+          state={values.state}
         />
         <DifficultSelectNoteView
           handleChange={handleChange}
           name='difficult'
-          values={values.difficult}
+          difficult={values.difficult}
         />
         <SelectRateForHourNoteView
           handleChange={handleChange}
           name='price'
-          values={values.price}
+          price={values.price}
         />
         <MultipleSelectChipNoteView
           onChangeTechnologies={onChangeTechnologies}
+          technologiesSelected={offerActive?.technology}
         />
       </Grid>
       {/* <StandardImageList /> */}

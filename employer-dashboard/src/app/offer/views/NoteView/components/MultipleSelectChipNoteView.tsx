@@ -1,13 +1,13 @@
-import * as React from "react";
-import { Theme, useTheme } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import Chip from "@mui/material/Chip";
+import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Chip from "@mui/material/Chip";
-import { Grid } from "@mui/material";
+import { Theme, useTheme } from "@mui/material/styles";
+import { useEffect, useState } from "react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -35,6 +35,7 @@ const names = [
 
 interface Props {
   onChangeTechnologies: (technologies: string[]) => void;
+  technologiesSelected?: string[];
 }
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
@@ -46,9 +47,16 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
-export const MultipleSelectChipNoteView = ({ onChangeTechnologies }: Props) => {
+export const MultipleSelectChipNoteView = ({
+  onChangeTechnologies,
+  technologiesSelected = [],
+}: Props) => {
+  useEffect(() => {
+    setPersonName(technologiesSelected);
+  }, [technologiesSelected]);
+
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [personName, setPersonName] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {

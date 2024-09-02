@@ -12,7 +12,7 @@ import Select from "@mui/material/Select";
 import { ChangeEvent } from "react";
 
 interface Props {
-  handleChange: ChangeEvent<number>;
+  handleChange: (e: ChangeEvent<number>) => void;
   difficult: number;
   name: string;
 }

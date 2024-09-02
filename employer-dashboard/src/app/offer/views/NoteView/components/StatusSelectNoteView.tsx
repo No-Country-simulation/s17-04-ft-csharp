@@ -8,11 +8,10 @@ import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { ChangeEvent } from "react";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 interface Props {
-  handleChange: ChangeEvent<number>;
+  handleChange: (e: SelectChangeEvent<number>) => void;
   state: number;
   name: string;
 }
