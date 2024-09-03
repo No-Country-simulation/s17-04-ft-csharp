@@ -1,10 +1,10 @@
 import { TurnedInNot } from "@mui/icons-material";
 import {
-  Grid,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Grid2 as Grid,
 } from "@mui/material";
 import { setActiveNote } from "../../../store";
 
@@ -24,8 +24,8 @@ export const SideBarItem = ({ note }: Props) => {
   };
 
   const fixTitle = useMemo(() => {
-    return note.title.length > 17
-      ? note.title.substring(0, 17) + "..."
+    return note.title.length > 25
+      ? note.title.substring(0, 25) + "..."
       : note.title;
   }, [note.title]);
 
@@ -33,11 +33,11 @@ export const SideBarItem = ({ note }: Props) => {
     <ListItem onClick={onActiveNote} disablePadding>
       <ListItemButton>
         <ListItemIcon>
-          <TurnedInNot color='info' />
+          <TurnedInNot color={"secondary"} />
         </ListItemIcon>
-        <Grid container display={"flex"} flexDirection={"column"}>
-          <ListItemText primary={fixTitle} />
-          <ListItemText secondary={note.description} />
+        <Grid container>
+          <ListItemText primary={fixTitle} secondary={note.description} />
+          {/* <ListItemText /> */}
         </Grid>
       </ListItemButton>
     </ListItem>
