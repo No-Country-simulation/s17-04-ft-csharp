@@ -12,7 +12,7 @@ public static class StartupExtensions
         builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddMappingProfiles();
-
+        builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddSwagger();

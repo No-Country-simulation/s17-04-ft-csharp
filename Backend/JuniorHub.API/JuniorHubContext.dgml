@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+<Node Id="IModel" Label="JuniorHubContext" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" PropertyAccessMode="PropertyAccessMode.Default" ProductVersion="8.0.8" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]]
+Relational:MaxIdentifierLength: 128
+RelationshipDiscoveryConvention:InverseNavigationCandidates: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]]
+SqlServer:ValueGenerationStrategy: IdentityColumn" Category="Model" Group="Expanded" />
+<Node Id = "FreelancerSkill" Label="FreelancerSkill" Name="FreelancerSkill" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "FreelancerTechnology" Label="FreelancerTechnology" Name="FreelancerTechnology" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "FreelancerSkill.FreelancersId" Label="FreelancersId (int)" Name="FreelancersId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "FreelancerSkill.SkillsId" Label="SkillsId (int)" Name="SkillsId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Application" Label="Application" Name="Application" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Applications
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "FreelancerTechnology.FreelancersId" Label="FreelancersId (int)" Name="FreelancersId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "FreelancerTechnology.TechnologiesId" Label="TechnologiesId (int)" Name="TechnologiesId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Employer" Label="Employer" Name="Employer" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Employers
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Application.IdOffer" Label="IdOffer (int)" Name="IdOffer" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Application.Freelancer" Label="Freelancer (1)" Name="Freelancer" Category="Navigation Property" Type="Freelancer"  Field="" Dependent="" Principal="Freelancer" Inverse="Applications" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Application.Offer" Label="Offer (1)" Name="Offer" Category="Navigation Property" Type="Offer"  Field="" Dependent="" Principal="Offer" Inverse="Applications" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Application.IdFreelancer" Label="IdFreelancer (int)" Name="IdFreelancer" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Application.ApplicaionDate" Label="ApplicaionDate (DateTime)" Name="ApplicaionDate" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Application.Id" Label="Id (int)" Name="Id" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Application.Selected" Label="Selected (bool)" Name="Selected" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Freelancer" Label="Freelancer" Name="Freelancer" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Freelancers
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Employer.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Employer.Offers" Label="Offers (*)" Name="Offers" Category="Navigation Collection" Type="ICollection&lt;Offer&gt;"  Field="" Dependent="Offer" Principal="" Inverse="Employer" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Employer.User" Label="User (1)" Name="User" Category="Navigation Property" Type="User"  Field="" Dependent="" Principal="User" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Employer.Valorations" Label="Valorations (*)" Name="Valorations" Category="Navigation Collection" Type="ICollection&lt;Valoration&gt;"  Field="" Dependent="Valoration" Principal="" Inverse="Employer" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Employer.IdUser" Label="IdUser (int)" Name="IdUser" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Employer.Valoration" Label="Valoration (ValorationEnum)" Name="Valoration" Category="Property Required" Type="ValorationEnum" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Link" Label="Link" Name="Link" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Links
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Freelancer.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Freelancer.Applications" Label="Applications (*)" Name="Applications" Category="Navigation Collection" Type="ICollection&lt;Application&gt;"  Field="" Dependent="Application" Principal="" Inverse="Freelancer" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Freelancer.Links" Label="Links (*)" Name="Links" Category="Navigation Collection" Type="ICollection&lt;Link&gt;"  Field="" Dependent="Link" Principal="" Inverse="Freelancer" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Freelancer.User" Label="User (1)" Name="User" Category="Navigation Property" Type="User"  Field="" Dependent="" Principal="User" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Freelancer.Valorations" Label="Valorations (*)" Name="Valorations" Category="Navigation Collection" Type="ICollection&lt;Valoration&gt;"  Field="" Dependent="Valoration" Principal="" Inverse="Freelancer" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Freelancer.Skills" Label="Skills (1)" Name="Skills" Category="Navigation Property" Type="ICollection&lt;Skill&gt;"  Field="" Dependent="" Principal="" Inverse="Freelancers" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Freelancer.Technologies" Label="Technologies (1)" Name="Technologies" Category="Navigation Property" Type="ICollection&lt;Technology&gt;"  Field="" Dependent="" Principal="" Inverse="Freelancers" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Freelancer.Description" Label="Description (string)" Name="Description" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Freelancer.IdUser" Label="IdUser (int)" Name="IdUser" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Freelancer.Valoration" Label="Valoration (ValorationEnum)" Name="Valoration" Category="Property Required" Type="ValorationEnum" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer" Label="Offer" Name="Offer" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Offers
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Link.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Link.Freelancer" Label="Freelancer (1)" Name="Freelancer" Category="Navigation Property" Type="Freelancer"  Field="" Dependent="" Principal="Freelancer" Inverse="Links" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Link.FreelancerId" Label="FreelancerId (int)" Name="FreelancerId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Link.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Link.Url" Label="Url (string)" Name="Url" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Skill" Label="Skill" Name="Skill" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Skills
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Offer.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Offer.Applications" Label="Applications (*)" Name="Applications" Category="Navigation Collection" Type="ICollection&lt;Application&gt;"  Field="" Dependent="Application" Principal="" Inverse="Offer" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Offer.Employer" Label="Employer (1)" Name="Employer" Category="Navigation Property" Type="Employer"  Field="" Dependent="" Principal="Employer" Inverse="Offers" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Offer.Description" Label="Description (string)" Name="Description" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer.Difficult" Label="Difficult (Difficult)" Name="Difficult" Category="Property Required" Type="Difficult" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer.EstimatedTime" Label="EstimatedTime (DateTime)" Name="EstimatedTime" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer.IdEmployer" Label="IdEmployer (int)" Name="IdEmployer" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer.Price" Label="Price (decimal)" Name="Price" Category="Property Required" Type="decimal" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer.State" Label="State (State)" Name="State" Category="Property Required" Type="State" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Offer.Title" Label="Title (string)" Name="Title" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Technology" Label="Technology" Name="Technology" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Technologies
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Skill.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Skill.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Skill.Freelancers" Label="Freelancers (ICollection&lt;Freelancer&gt;)" Name="Freelancers" Category="Property Optional" Type="ICollection&lt;Freelancer&gt;" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User" Label="User" Name="User" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetUsers
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Technology.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Technology.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Technology.Freelancers" Label="Freelancers (ICollection&lt;Freelancer&gt;)" Name="Freelancers" Category="Property Optional" Type="ICollection&lt;Freelancer&gt;" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Valoration" Label="Valoration" Name="Valoration" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:TableName: Valorations
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "User.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "User.AccessFailedCount" Label="AccessFailedCount (int)" Name="AccessFailedCount" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.ConcurrencyStamp" Label="ConcurrencyStamp (string)" Name="ConcurrencyStamp" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="True" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.Email" Label="Email (string)" Name="Email" Category="Property Optional" Type="string" MaxLength="(256)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 256" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.EmailConfirmed" Label="EmailConfirmed (bool)" Name="EmailConfirmed" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.LastName" Label="LastName (string)" Name="LastName" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.LockoutEnabled" Label="LockoutEnabled (bool)" Name="LockoutEnabled" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.LockoutEnd" Label="LockoutEnd (DateTimeOffset?)" Name="LockoutEnd" Category="Property Optional" Type="DateTimeOffset?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.MediaUrl" Label="MediaUrl (string)" Name="MediaUrl" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="(50)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 50" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.NormalizedEmail" Label="NormalizedEmail (string)" Name="NormalizedEmail" Category="Property Optional" Type="string" MaxLength="(256)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 256" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.NormalizedUserName" Label="NormalizedUserName (string)" Name="NormalizedUserName" Category="Property Optional" Type="string" MaxLength="(256)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 256" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.PasswordHash" Label="PasswordHash (string)" Name="PasswordHash" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.PhoneNumber" Label="PhoneNumber (string)" Name="PhoneNumber" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.PhoneNumberConfirmed" Label="PhoneNumberConfirmed (bool)" Name="PhoneNumberConfirmed" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.SecurityStamp" Label="SecurityStamp (string)" Name="SecurityStamp" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.TwoFactorEnabled" Label="TwoFactorEnabled (bool)" Name="TwoFactorEnabled" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "User.UserName" Label="UserName (string)" Name="UserName" Category="Property Optional" Type="string" MaxLength="(256)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 256" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityRole&lt;int&gt;" Label="IdentityRole&lt;int&gt;" Name="IdentityRole&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetRoles
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Valoration.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:IdentityIncrement: 1
+SqlServer:IdentitySeed: 1
+SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Valoration.Employer" Label="Employer (1)" Name="Employer" Category="Navigation Property" Type="Employer"  Field="" Dependent="" Principal="Employer" Inverse="Valorations" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Valoration.Freelancer" Label="Freelancer (1)" Name="Freelancer" Category="Navigation Property" Type="Freelancer"  Field="" Dependent="" Principal="Freelancer" Inverse="Valorations" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Valoration.IdEmployer" Label="IdEmployer (int)" Name="IdEmployer" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Valoration.IdFreelancer" Label="IdFreelancer (int)" Name="IdFreelancer" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Valoration.Reviewer" Label="Reviewer (string)" Name="Reviewer" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Valoration.ValorationValue" Label="ValorationValue (ValorationEnum)" Name="ValorationValue" Category="Property Required" Type="ValorationEnum" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityRoleClaim&lt;int&gt;" Label="IdentityRoleClaim&lt;int&gt;" Name="IdentityRoleClaim&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetRoleClaims
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "IdentityRole&lt;int&gt;.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "IdentityRole&lt;int&gt;.ConcurrencyStamp" Label="ConcurrencyStamp (string)" Name="ConcurrencyStamp" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="True" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityRole&lt;int&gt;.Name" Label="Name (string)" Name="Name" Category="Property Optional" Type="string" MaxLength="(256)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 256" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityRole&lt;int&gt;.NormalizedName" Label="NormalizedName (string)" Name="NormalizedName" Category="Property Optional" Type="string" MaxLength="(256)" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="MaxLength: 256" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserClaim&lt;int&gt;" Label="IdentityUserClaim&lt;int&gt;" Name="IdentityUserClaim&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetUserClaims
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "IdentityRoleClaim&lt;int&gt;.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "IdentityRoleClaim&lt;int&gt;.ClaimType" Label="ClaimType (string)" Name="ClaimType" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityRoleClaim&lt;int&gt;.ClaimValue" Label="ClaimValue (string)" Name="ClaimValue" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityRoleClaim&lt;int&gt;.RoleId" Label="RoleId (int)" Name="RoleId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserLogin&lt;int&gt;" Label="IdentityUserLogin&lt;int&gt;" Name="IdentityUserLogin&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetUserLogins
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "IdentityUserClaim&lt;int&gt;.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "IdentityUserClaim&lt;int&gt;.ClaimType" Label="ClaimType (string)" Name="ClaimType" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserClaim&lt;int&gt;.ClaimValue" Label="ClaimValue (string)" Name="ClaimValue" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserClaim&lt;int&gt;.UserId" Label="UserId (int)" Name="UserId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserRole&lt;int&gt;" Label="IdentityUserRole&lt;int&gt;" Name="IdentityUserRole&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetUserRoles
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "IdentityUserLogin&lt;int&gt;.LoginProvider" Label="LoginProvider (string)" Name="LoginProvider" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserLogin&lt;int&gt;.ProviderKey" Label="ProviderKey (string)" Name="ProviderKey" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserLogin&lt;int&gt;.ProviderDisplayName" Label="ProviderDisplayName (string)" Name="ProviderDisplayName" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserLogin&lt;int&gt;.UserId" Label="UserId (int)" Name="UserId" Category="Property Foreign" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserToken&lt;int&gt;" Label="IdentityUserToken&lt;int&gt;" Name="IdentityUserToken&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="Relational:Schema:
+Relational:TableName: AspNetUserTokens
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "IdentityUserRole&lt;int&gt;.UserId" Label="UserId (int)" Name="UserId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserRole&lt;int&gt;.RoleId" Label="RoleId (int)" Name="RoleId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserToken&lt;int&gt;" Label="IdentityUserToken&lt;int&gt;" Name="IdentityUserToken&lt;int&gt;" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="" Category="EntityType" Group="Expanded" />
+<Node Id = "IdentityUserToken&lt;int&gt;.UserId" Label="UserId (int)" Name="UserId" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserToken&lt;int&gt;.LoginProvider" Label="LoginProvider (string)" Name="LoginProvider" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserToken&lt;int&gt;.Name" Label="Name (string)" Name="Name" Category="Property Primary" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "IdentityUserToken&lt;int&gt;.Value" Label="Value (string)" Name="Value" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+<Link Source = "IModel" Target="FreelancerSkill" Category="Contains" />
+<Link Source = "IModel" Target="FreelancerTechnology" Category="Contains" />
+<Link Source = "FreelancerSkill" Target="FreelancerSkill.FreelancersId" Category="Contains" />
+<Link Source="FreelancerSkill" Target="Freelancer" From="FreelancerSkill.FreelancersId" To="Freelancer.Id" Name="FreelancerSkill -> Freelancer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="FreelancerSkill" Target="Skill" From="FreelancerSkill.SkillsId" To="Skill.Id" Name="FreelancerSkill -> Skill" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "FreelancerSkill" Target="FreelancerSkill.SkillsId" Category="Contains" />
+<Link Source = "IModel" Target="Application" Category="Contains" />
+<Link Source = "FreelancerTechnology" Target="FreelancerTechnology.FreelancersId" Category="Contains" />
+<Link Source="FreelancerTechnology" Target="Freelancer" From="FreelancerTechnology.FreelancersId" To="Freelancer.Id" Name="FreelancerTechnology -> Freelancer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="FreelancerTechnology" Target="Technology" From="FreelancerTechnology.TechnologiesId" To="Technology.Id" Name="FreelancerTechnology -> Technology" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "FreelancerTechnology" Target="FreelancerTechnology.TechnologiesId" Category="Contains" />
+<Link Source = "IModel" Target="Employer" Category="Contains" />
+<Link Source = "Application" Target="Application.Freelancer" Category="Contains" />
+<Link Source = "Application" Target="Application.Offer" Category="Contains" />
+<Link Source = "Application" Target="Application.IdOffer" Category="Contains" />
+<Link Source="Application" Target="Freelancer" From="Application.IdFreelancer" To="Freelancer.Id" Name="Application -> Freelancer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Application" Target="Offer" From="Application.IdOffer" To="Offer.Id" Name="Application -> Offer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Application" Target="Application.IdFreelancer" Category="Contains" />
+<Link Source = "Application" Target="Application.ApplicaionDate" Category="Contains" />
+<Link Source = "Application" Target="Application.Id" Category="Contains" />
+<Link Source = "Application" Target="Application.Selected" Category="Contains" />
+<Link Source = "IModel" Target="Freelancer" Category="Contains" />
+<Link Source = "Employer" Target="Employer.Offers" Category="Contains" />
+<Link Source = "Employer" Target="Employer.User" Category="Contains" />
+<Link Source = "Employer" Target="Employer.Valorations" Category="Contains" />
+<Link Source = "Employer" Target="Employer.Id" Category="Contains" />
+<Link Source="Employer" Target="User" From="Employer.IdUser" To="User.Id" Name="Employer -> User" Annotations="" IsUnique="True" Label="1:1" Category="Foreign Key" />
+<Link Source = "Employer" Target="Employer.IdUser" Category="Contains" />
+<Link Source = "Employer" Target="Employer.Valoration" Category="Contains" />
+<Link Source = "IModel" Target="Link" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Applications" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Links" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.User" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Valorations" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Skills" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Technologies" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Id" Category="Contains" />
+<Link Source="Freelancer" Target="User" From="Freelancer.IdUser" To="User.Id" Name="Freelancer -> User" Annotations="" IsUnique="True" Label="1:1" Category="Foreign Key" />
+<Link Source = "Freelancer" Target="Freelancer.Description" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.IdUser" Category="Contains" />
+<Link Source = "Freelancer" Target="Freelancer.Valoration" Category="Contains" />
+<Link Source = "IModel" Target="Offer" Category="Contains" />
+<Link Source = "Link" Target="Link.Freelancer" Category="Contains" />
+<Link Source = "Link" Target="Link.Id" Category="Contains" />
+<Link Source="Link" Target="Freelancer" From="Link.FreelancerId" To="Freelancer.Id" Name="Link -> Freelancer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Link" Target="Link.FreelancerId" Category="Contains" />
+<Link Source = "Link" Target="Link.Name" Category="Contains" />
+<Link Source = "Link" Target="Link.Url" Category="Contains" />
+<Link Source = "IModel" Target="Skill" Category="Contains" />
+<Link Source = "Offer" Target="Offer.Applications" Category="Contains" />
+<Link Source = "Offer" Target="Offer.Employer" Category="Contains" />
+<Link Source = "Offer" Target="Offer.Id" Category="Contains" />
+<Link Source="Offer" Target="Employer" From="Offer.IdEmployer" To="Employer.Id" Name="Offer -> Employer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Offer" Target="Offer.Description" Category="Contains" />
+<Link Source = "Offer" Target="Offer.Difficult" Category="Contains" />
+<Link Source = "Offer" Target="Offer.EstimatedTime" Category="Contains" />
+<Link Source = "Offer" Target="Offer.IdEmployer" Category="Contains" />
+<Link Source = "Offer" Target="Offer.Price" Category="Contains" />
+<Link Source = "Offer" Target="Offer.State" Category="Contains" />
+<Link Source = "Offer" Target="Offer.Title" Category="Contains" />
+<Link Source = "IModel" Target="Technology" Category="Contains" />
+<Link Source = "Skill" Target="Skill.Id" Category="Contains" />
+<Link Source = "Skill" Target="Skill.Name" Category="Contains" />
+<Link Source = "Skill" Target="Skill.Freelancers" Category="Contains" />
+<Link Source = "IModel" Target="User" Category="Contains" />
+<Link Source = "Technology" Target="Technology.Id" Category="Contains" />
+<Link Source = "Technology" Target="Technology.Name" Category="Contains" />
+<Link Source = "Technology" Target="Technology.Freelancers" Category="Contains" />
+<Link Source = "IModel" Target="Valoration" Category="Contains" />
+<Link Source = "User" Target="User.Id" Category="Contains" />
+<Link Source = "User" Target="User.AccessFailedCount" Category="Contains" />
+<Link Source = "User" Target="User.ConcurrencyStamp" Category="Contains" />
+<Link Source = "User" Target="User.Email" Category="Contains" />
+<Link Source = "User" Target="User.EmailConfirmed" Category="Contains" />
+<Link Source = "User" Target="User.LastName" Category="Contains" />
+<Link Source = "User" Target="User.LockoutEnabled" Category="Contains" />
+<Link Source = "User" Target="User.LockoutEnd" Category="Contains" />
+<Link Source = "User" Target="User.MediaUrl" Category="Contains" />
+<Link Source = "User" Target="User.Name" Category="Contains" />
+<Link Source = "User" Target="User.NormalizedEmail" Category="Contains" />
+<Link Source = "User" Target="User.NormalizedUserName" Category="Contains" />
+<Link Source = "User" Target="User.PasswordHash" Category="Contains" />
+<Link Source = "User" Target="User.PhoneNumber" Category="Contains" />
+<Link Source = "User" Target="User.PhoneNumberConfirmed" Category="Contains" />
+<Link Source = "User" Target="User.SecurityStamp" Category="Contains" />
+<Link Source = "User" Target="User.TwoFactorEnabled" Category="Contains" />
+<Link Source = "User" Target="User.UserName" Category="Contains" />
+<Link Source = "IModel" Target="IdentityRole&lt;int&gt;" Category="Contains" />
+<Link Source = "Valoration" Target="Valoration.Employer" Category="Contains" />
+<Link Source = "Valoration" Target="Valoration.Freelancer" Category="Contains" />
+<Link Source = "Valoration" Target="Valoration.Id" Category="Contains" />
+<Link Source="Valoration" Target="Employer" From="Valoration.IdEmployer" To="Employer.Id" Name="Valoration -> Employer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Valoration" Target="Freelancer" From="Valoration.IdFreelancer" To="Freelancer.Id" Name="Valoration -> Freelancer" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Valoration" Target="Valoration.IdEmployer" Category="Contains" />
+<Link Source = "Valoration" Target="Valoration.IdFreelancer" Category="Contains" />
+<Link Source = "Valoration" Target="Valoration.Reviewer" Category="Contains" />
+<Link Source = "Valoration" Target="Valoration.ValorationValue" Category="Contains" />
+<Link Source = "IModel" Target="IdentityRoleClaim&lt;int&gt;" Category="Contains" />
+<Link Source = "IdentityRole&lt;int&gt;" Target="IdentityRole&lt;int&gt;.Id" Category="Contains" />
+<Link Source = "IdentityRole&lt;int&gt;" Target="IdentityRole&lt;int&gt;.ConcurrencyStamp" Category="Contains" />
+<Link Source = "IdentityRole&lt;int&gt;" Target="IdentityRole&lt;int&gt;.Name" Category="Contains" />
+<Link Source = "IdentityRole&lt;int&gt;" Target="IdentityRole&lt;int&gt;.NormalizedName" Category="Contains" />
+<Link Source = "IModel" Target="IdentityUserClaim&lt;int&gt;" Category="Contains" />
+<Link Source = "IdentityRoleClaim&lt;int&gt;" Target="IdentityRoleClaim&lt;int&gt;.Id" Category="Contains" />
+<Link Source="IdentityRoleClaim&lt;int&gt;" Target="IdentityRole&lt;int&gt;" From="IdentityRoleClaim&lt;int&gt;.RoleId" To="IdentityRole&lt;int&gt;.Id" Name="IdentityRoleClaim&lt;int&gt; -> IdentityRole&lt;int&gt;" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "IdentityRoleClaim&lt;int&gt;" Target="IdentityRoleClaim&lt;int&gt;.ClaimType" Category="Contains" />
+<Link Source = "IdentityRoleClaim&lt;int&gt;" Target="IdentityRoleClaim&lt;int&gt;.ClaimValue" Category="Contains" />
+<Link Source = "IdentityRoleClaim&lt;int&gt;" Target="IdentityRoleClaim&lt;int&gt;.RoleId" Category="Contains" />
+<Link Source = "IModel" Target="IdentityUserLogin&lt;int&gt;" Category="Contains" />
+<Link Source = "IdentityUserClaim&lt;int&gt;" Target="IdentityUserClaim&lt;int&gt;.Id" Category="Contains" />
+<Link Source="IdentityUserClaim&lt;int&gt;" Target="User" From="IdentityUserClaim&lt;int&gt;.UserId" To="User.Id" Name="IdentityUserClaim&lt;int&gt; -> User" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "IdentityUserClaim&lt;int&gt;" Target="IdentityUserClaim&lt;int&gt;.ClaimType" Category="Contains" />
+<Link Source = "IdentityUserClaim&lt;int&gt;" Target="IdentityUserClaim&lt;int&gt;.ClaimValue" Category="Contains" />
+<Link Source = "IdentityUserClaim&lt;int&gt;" Target="IdentityUserClaim&lt;int&gt;.UserId" Category="Contains" />
+<Link Source = "IModel" Target="IdentityUserRole&lt;int&gt;" Category="Contains" />
+<Link Source = "IdentityUserLogin&lt;int&gt;" Target="IdentityUserLogin&lt;int&gt;.LoginProvider" Category="Contains" />
+<Link Source="IdentityUserLogin&lt;int&gt;" Target="User" From="IdentityUserLogin&lt;int&gt;.UserId" To="User.Id" Name="IdentityUserLogin&lt;int&gt; -> User" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "IdentityUserLogin&lt;int&gt;" Target="IdentityUserLogin&lt;int&gt;.ProviderKey" Category="Contains" />
+<Link Source = "IdentityUserLogin&lt;int&gt;" Target="IdentityUserLogin&lt;int&gt;.ProviderDisplayName" Category="Contains" />
+<Link Source = "IdentityUserLogin&lt;int&gt;" Target="IdentityUserLogin&lt;int&gt;.UserId" Category="Contains" />
+<Link Source = "IModel" Target="IdentityUserToken&lt;int&gt;" Category="Contains" />
+<Link Source = "IdentityUserRole&lt;int&gt;" Target="IdentityUserRole&lt;int&gt;.UserId" Category="Contains" />
+<Link Source="IdentityUserRole&lt;int&gt;" Target="IdentityRole&lt;int&gt;" From="IdentityUserRole&lt;int&gt;.RoleId" To="IdentityRole&lt;int&gt;.Id" Name="IdentityUserRole&lt;int&gt; -> IdentityRole&lt;int&gt;" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="IdentityUserRole&lt;int&gt;" Target="User" From="IdentityUserRole&lt;int&gt;.UserId" To="User.Id" Name="IdentityUserRole&lt;int&gt; -> User" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "IdentityUserRole&lt;int&gt;" Target="IdentityUserRole&lt;int&gt;.RoleId" Category="Contains" />
+<Link Source = "IModel" Target="IdentityUserToken&lt;int&gt;" Category="Contains" />
+<Link Source = "IdentityUserToken&lt;int&gt;" Target="IdentityUserToken&lt;int&gt;.UserId" Category="Contains" />
+<Link Source="IdentityUserToken&lt;int&gt;" Target="User" From="IdentityUserToken&lt;int&gt;.UserId" To="User.Id" Name="IdentityUserToken&lt;int&gt; -> User" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "IdentityUserToken&lt;int&gt;" Target="IdentityUserToken&lt;int&gt;.LoginProvider" Category="Contains" />
+<Link Source = "IdentityUserToken&lt;int&gt;" Target="IdentityUserToken&lt;int&gt;.Name" Category="Contains" />
+<Link Source = "IdentityUserToken&lt;int&gt;" Target="IdentityUserToken&lt;int&gt;.Value" Category="Contains" />
+  </Links>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+  <Properties>
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="Field"  Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type"  Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />    
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass"  Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+  </Properties>
+</DirectedGraph>
