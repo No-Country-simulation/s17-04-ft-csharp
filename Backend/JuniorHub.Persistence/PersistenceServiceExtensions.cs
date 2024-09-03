@@ -1,12 +1,9 @@
-﻿
+﻿using JuniorHub.Domain.Entities;
 using JuniorHub.Persistence.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using JuniorHub.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Identity.Core;
 
 namespace JuniorHub.Persistence;
 
@@ -18,8 +15,8 @@ public static class PersistenceServiceExtensions
         {
             options.UseSqlServer(configuration.GetConnectionString("JuniorHubConnectionString"));
         });
-        //services.AddIdentity<User, IdentityRole<int>>()
-        //   .AddEntityFrameworkStores<JuniorHubContext>().AddDefaultTokenProviders();
+        services.AddIdentity<User, IdentityRole<int>>()
+           .AddEntityFrameworkStores<JuniorHubContext>().AddDefaultTokenProviders();
 
 
         return services;
