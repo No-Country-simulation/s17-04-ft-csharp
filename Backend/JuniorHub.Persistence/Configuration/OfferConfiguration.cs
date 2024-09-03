@@ -14,7 +14,7 @@ namespace JuniorHub.Persistence.Configuration
 
             builder.HasMany(e => e.Applications)
                 .WithOne(o => o.Offer)
-                .HasForeignKey(o => o.IdOffer)
+                .HasForeignKey(o => o.OfferId)
                 .OnDelete(DeleteBehavior.Restrict); 
 
         }

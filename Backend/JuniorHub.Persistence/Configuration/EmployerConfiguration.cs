@@ -17,15 +17,15 @@ namespace JuniorHub.Persistence.Configuration
 
             builder.HasOne(e => e.User)
                 .WithOne()
-                .HasForeignKey<Employer>(f => f.IdUser);
+                .HasForeignKey<Employer>(f => f.UserId);
 
             builder.HasMany(e => e.Offers)
                 .WithOne(o => o.Employer)
-                .HasForeignKey(o => o.IdEmployer);
+                .HasForeignKey(o => o.EmployerId);
 
             builder.HasMany(e => e.Valorations)
                 .WithOne(v => v.Employer)
-                .HasForeignKey(v => v.IdEmployer)
+                .HasForeignKey(v => v.EmployerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
         }

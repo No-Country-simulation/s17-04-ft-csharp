@@ -6,10 +6,10 @@ namespace JuniorHub.Domain.Entities
     {
         public int Id { get; set; }
         public ValorationEnum ValorationValue { get; set; }
-        public string Reviewer {  get; set; }
-        public int IdFreelancer { get; set; }
-        public int IdEmployer { get; set; }
-        public Freelancer Freelancer { get; set; }
-        public Employer Employer { get; set; }
+        public string Reviewer { get; set; } = null!;
+        public int FreelancerId { get; set; }
+        public int EmployerId { get; set; }
+        public Freelancer Freelancer { get; set; } = null!;
+        public Employer Employer { get; set; } = null!;
     }
 }

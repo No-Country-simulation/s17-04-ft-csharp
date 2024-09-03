@@ -8,7 +8,7 @@ namespace JuniorHub.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Application> builder)
         {
-            builder.HasKey(of => new { of.IdOffer, of.IdFreelancer });
+            builder.HasKey(of => new { of.OfferId, of.FreelancerId });
         }
     }
 }
