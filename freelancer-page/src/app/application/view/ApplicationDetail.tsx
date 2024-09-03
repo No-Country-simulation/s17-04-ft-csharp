@@ -35,7 +35,7 @@ export const ApplicationDetail = () => {
             <Chip color='primary' label='C#' />
             <Chip color='primary' label='MySQL' />
           </Box>
-          <Typography>
+          <Typography textAlign={"justify"}>
             Est officia ea minim elit nostrud aliquip ut cillum aute labore
             pariatur. Sint enim deserunt exercitation officia consectetur veniam
             do culpa adipisicing mollit ullamco. Tempor magna non nostrud ad
