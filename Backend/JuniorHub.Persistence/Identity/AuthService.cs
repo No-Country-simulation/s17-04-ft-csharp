@@ -24,7 +24,7 @@ namespace JuniorHub.Persistence.Identity
         private readonly JwtConfiguration _jwtConfiguration;
         public AuthService(SignInManager<User> signInManager, UserManager<User> userManager, JwtConfiguration jwtConfiguration)
         {
-            this._signInManager = signInManager;
+            _signInManager = signInManager;
             _userManager = userManager;
             _jwtConfiguration = jwtConfiguration;
         }
@@ -59,6 +59,7 @@ namespace JuniorHub.Persistence.Identity
                 Name = register.Name,
                 Email = register.Email,
                 LastName = register.LastName,
+                UserName = register.Email
             };
 
             var createUserResult = await _userManager.CreateAsync(userToRegister, register.Password);

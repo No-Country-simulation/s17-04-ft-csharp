@@ -5,10 +5,13 @@ using JuniorHub.Domain.Helpers;
 using JuniorHub.Domain.Utilities;
 using JuniorHub.Persistence.Data;
 using JuniorHub.Persistence.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace JuniorHub.Persistence;
 
@@ -30,6 +33,26 @@ public static class PersistenceServiceExtensions
         services.AddScoped<UserManager<User>>();
         services.AddScoped<SignInManager<User>>();
         services.AddScoped<RoleManager<IdentityRole<int>>>();
+
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+                .AddJwtBearer(config =>
+                {
+                    config.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = jwtConfig.ValidateIssuerSigningKey,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key)),
+                        ValidateIssuer = jwtConfig.ValidateIssuer,
+                        ValidateAudience = jwtConfig.ValidateAudience,
+                        ValidateLifetime = jwtConfig.ValidateLifeTime,
+                        ValidIssuer = jwtConfig.Issuer,
+                        ValidAudience = jwtConfig.Audience
+                        
+                    };
+                });
 
         services.AddAuthorization(options =>
         {
