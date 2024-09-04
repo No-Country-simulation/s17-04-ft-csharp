@@ -3,6 +3,7 @@ using JuniorHub.Persistence;
 using JuniorHub.Mapping;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using JuniorHub.API.Middleware;
 
 namespace JuniorHub.API;
 
@@ -30,6 +31,10 @@ public static class StartupExtensions
 
             });
         });
+        builder.Services.Configure<RouteOptions>(options =>
+        {
+            options.LowercaseUrls = true;
+        });
 
         return builder.Build();
     }
@@ -48,6 +53,8 @@ public static class StartupExtensions
         app.UseHttpsRedirection();
         //app.UseStaticFiles();
         app.UseRouting();
+
+        app.UseCustomExceptionHandler();
 
         app.UseCors();
 

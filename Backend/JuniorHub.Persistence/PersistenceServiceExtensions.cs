@@ -1,11 +1,12 @@
-﻿using JunioHub.Application.Contracts.Persistence;
+using JunioHub.Application.Contracts.Persistence;
 using JuniorHub.Domain.Entities;
 using JuniorHub.Domain.Enums;
 using JuniorHub.Domain.Helpers;
 using JuniorHub.Domain.Utilities;
-using JuniorHub.Persistence.Data;
 using JuniorHub.Persistence.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using JuniorHub.Persistence.Data;
+using JuniorHub.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,12 +29,13 @@ public static class PersistenceServiceExtensions
 
         var jwtConfig = new JwtConfiguration();
         configuration.Bind("JwtConfiguration", jwtConfig);
+        // services
         services.AddSingleton(jwtConfig);
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<UserManager<User>>();
         services.AddScoped<SignInManager<User>>();
         services.AddScoped<RoleManager<IdentityRole<int>>>();
-
+        services.AddScoped<ITechnologyRepository, TechnologyRepository>();
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

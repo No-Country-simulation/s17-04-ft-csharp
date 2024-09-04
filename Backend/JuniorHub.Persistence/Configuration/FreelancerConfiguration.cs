@@ -20,9 +20,6 @@ namespace JuniorHub.Persistence.Configuration
                 .WithOne(l => l.Freelancer)
                 .HasForeignKey(l=>l.FreelancerId);
 
-            builder.HasMany(f => f.Skills)
-                .WithMany(s => s.Freelancers);
-
             builder.HasMany(f => f.Technologies)
                .WithMany(s => s.Freelancers);
 
