@@ -487,4 +487,4 @@ $RECYCLE.BIN/
 appsettings.Development.json
 
 # Exclude Migrations folder in Persistence layer
-**/Persistence/Migrations/
+JuniorHub.Persistence/Migrations
