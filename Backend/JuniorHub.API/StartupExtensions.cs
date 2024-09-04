@@ -2,6 +2,7 @@
 using JuniorHub.Persistence;
 using JuniorHub.Mapping;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using JuniorHub.API.Middleware;
 
 namespace JuniorHub.API;
@@ -75,7 +76,37 @@ public static class StartupExtensions
                 Title = "JuniorHub API",
 
             });
+
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header
+            });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },new string[]{ }
+                    }
+                });
+
+            //Configuración para añadir comentarios en XML
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath,includeControllerXmlComments:true);
         });
+
+        
     }
 
 }
