@@ -1,5 +1,7 @@
-﻿using JuniorHub.Domain.Entities;
+﻿using JunioHub.Application.Contracts.Persistence;
+using JuniorHub.Domain.Entities;
 using JuniorHub.Persistence.Data;
+using JuniorHub.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +20,8 @@ public static class PersistenceServiceExtensions
         services.AddIdentity<User, IdentityRole<int>>()
            .AddEntityFrameworkStores<JuniorHubContext>().AddDefaultTokenProviders();
 
+        // services
+        services.AddScoped<ITechnologyRepository, TechnologyRepository>();
 
         return services;
     }

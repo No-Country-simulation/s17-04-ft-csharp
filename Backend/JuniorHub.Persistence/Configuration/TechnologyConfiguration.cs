@@ -2,18 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JuniorHub.Persistence.Configuration
+namespace JuniorHub.Persistence.Configuration;
+
+internal class TechnologyConfiguration : IEntityTypeConfiguration<Technology>
 {
-    internal class TechnologyConfiguration : IEntityTypeConfiguration<Technology>
+    public void Configure(EntityTypeBuilder<Technology> builder)
     {
-        public void Configure(EntityTypeBuilder<Technology> builder)
-        {
-            builder.HasKey(t => t.Id);
+        builder.HasKey(t => t.Id);
 
-            builder.Property(t => t.Id).UseIdentityColumn();
+        builder.Property(t => t.Id).UseIdentityColumn();
 
-            builder.HasMany(f => f.Freelancers)
-                .WithMany(s => s.Technologies);
-        }
+        builder.HasMany(f => f.Freelancers)
+            .WithMany(s => s.Technologies);
     }
 }
