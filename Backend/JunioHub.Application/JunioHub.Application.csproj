@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.9.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JuniorHub.Mapping\JuniorHub.Mapping.csproj" />
+    <ProjectReference Include="..\JuniorHub.Domain\JuniorHub.Domain.csproj" />
   </ItemGroup>
 
 </Project>
