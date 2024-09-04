@@ -8,11 +8,11 @@ namespace JunioHub.Application.Validators
         public LoginUserValidator()
         {
             RuleFor(x => x.Email)
-            .NotEmpty().WithMessage("El correo electrónico es obligatorio.")
-            .EmailAddress().WithMessage("El correo electrónico no es válido.");
+                .NotEmpty().WithMessage("Email is required.")
+                .EmailAddress().WithMessage("Invalid email address.");
 
             RuleFor(x => x.Password)
-                .NotEmpty().WithMessage("La contraseña es obligatoria.");
+                .NotEmpty().WithMessage("Password is required.");
         }
     }
 }

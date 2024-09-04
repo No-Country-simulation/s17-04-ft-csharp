@@ -13,27 +13,27 @@ namespace JunioHub.Application.Validators
         public RegisterUserValidator()
         {
             RuleFor(x => x.Name)
-            .NotEmpty().WithMessage("El nombre es obligatorio.")
-            .Length(2, 50).WithMessage("El nombre debe tener entre 2 y 50 caracteres.");
+                .NotEmpty().WithMessage("Name is required.")
+                .Length(2, 50).WithMessage("Name must be between 2 and 50 characters long.");
 
             RuleFor(x => x.LastName)
-                .NotEmpty().WithMessage("El apellido es obligatorio.")
-                .Length(2, 50).WithMessage("El apellido debe tener entre 2 y 50 caracteres.");
+                .NotEmpty().WithMessage("Last name is required.")
+                .Length(2, 50).WithMessage("Last name must be between 2 and 50 characters long.");
 
             RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("El correo electrónico es obligatorio.")
-                .EmailAddress().WithMessage("El correo electrónico no es válido.");
+                .NotEmpty().WithMessage("Email is required.")
+                .EmailAddress().WithMessage("Invalid email address.");
 
             RuleFor(x => x.Password)
-                .NotEmpty().WithMessage("La contraseña es obligatoria.")
-                .MinimumLength(6).WithMessage("La contraseña debe tener al menos 6 caracteres.")
-                .Matches(@"[A-Z]").WithMessage("La contraseña debe contener al menos una letra mayúscula.")
-                .Matches(@"[a-z]").WithMessage("La contraseña debe contener al menos una letra minúscula.")
-                .Matches(@"[0-9]").WithMessage("La contraseña debe contener al menos un número.")
-                .Matches(@"[\W]").WithMessage("La contraseña debe contener al menos un carácter especial.");
+                .NotEmpty().WithMessage("Password is required.")
+                .MinimumLength(6).WithMessage("Password must be at least 6 characters long.")
+                .Matches(@"[A-Z]").WithMessage("Password must contain at least one uppercase letter.")
+                .Matches(@"[a-z]").WithMessage("Password must contain at least one lowercase letter.")
+                .Matches(@"[0-9]").WithMessage("Password must contain at least one number.")
+                .Matches(@"[\W]").WithMessage("Password must contain at least one special character.");
 
             RuleFor(x => x.Role)
-                .IsInEnum().WithMessage("El rol especificado no es válido.");
+                .IsInEnum().WithMessage("The specified role is invalid.");
         }
     }
 }
