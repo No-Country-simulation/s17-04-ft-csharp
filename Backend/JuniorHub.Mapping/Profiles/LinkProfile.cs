@@ -15,7 +15,7 @@ namespace JuniorHub.Mapping.Profiles
     {
         public LinkProfile()
         {
-            CreateMap<Link,LinkDto>();
+            CreateMap<Link,LinkDto>().ReverseMap();
             CreateMap<LinkAddDto, Link>();
         }
     }

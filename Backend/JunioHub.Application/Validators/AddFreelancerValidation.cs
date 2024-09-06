@@ -22,11 +22,10 @@ namespace JunioHub.Application.Validators
                 .Must(t => t.Count > 0).WithMessage("There must be at least one technology.");
 
             RuleFor(x => x.Links)
-                .NotEmpty().WithMessage("At least one link is required.")
                 .ForEach(link =>
                 {
                     link.SetValidator(new AddLinkValidation());
-                });
+                }).When(x=>x.Links is not null && x.Links.Count>0);
         }
     }
 }

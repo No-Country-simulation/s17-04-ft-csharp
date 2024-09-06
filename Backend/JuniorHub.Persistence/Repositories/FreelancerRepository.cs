@@ -19,9 +19,9 @@ namespace JuniorHub.Persistence.Repositories
         {
         }
 
-        public async Task<Freelancer> GetProfileFreelancer(int idUser)
+        public async Task<Freelancer?> GetProfileFreelancer(int idUser)
         {
-            var user = await _dbContext.Freelancers.Include(f=>f.Technologies).Include(f=>f.Links).FirstAsync(f=>f.UserId == idUser);
+            var user = await _dbContext.Freelancers.Include(f=>f.Technologies).Include(f=>f.Links).FirstOrDefaultAsync(f=>f.UserId == idUser);
             
             return user;
         }

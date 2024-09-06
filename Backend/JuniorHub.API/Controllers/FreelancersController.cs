@@ -19,20 +19,20 @@ namespace JuniorHub.API.Controllers
             _freelancerService = freelancerService;
         }
         /// <summary>
-        /// Adds a new technology for a freelancer.
+        /// Adds a new freelancer profile for the currently authenticated user.
         /// </summary>
-        /// <param name="technologyToAdd">The data for the new technology to add.</param>
+        /// <param name="freelancerAddDto">The data for creating a new freelancer profile.</param>
         /// <returns>A response indicating the success or failure of the operation.</returns>
-        /// <response code="200">The technology was added successfully.</response>
+        /// <response code="200">The freelancer profile was created successfully.</response>
         /// <response code="400">The request was invalid or failed.</response>
         [HttpPost()]
         [Authorize(Roles = "Freelancer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> AddFreelancer(FreelancerAddDto technologyToAdd)
+        public async Task<ActionResult> AddFreelancer(FreelancerAddDto freelancerAddDto)
         {
             var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await _freelancerService.AddFreelancer(technologyToAdd, int.Parse(idUser));
+            var response = await _freelancerService.AddFreelancer(freelancerAddDto, int.Parse(idUser));
 
             if (response.Success)
             {
@@ -91,6 +91,32 @@ namespace JuniorHub.API.Controllers
             else
             {
                 return NotFound(response);
+            }
+        }
+
+        /// <summary>
+        /// Updates the profile of the currently authenticated freelancer.
+        /// </summary>
+        /// <param name="freelancerUpdateDto">The data to update for the freelancer.</param>
+        /// <returns>A response indicating the success or failure of the operation.</returns>
+        /// <response code="200">The profile was updated successfully.</response>
+        /// <response code="400">The request was invalid or failed.</response>
+        [HttpPut()]
+        [Authorize(Roles = "Freelancer")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<FreelancerUpdateDto>> UpdateFreelancerProfile(FreelancerUpdateDto freelancerUpdateDto)
+        {
+            var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var response = await _freelancerService.UpdateFreelancer(freelancerUpdateDto, int.Parse(idUser));
+
+            if (response.Success)
+            {
+                return Ok(response.Data);
+            }
+            else
+            {
+                return BadRequest(response);
             }
         }
 

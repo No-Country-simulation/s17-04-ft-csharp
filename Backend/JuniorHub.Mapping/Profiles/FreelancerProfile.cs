@@ -14,6 +14,9 @@ namespace JuniorHub.Mapping.Profiles
         public FreelancerProfile()
         {
             CreateMap<Freelancer,FreelancerDto>();
+            CreateMap<Freelancer, FreelancerProfileDto>();
+            CreateMap<FreelancerUpdateDto, User>();
+            CreateMap<User, FreelancerProfileDto>().ReverseMap();
         }
     }
 }

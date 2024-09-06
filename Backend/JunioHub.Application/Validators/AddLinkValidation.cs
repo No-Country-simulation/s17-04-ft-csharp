@@ -16,7 +16,7 @@ namespace JunioHub.Application.Validators
                 .Must(IsValidUrl).WithMessage("The URL format is invalid.");
         }
 
-        private bool IsValidUrl(string url)
+        public static bool IsValidUrl(string url)
         {
             return Uri.TryCreate(url, UriKind.Absolute, out _);
         }

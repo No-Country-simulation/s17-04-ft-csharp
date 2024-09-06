@@ -10,5 +10,6 @@ namespace JunioHub.Application.Contracts.Services
     {
         Task<BaseResponse<FreelancerProfileDto>> GetProfileFreelancer(int idUser);
         Task<BaseResponse<FreelancerDto>> AddFreelancer(FreelancerAddDto freelancer, int idUser);
+        Task<BaseResponse<FreelancerProfileDto>> UpdateFreelancer(FreelancerUpdateDto freelancerUpdateDto, int idUser);
     }
 }

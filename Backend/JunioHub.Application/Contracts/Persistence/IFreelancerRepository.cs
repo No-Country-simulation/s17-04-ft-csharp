@@ -11,7 +11,7 @@ namespace JunioHub.Application.Contracts.Persistence
 {
     public interface IFreelancerRepository : IGenericRepository<Freelancer>
     {
-        Task<Freelancer> GetProfileFreelancer(int idUser);
+        Task<Freelancer?> GetProfileFreelancer(int idUser);
 
     }
 }

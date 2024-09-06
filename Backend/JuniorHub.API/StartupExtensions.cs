@@ -4,6 +4,7 @@ using JuniorHub.Mapping;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using JuniorHub.API.Middleware;
+using JuniorHub.Cloudinary;
 
 namespace JuniorHub.API;
 
@@ -13,6 +14,7 @@ public static class StartupExtensions
     {
         builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
+        builder.Services.AddCloudServiceExtensions(builder.Configuration);
         builder.Services.AddMappingProfiles();
         builder.Services.AddHttpContextAccessor();
 
