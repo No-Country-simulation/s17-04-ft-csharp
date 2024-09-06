@@ -11,8 +11,5 @@ internal class TechnologyConfiguration : IEntityTypeConfiguration<Technology>
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Id).UseIdentityColumn();
-
-        builder.HasMany(f => f.Freelancers)
-            .WithMany(s => s.Technologies);
     }
 }

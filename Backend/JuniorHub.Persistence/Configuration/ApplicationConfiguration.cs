@@ -12,10 +12,12 @@ internal class ApplicationConfiguration : IEntityTypeConfiguration<Application>
 
         builder.HasOne(a => a.Offer)
                .WithMany(o => o.Applications)
-               .HasForeignKey(a => a.OfferId);
+               .HasForeignKey(a => a.OfferId)
+               .OnDelete(DeleteBehavior.SetNull);
 
         builder.HasOne(a => a.Freelancer)
                .WithMany(f => f.Applications)
-               .HasForeignKey(a => a.FreelancerId);
+               .HasForeignKey(a => a.FreelancerId)
+               .OnDelete(DeleteBehavior.SetNull);
     }
 }
