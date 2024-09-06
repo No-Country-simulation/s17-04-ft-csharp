@@ -9,11 +9,12 @@ internal class ApplicationConfiguration : IEntityTypeConfiguration<Application>
     public void Configure(EntityTypeBuilder<Application> builder)
     {
         builder.HasKey(a => a.Id);
+        builder.Property(a => a.Id).UseIdentityColumn();
 
         builder.HasOne(a => a.Offer)
                .WithMany(o => o.Applications)
                .HasForeignKey(a => a.OfferId)
-               .OnDelete(DeleteBehavior.SetNull);
+               .OnDelete(DeleteBehavior.NoAction);
 
         builder.HasOne(a => a.Freelancer)
                .WithMany(f => f.Applications)

@@ -9,12 +9,12 @@ internal class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
     public void Configure(EntityTypeBuilder<Freelancer> builder)
     {
         builder.HasKey(f => f.Id);
-
         builder.Property(f => f.Id).UseIdentityColumn();
 
         builder.HasOne(f => f.User)
             .WithOne()
-            .HasForeignKey<Freelancer>(f => f.UserId);
+            .HasForeignKey<Freelancer>(f => f.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(f => f.Links)
             .WithOne(l => l.Freelancer)

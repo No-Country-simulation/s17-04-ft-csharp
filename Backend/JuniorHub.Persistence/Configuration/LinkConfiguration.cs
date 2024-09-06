@@ -9,7 +9,6 @@ internal class LinkConfiguration : IEntityTypeConfiguration<Link>
     public void Configure(EntityTypeBuilder<Link> builder)
     {
         builder.HasKey(l => l.Id);
-
         builder.Property(l => l.Id).UseIdentityColumn();
 
         builder.HasOne(l => l.Freelancer)

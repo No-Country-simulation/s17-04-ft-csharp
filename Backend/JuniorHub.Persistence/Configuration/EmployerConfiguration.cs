@@ -9,12 +9,12 @@ internal class EmployerConfiguration : IEntityTypeConfiguration<Employer>
     public void Configure(EntityTypeBuilder<Employer> builder)
     {
         builder.HasKey(e => e.Id);
-
         builder.Property(e => e.Id).UseIdentityColumn();
 
         builder.HasOne(e => e.User)
             .WithOne()
-            .HasForeignKey<Employer>(f => f.UserId);
+            .HasForeignKey<Employer>(e => e.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(e => e.Offers)
             .WithOne(o => o.Employer)

@@ -9,12 +9,11 @@ internal class OfferConfiguration : IEntityTypeConfiguration<Offer>
     public void Configure(EntityTypeBuilder<Offer> builder)
     {
         builder.HasKey(o => o.Id);
-
         builder.Property(o => o.Id).UseIdentityColumn();
 
         builder.HasMany(o => o.Applications)
             .WithOne(a => a.Offer)
             .HasForeignKey(a => a.OfferId)
-            .OnDelete(DeleteBehavior.SetNull); 
+            .OnDelete(DeleteBehavior.NoAction); 
     }
 }
