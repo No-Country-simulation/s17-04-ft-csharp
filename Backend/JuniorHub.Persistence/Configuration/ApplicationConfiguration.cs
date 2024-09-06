@@ -2,13 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JuniorHub.Persistence.Configuration
+namespace JuniorHub.Persistence.Configuration;
+
+internal class ApplicationConfiguration : IEntityTypeConfiguration<Application>
 {
-    internal class ApplicationConfiguration : IEntityTypeConfiguration<Application>
+    public void Configure(EntityTypeBuilder<Application> builder)
     {
-        public void Configure(EntityTypeBuilder<Application> builder)
-        {
-            builder.HasKey(of => new { of.OfferId, of.FreelancerId });
-        }
+        builder.HasKey(a => a.Id);
+
+        builder.HasOne(a => a.Offer)
+               .WithMany(o => o.Applications)
+               .HasForeignKey(a => a.OfferId);
+
+        builder.HasOne(a => a.Freelancer)
+               .WithMany(f => f.Applications)
+               .HasForeignKey(a => a.FreelancerId);
     }
 }
