@@ -12,6 +12,7 @@ import {
   udpateNote,
 } from "./offerSlice";
 import { loadTechnologies } from "../../../helpers/loadTechnologies";
+import { login } from "../auth";
 
 export const startCreationOffer = () => {
   return async (dispatch: Dispatch, getState: () => RootState) => {
@@ -58,6 +59,7 @@ export const startLoadingTechnologies = () => {
     // if (!uid) throw new Error("UID is undefined");
 
     const res = await loadTechnologies();
+
     dispatch(setTechnologies(res));
   };
 };

@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 
-import { Google } from "@mui/icons-material";
-import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid2 as Grid, TextField } from "@mui/material";
 
 import { useFormik } from "formik";
 import { z, ZodError } from "zod";
@@ -42,9 +41,9 @@ export const LoginFormComponent = () => {
     },
   });
 
-  const onGoogleSignIn = () => {
-    dispatch(startGoogleSignIn());
-  };
+  // const onGoogleSignIn = () => {
+  //   dispatch(startGoogleSignIn());
+  // };
 
   return (
     <form
@@ -52,7 +51,7 @@ export const LoginFormComponent = () => {
       className='animate__animated animate__fadeIn  animate__faster'
     >
       <Grid container flexDirection={"column"} spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             variant='outlined'
             label={"Email"}
@@ -67,7 +66,7 @@ export const LoginFormComponent = () => {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             variant='outlined'
             label={"Password"}
@@ -84,17 +83,20 @@ export const LoginFormComponent = () => {
           />
         </Grid>
 
-        <Grid item>
+        <Grid>
           <Grid
             container
             direction={"row"}
             spacing={2}
             justifyContent={"space-between"}
           >
-            <Grid item xs={12} display={!!errorMessage === true ? "" : "none"}>
+            <Grid
+              size={{ xs: 12 }}
+              display={!!errorMessage === true ? "" : "none"}
+            >
               <Alert severity='error'>{errorMessage}</Alert>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Button
                 color={"secondary"}
                 disabled={isAuthentication}
@@ -105,7 +107,7 @@ export const LoginFormComponent = () => {
                 Login
               </Button>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid  size={{xs:12}} sm={6}>
               <Button
                 color={"secondary"}
                 disabled={isAuthentication}
@@ -118,7 +120,7 @@ export const LoginFormComponent = () => {
                   Google
                 </Typography>
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Grid>
