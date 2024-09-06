@@ -24,7 +24,10 @@ namespace JuniorHub.API.Controllers
         /// <param name="freelancerAddDto">The data for creating a new freelancer profile.</param>
         /// <returns>A response indicating the success or failure of the operation.</returns>
         /// <response code="200">The freelancer profile was created successfully.</response>
-        /// <response code="400">The request was invalid or failed.</response>
+        /// <response code="400">
+        /// The request was invalid due to validation errors or failed. 
+        /// The response could contain a validation error message or a BaseResponse object indicating failure.
+        /// </response>
         [HttpPost()]
         [Authorize(Roles = "Freelancer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -49,7 +52,10 @@ namespace JuniorHub.API.Controllers
         /// </summary>
         /// <returns>The profile of the currently authenticated freelancer.</returns>
         /// <response code="200">The profile of the current freelancer.</response>
-        /// <response code="400">The request was invalid or failed.</response>
+        /// <response code="400">
+        /// The request was invalid due to validation errors or failed. 
+        /// The response could contain a validation error message or a BaseResponse object indicating failure.
+        /// </response>
         [HttpGet("current")]
         [Authorize(Roles = "Freelancer")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FreelancerProfileDto))]
@@ -75,6 +81,10 @@ namespace JuniorHub.API.Controllers
         /// <param name="id">The ID of the freelancer whose profile to retrieve.</param>
         /// <returns>The profile of the freelancer with the specified ID.</returns>
         /// <response code="200">The profile of the freelancer with the specified ID.</response>
+        /// <response code="400">
+        /// The request was invalid due to validation errors or failed. 
+        /// The response could contain a validation error message or a BaseResponse object indicating failure.
+        /// </response>
         /// <response code="404">The freelancer with the specified ID was not found.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FreelancerProfileDto))]
@@ -100,7 +110,10 @@ namespace JuniorHub.API.Controllers
         /// <param name="freelancerUpdateDto">The data to update for the freelancer.</param>
         /// <returns>A response indicating the success or failure of the operation.</returns>
         /// <response code="200">The profile was updated successfully.</response>
-        /// <response code="400">The request was invalid or failed.</response>
+        /// <response code="400">
+        /// The request was invalid due to validation errors or failed. 
+        /// The response could contain a validation error message or a BaseResponse object indicating failure.
+        /// </response>
         [HttpPut()]
         [Authorize(Roles = "Freelancer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
