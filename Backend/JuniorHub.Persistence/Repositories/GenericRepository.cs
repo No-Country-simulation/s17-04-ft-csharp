@@ -8,7 +8,7 @@ namespace JuniorHub.Persistence.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly JuniorHubContext _dbContext;
+    protected readonly JuniorHubContext _dbContext;
     private readonly IMapper _mapper;
 
     public GenericRepository(JuniorHubContext dbContext)
