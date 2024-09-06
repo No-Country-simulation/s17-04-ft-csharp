@@ -59,10 +59,9 @@ public static class Seed
         modelBuilder.Entity<Technology>().HasData(
             new Technology { Id = 29, Name = "Node.js" },
             new Technology { Id = 30, Name = ".NET" },
-            new Technology { Id = 31, Name = "Ruby" },
-            new Technology { Id = 32, Name = "PHP" },
-            new Technology { Id = 33, Name = "Java EE" },
-            new Technology { Id = 34, Name = "Flask" }
+            new Technology { Id = 31, Name = "PHP" },
+            new Technology { Id = 32, Name = "Java EE" },
+            new Technology { Id = 33, Name = "Flask" }
         );
     }
 }

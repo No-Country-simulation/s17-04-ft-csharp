@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using JuniorHub.API.Middleware;
 using JuniorHub.Cloudinary;
+using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace JuniorHub.API;
 
@@ -106,9 +108,33 @@ public static class StartupExtensions
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath,includeControllerXmlComments:true);
+
+            c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
         });
 
         
+    }
+
+    public class SwaggerAuthorizeCheckOperationFilter : IOperationFilter
+    {
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            var authorizeAttributes = context.MethodInfo.DeclaringType.GetCustomAttributes(true)
+                .Union(context.MethodInfo.GetCustomAttributes(true))
+                .OfType<AuthorizeAttribute>();
+
+            if (authorizeAttributes.Any())
+            {
+                var roles = authorizeAttributes
+                    .Where(attr => !string.IsNullOrEmpty(attr.Roles))
+                    .Select(attr => attr.Roles)
+                    .Distinct();
+
+                var rolesText = roles.Any() ? $"Roles: {string.Join(", ", roles)}" : "Authorization required";
+
+                operation.Description += $"<br/><b>{rolesText}</b>";
+            }
+        }
     }
 
 }
