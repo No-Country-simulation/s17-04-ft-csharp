@@ -1,4 +1,4 @@
-import { Alert, Button, Grid, TextField } from "@mui/material";
+import { Alert, Button, Grid2 as Grid, TextField } from "@mui/material";
 
 import { useFormik } from "formik";
 import { z, ZodError } from "zod";
@@ -8,15 +8,36 @@ import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 
 interface Credentials {
-  displayName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }
 
 const credentialsSchema = z.object({
-  displayName: z.string().min(2),
+  firstName: z
+    .string({
+      required_error: "First name is required",
+      invalid_type_error: "Name must be a string",
+    })
+    .min(2, "First name must be at least 2 characters long.")
+    .max(50, "First name must be no more than 50 characters long."),
+  lastName: z
+    .string({
+      required_error: "Last name is required",
+      invalid_type_error: "Name must be a string",
+    })
+    .min(2, "Last name must be at least 2 characters long.")
+    .max(50, "Last name must be no more than 50 characters long."),
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(6, "Password must be at least 6 characters long.")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter.")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter.")
+    .regex(/[0-9]/, "Password must contain at least one number.")
+    .regex(/[\W_]/, "Password must contain at least one special character."),
 });
 
 export const RegisterFormComponent = () => {
@@ -27,7 +48,8 @@ export const RegisterFormComponent = () => {
 
   const { handleChange, handleSubmit, values, errors, touched } = useFormik({
     initialValues: {
-      displayName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     },
@@ -49,25 +71,43 @@ export const RegisterFormComponent = () => {
       className='animate__animated animate__fadeIn  animate__faster'
     >
       <Grid container flexDirection={"column"} spacing={2}>
-        <Grid item xs={12}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 2,
+          }}
+        >
           <TextField
             variant='outlined'
-            label={"Full name"}
+            label={"First name"}
             placeholder='Enter your name'
             type='text'
-            name='displayName'
-            value={values.displayName}
+            name='firstName'
+            value={values.firstName}
             fullWidth
             onChange={handleChange}
             helperText={
-              errors.displayName && touched.displayName
-                ? errors.displayName
-                : ""
+              errors.firstName && touched.firstName ? errors.firstName : ""
             }
-            error={!!(errors.displayName && touched.displayName)}
+            error={!!(errors.firstName && touched.firstName)}
+          />
+          <TextField
+            variant='outlined'
+            label={"Last name"}
+            placeholder='Enter your name'
+            type='text'
+            name='lastName'
+            value={values.lastName}
+            fullWidth
+            onChange={handleChange}
+            helperText={
+              errors.lastName && touched.lastName ? errors.lastName : ""
+            }
+            error={!!(errors.lastName && touched.lastName)}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             variant='outlined'
             label={"Email"}
@@ -82,7 +122,7 @@ export const RegisterFormComponent = () => {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             variant='outlined'
             label={"Password"}
@@ -99,17 +139,20 @@ export const RegisterFormComponent = () => {
           />
         </Grid>
 
-        <Grid item>
+        <Grid>
           <Grid
             container
             direction={"row"}
             spacing={2}
             justifyContent={"space-between"}
           >
-            <Grid item xs={12} display={!!errorMessage === true ? "" : "none"}>
+            <Grid
+              size={{ xs: 12 }}
+              display={!!errorMessage === true ? "" : "none"}
+            >
               <Alert severity='error'>{errorMessage}</Alert>
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <Button
                 color={"secondary"}
                 disabled={isAuthentication}

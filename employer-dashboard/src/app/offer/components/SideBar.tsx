@@ -16,7 +16,9 @@ interface Props {
 }
 
 export const SideBar = ({ drawerWidth }: Props) => {
-  const { displayName, photoURL } = useAppSelector((state) => state.auth);
+  const { firstName, lastName, photoURL } = useAppSelector(
+    (state) => state.auth
+  );
   const { offers: notes } = useAppSelector((state) => state.offer);
 
   return (
@@ -37,7 +39,7 @@ export const SideBar = ({ drawerWidth }: Props) => {
             noWrap
             component={"div"}
           >
-            {displayName}
+            {firstName} {lastName}
           </Typography>
         </Toolbar>
         <Divider />

@@ -1,11 +1,12 @@
 import { Dispatch } from "@reduxjs/toolkit";
+import { jwtVerify, JWTPayload } from "jose";
 import {
   logOutUserFirebase,
-  registerUserWithEmailAndPassword,
   signInWithEmailPassword,
   signInWithGoogle,
 } from "../../../firebase/providers";
 import { checkingCredentials, login, logout } from "./authSlice";
+import { verifyToken } from "../../../helpers";
 
 // export const checkingAuthentication = ({ email = "", password = "" }) => {
 //   return async (dispatch: Dispatch) => {
@@ -35,63 +36,130 @@ export const startGoogleSignIn = () => {
   };
 };
 
-export const startSignInWithEmailPassword = ({ email = "", password = "" }) => {
-  return async (dispatch: Dispatch) => {
-    dispatch(checkingCredentials());
-    const result = await signInWithEmailPassword({ email, password });
+export const startLogin = () => {
+  return async (dispatch: Dispatch /* getState: () => RootState */) => {
+    // const { uid } = getState().auth;
+    // if (!uid) throw new Error("UID is undefined");
+    const token = localStorage.getItem("token");
+    if (!token) return;
 
-    if (result?.errorMessage === undefined)
-      throw new Error("result is undefined");
-
-    if (!result?.ok) return dispatch(logout(result.errorMessage));
+    const payload = await verifyToken(token);
 
     dispatch(
       login({
-        displayName: result.displayName,
-        email: result.email,
-        photoURL: result.photoURL,
-        uid: result.uid,
+        uid: "",
+        photoURL: "",
+        email: payload.email,
+        firstName: payload.name,
+        lastName: payload.lastName,
       })
     );
+  };
+};
+
+export const startSignInWithEmailPassword = ({ email = "", password = "" }) => {
+  return async (dispatch: Dispatch) => {
+    // dispatch(checkingCredentials());
+    // const result = await signInWithEmailPassword({ email, password });
+    try {
+      const res = await fetch("https://juniorhub.somee.com/api/account/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error("Error en la autenticación");
+      }
+      const token = data.token;
+      localStorage.setItem("token", token);
+
+      const payload = await verifyToken(token);
+
+      dispatch(
+        login({
+          uid: "",
+          photoURL: "",
+          email: payload.email,
+          firstName: payload.name,
+          lastName: payload.lastName,
+        })
+      );
+
+      // return token;
+    } catch (error) {
+      throw new Error("Error en la autenticación");
+    }
+
+    // if (result?.errorMessage === undefined)
+    //   throw new Error("result is undefined");
+
+    // if (!result?.ok) return dispatch(logout(result.errorMessage));
   };
 };
 
 export const startCreatingUserWithEmailPassword = ({
   email = "",
   password = "",
-  displayName = "",
+  firstName: name = "",
+  lastName = "",
 }) => {
   return async (dispatch: Dispatch) => {
     dispatch(checkingCredentials());
 
-    const res = await registerUserWithEmailAndPassword({
-      email,
-      password,
-      displayName,
-    });
+    const res = await fetch(
+      "https://juniorhub.somee.com/api/account/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, name, lastName, role: 0 }),
+      }
+    );
+    // const data = await res.json();
 
-    if (!res || res.errorMessage === undefined)
-      throw new Error("variables of $res are empties");
+    console.log("res:", res);
 
-    const { photoURL, uid, ok, errorMessage } = res;
-
-    if (!ok) return dispatch(logout(errorMessage));
-
+    if (!res.ok) {
+      // console.error("error data:", data);
+      return;
+    }
+    // console.log("well data :", data);
     dispatch(
       login({
+        uid: "",
+        photoURL: "",
         email,
-        displayName,
-        photoURL,
-        uid,
+        firstName: name,
+        lastName,
       })
     );
+
+    //TODO: if (!ok) return dispatch(logout(data));
+
+    //* **CHECK IT**
+    //* const res = await registerUserWithEmailAndPassword({
+    //*   email,
+    //*   password,
+    //*   displayName,
+    //* });
+
+    //* if (!res || res.errorMessage === undefined)
+    //*   throw new Error("variables of $res are empties");
+
+    //* const { photoURL, uid, ok, errorMessage } = res;
   };
 };
 
 export const startLogOutUser = () => {
   return async (dispatch: Dispatch) => {
     dispatch(checkingCredentials());
-    await logOutUserFirebase();
+
+    localStorage.removeItem("token");
     dispatch(logout(""));
   };
 };
