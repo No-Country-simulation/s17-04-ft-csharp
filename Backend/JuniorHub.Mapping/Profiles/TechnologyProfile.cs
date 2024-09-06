@@ -11,6 +11,6 @@ public class TechnologyProfile : Profile
         CreateMap<TechnologyAddDto, Technology>();
         CreateMap<TechnologyUpdateDto, Technology>().ReverseMap();
         CreateMap<Technology, TechnologyGetByIdDto>();
-        CreateMap<Technology, TechnologiesDto>();
+        CreateMap<Technology, TechnologiesDto>().ReverseMap();
     }
 }
