@@ -6,5 +6,10 @@ export interface Offer {
   estimatedTime: number;
   state: number;
   difficult: number;
-  technology: string[];
+  technology: Technology[];
+}
+
+export interface Technology {
+  id: number;
+  name: string;
 }

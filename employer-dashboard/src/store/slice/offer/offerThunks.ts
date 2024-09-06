@@ -7,9 +7,11 @@ import {
   deleteNoteById,
   savingNewNote,
   setActiveNote,
+  setTechnologies,
   // setUploadImages,
   udpateNote,
 } from "./offerSlice";
+import { loadTechnologies } from "../../../helpers/loadTechnologies";
 
 export const startCreationOffer = () => {
   return async (dispatch: Dispatch, getState: () => RootState) => {
@@ -50,7 +52,17 @@ export const startCreationOffer = () => {
 //   };
 // };
 
-export const startUpdateNote = ({
+export const startLoadingTechnologies = () => {
+  return async (dispatch: Dispatch /* getState: () => RootState */) => {
+    // const { uid } = getState().auth;
+    // if (!uid) throw new Error("UID is undefined");
+
+    const res = await loadTechnologies();
+    dispatch(setTechnologies(res));
+  };
+};
+
+export const startUpdateOffer = ({
   title,
   description,
   price,
@@ -63,8 +75,8 @@ export const startUpdateNote = ({
     dispatch(savingNewNote());
 
     // const { uid } = getState().auth;
-    const { offerActive: noteActive } = getState().offer;
-    if (!noteActive) throw new Error("noteActive is empty");
+    const { offerActive } = getState().offer;
+    if (!offerActive) throw new Error("noteActive is empty");
 
     // const noteForFirebase = {
     //   ...noteActive,
@@ -82,14 +94,14 @@ export const startUpdateNote = ({
 
     dispatch(
       udpateNote({
-        id: noteActive.id,
+        id: offerActive.id,
         title: title,
         description: description,
-        price: price || noteActive.price,
-        estimatedTime: estimatedTime || noteActive.estimatedTime,
-        state: state || noteActive.state,
-        difficult: difficult || noteActive.difficult,
-        technology: technology || noteActive.technology,
+        price: price || offerActive.price,
+        estimatedTime: estimatedTime || offerActive.estimatedTime,
+        state: state || offerActive.state,
+        difficult: difficult || offerActive.difficult,
+        technology: technology || offerActive.technology,
       })
     );
   };

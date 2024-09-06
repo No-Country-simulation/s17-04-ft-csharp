@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Offer } from "../../../@types/types";
+import { Offer, Technology } from "../../../@types/types";
 
 interface offerState {
   isSaving: boolean;
   messageSaved: string;
   offers: Offer[];
+  technologies: Technology[];
   offerActive: Offer | null;
 }
 
@@ -13,6 +14,7 @@ const initialState: offerState = {
   isSaving: false,
   messageSaved: "",
   offers: [],
+  technologies: [],
   offerActive: null,
 };
 
@@ -35,6 +37,9 @@ export const offerSlice = createSlice({
     },
     setNotes: (state, action: PayloadAction<Offer[]>) => {
       state.offers = action.payload;
+    },
+    setTechnologies: (state, action: PayloadAction<Technology[]>) => {
+      state.technologies = action.payload;
     },
     updatedNotes: (state, action: PayloadAction<Offer[]>) => {
       state.offers = action.payload;
@@ -67,5 +72,6 @@ export const {
   udpateNote,
   deleteNoteById,
   savingNewNote,
+  setTechnologies,
   // setUploadImages,
 } = offerSlice.actions;

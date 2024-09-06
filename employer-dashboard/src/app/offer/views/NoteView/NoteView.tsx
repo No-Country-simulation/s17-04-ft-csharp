@@ -1,17 +1,19 @@
 import { DeleteOutlined, SaveOutlined } from "@mui/icons-material";
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid2 as Grid, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import { Offer, Technology } from "../../../../@types/types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
-import { startDeleteNote, startUpdateNote } from "../../../../store";
-import { DifficultSelectNoteView } from "./components/DifficultSelectNoteView";
-import { MultipleSelectChipNoteView } from "./components/MultipleSelectChipNoteView";
-import { TimeSelectorNoteView } from "./components/TimeSelectorNoteView";
-import { SelectRateForHourNoteView } from "./components/SelectRateForHourNoteView";
-import { StatusSelectNoteView } from "./components/StatusSelectNoteView";
-import { TableNoteView } from "./components/TableNoteView";
-import { Offer } from "../../../../@types/types";
+import { startDeleteNote, startUpdateOffer } from "../../../../store";
+import {
+  DifficultSelectNoteView,
+  MultipleSelectChipNoteView,
+  SelectRateForHourNoteView,
+  StatusSelectNoteView,
+  TableNoteView,
+  TimeSelectorNoteView,
+} from "./components";
 
 export const NoteView = () => {
   const { offerActive } = useAppSelector((state) => state.offer);
@@ -33,7 +35,7 @@ export const NoteView = () => {
     onSubmit: () => {},
   });
 
-  const onSaveNote = () => {
+  const onSaveOffer = () => {
     values.price = Number(values.price);
     // console.table(values);
 
@@ -46,13 +48,29 @@ export const NoteView = () => {
       cancelButtonText: "Cancel",
     }).then((value) => {
       if (value.value) {
-        dispatch(startUpdateNote(values));
+        dispatch(startUpdateOffer(values));
       }
     });
   };
 
-  const onChangeTechnologies = (technologies: string[]) => {
-    values.technology = technologies;
+  const { technologies: technologiesList } = useAppSelector(
+    (state) => state.offer
+  );
+
+  const onChangeTechnologies = (technologies: string[]): void => {
+    const result: Technology[] = [];
+
+    technologiesList.map((tech) => {
+      for (const aux of technologies) {
+        if (tech.name === aux) {
+          result.push(tech);
+        }
+      }
+    });
+
+    // console.log(result);
+
+    values.technology = result;
   };
 
   const onDeleteNote = () => {
@@ -99,13 +117,13 @@ export const NoteView = () => {
       mb={1}
       gap={3}
     >
-      <Grid item>
+      <Grid>
         <Typography variant='h4'>
           Oferta de trabajo / proyecto
           {/* {dateString(noteActive?.date)} */}
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid>
         {/* <input
           type='file'
           multiple
@@ -121,7 +139,7 @@ export const NoteView = () => {
           <UploadFileOutlined sx={{ fontSize: 30, mr: 1 }} />
           Upload
         </Button> */}
-        <Button onClick={onSaveNote} color={"info"} sx={{ p: 2 }}>
+        <Button onClick={onSaveOffer} color={"info"} sx={{ p: 2 }}>
           <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
           Save
         </Button>
@@ -174,12 +192,14 @@ export const NoteView = () => {
         />
         <MultipleSelectChipNoteView
           onChangeTechnologies={onChangeTechnologies}
-          technologiesSelected={offerActive?.technology}
+          technologiesSelected={offerActive?.technology.map(
+            (tech) => tech.name
+          )}
         />
       </Grid>
       {/* <StandardImageList /> */}
 
-      <Grid container>
+      <Grid container width={"100%"}>
         <TableNoteView />
       </Grid>
     </Grid>

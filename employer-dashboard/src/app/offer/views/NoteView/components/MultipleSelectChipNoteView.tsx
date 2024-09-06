@@ -8,6 +8,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Theme, useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../../../../hooks/hooks";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,18 +21,18 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "JavaScript",
-  "React",
-  "Node.js",
-  "TypeScript",
-  "Python",
-  "Angular",
-  "Java",
-  "Vue.js",
-  "Docker",
-  "Kubernetes",
-];
+// const names = [
+//   "JavaScript",
+//   "React",
+//   "Node.js",
+//   "TypeScript",
+//   "Python",
+//   "Angular",
+//   "Java",
+//   "Vue.js",
+//   "Docker",
+//   "Kubernetes",
+// ];
 
 interface Props {
   onChangeTechnologies: (technologies: string[]) => void;
@@ -51,19 +52,23 @@ export const MultipleSelectChipNoteView = ({
   onChangeTechnologies,
   technologiesSelected = [],
 }: Props) => {
+  const { technologies: technologiesList } = useAppSelector(
+    (state) => state.offer
+  );
+
   useEffect(() => {
-    setPersonName(technologiesSelected);
+    setTechnology(technologiesSelected);
   }, [technologiesSelected]);
 
   const theme = useTheme();
-  const [personName, setPersonName] = useState<string[]>([]);
+  const [technology, setTechnology] = useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof technology>) => {
     const {
       target: { value },
     } = event;
     const result = typeof value === "string" ? value.split(",") : value;
-    setPersonName(result);
+    setTechnology(result);
     onChangeTechnologies(result);
   };
 
@@ -76,7 +81,7 @@ export const MultipleSelectChipNoteView = ({
           labelId='demo-multiple-chip-label'
           id='demo-multiple-chip'
           multiple
-          value={personName}
+          value={technology}
           onChange={handleChange}
           input={
             <OutlinedInput id='select-multiple-chip' label='technologies' />
@@ -90,13 +95,13 @@ export const MultipleSelectChipNoteView = ({
           )}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {technologiesList.map((tech) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+              key={tech.id}
+              value={tech.name}
+              style={getStyles(tech.name, technology, theme)}
             >
-              {name}
+              {tech.name}
             </MenuItem>
           ))}
         </Select>
