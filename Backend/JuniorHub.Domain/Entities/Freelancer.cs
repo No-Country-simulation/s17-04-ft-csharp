@@ -11,6 +11,6 @@ public class Freelancer
     public User User { get; set; }
     public ICollection<Technology> Technologies { get; set; } = null!;
     public ICollection<Link> Links { get; set; } = null!;
-    public ICollection<Application> Applications { get; set; } = null!;
-    public ICollection<Valoration> Valorations { get; set; } = null!;
+    public ICollection<Application> Applications { get; set; }
+    public ICollection<Valoration> Valorations { get; set; }
 }
