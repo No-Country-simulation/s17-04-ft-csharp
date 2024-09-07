@@ -144,7 +144,7 @@ namespace JunioHub.Application.Services
 
                 existingFreelancer.Technologies.Clear();
                 existingFreelancer.Technologies = existingTechnologies;
-
+                existingFreelancer.Description = freelancerUpdateDto.Description;
                 var updatedLinks = freelancerUpdateDto.Links;
 
                 var linksToRemove = existingFreelancer.Links
