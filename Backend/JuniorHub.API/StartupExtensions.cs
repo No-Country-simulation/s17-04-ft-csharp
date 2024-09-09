@@ -4,6 +4,7 @@ using JuniorHub.Mapping;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using JuniorHub.API.Middleware;
+using JuniorHub.Mapping.Profiles;
 
 namespace JuniorHub.API;
 
@@ -14,6 +15,7 @@ public static class StartupExtensions
         builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddMappingProfiles();
+        builder.Services.AddAutoMapper(typeof(EmployerProfile));
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddSwagger();

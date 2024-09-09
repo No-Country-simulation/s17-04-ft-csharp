@@ -1,18 +1,17 @@
-﻿using JuniorHub.Domain.Enums;
-using System.Text.Json.Serialization;
+using JuniorHub.Domain.Enums;
+using JuniorHub.Domain.Entities;
 
-namespace JuniorHub.Domain.Entities
+namespace JunioHub.Application.DTOs.Employer
 {
-    public class Employer
+    public class EmployersDto
     {
-        public int Id { get; set; }
+         public int Id { get; set; }
         public ValorationEnum Valoration { get; set; }
         public int UserId { get; set; }
         public User User { get; set; } = null!;
-
-        [JsonIgnore]
+        public string UserName { get; set; } = null!; 
+        public string UserLastName { get; set; } = null!; 
         public ICollection<Offer> Offers { get; set; } = null!;
-        //Coleccion por que maximo va a tener 2, donde valora y donde es valorado.
         public ICollection<Valoration> Valorations { get; set; } = null!;
     }
 }
