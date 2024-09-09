@@ -27,16 +27,21 @@ public static class PersistenceServiceExtensions
         services.AddIdentity<User, IdentityRole<int>>()
            .AddEntityFrameworkStores<JuniorHubContext>().AddDefaultTokenProviders();
 
+        // identity
         var jwtConfig = new JwtConfiguration();
         configuration.Bind("JwtConfiguration", jwtConfig);
-        // services
         services.AddSingleton(jwtConfig);
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<UserManager<User>>();
         services.AddScoped<SignInManager<User>>();
         services.AddScoped<RoleManager<IdentityRole<int>>>();
+
+        // repositories
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
         services.AddScoped<IFreelancerRepository, FreelancerRepository>();
+        services.AddScoped<IValorationRepository, ValorationRepository>();
+
+
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
