@@ -2,38 +2,32 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JuniorHub.Persistence.Configuration
+namespace JuniorHub.Persistence.Configuration;
+
+internal class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
 {
-    internal class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
+    public void Configure(EntityTypeBuilder<Freelancer> builder)
     {
-        public void Configure(EntityTypeBuilder<Freelancer> builder)
-        {
-            builder.HasKey(u => u.Id);
+        builder.HasKey(f => f.Id);
+        builder.Property(f => f.Id).UseIdentityColumn();
 
-            builder.Property(u => u.Id).UseIdentityColumn();
+        builder.HasOne(f => f.User)
+            .WithOne()
+            .HasForeignKey<Freelancer>(f => f.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(f => f.User)
-                .WithOne()
-                .HasForeignKey<Freelancer>(f => f.UserId);
+        builder.HasMany(f => f.Links)
+            .WithOne(l => l.Freelancer)
+            .HasForeignKey(l => l.FreelancerId);
 
-            builder.HasMany(f => f.Links)
-                .WithOne(l => l.Freelancer)
-                .HasForeignKey(l=>l.FreelancerId);
+        builder.HasMany(f => f.Applications)
+            .WithOne(a => a.Freelancer)
+            .HasForeignKey(a => a.FreelancerId)
+            .OnDelete(DeleteBehavior.SetNull);
 
-            builder.HasMany(f => f.Technologies)
-               .WithMany(s => s.Freelancers);
-
-            builder.HasMany(f => f.Applications)
-                .WithOne(o=>o.Freelancer)
-                .HasForeignKey(o=>o.FreelancerId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasMany(f => f.Valorations)
-                .WithOne(v => v.Freelancer)
-                .HasForeignKey(v => v.FreelancerId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
-        }
+        builder.HasMany(f => f.Valorations)
+            .WithOne(v => v.Freelancer)
+            .HasForeignKey(v => v.FreelancerId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

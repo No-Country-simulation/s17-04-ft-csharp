@@ -37,6 +37,7 @@ public static class PersistenceServiceExtensions
         services.AddScoped<RoleManager<IdentityRole<int>>>();
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
         services.AddScoped<IEmployerRepository,EmployerRepository>();
+        services.AddScoped<IFreelancerRepository, FreelancerRepository>();
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

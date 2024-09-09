@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JuniorHub.API.Controllers
 {
-    [Route("api/account")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -18,15 +18,15 @@ namespace JuniorHub.API.Controllers
         }
 
         /// <summary>
-        /// Registra un nuevo usuario en el sistema.
+        /// Registers a new user in the system.
         /// </summary>
         /// <remarks>
-        /// Este método registra un nuevo usuario basado en los datos proporcionados en el DTO de registro.
+        /// This method registers a new user based on the data provided in the registration DTO.
         /// </remarks>
-        /// <param name="registroDto">Objeto que contiene la información necesaria para registrar al usuario.</param>
-        /// <response code="200">El usuario se creó con éxito</response>
-        /// <response code="400">Informacion del RegistroDto no valida, retorna un "error":"mensaje de error"</response>
-        /// <returns>Una acción de resultado HTTP.</returns>
+        /// <param name="registerDto">Object containing the information necessary to register the user.</param>
+        /// <response code="200">The user was created successfully.</response>
+        /// <response code="400">The registration information is invalid. Returns "error":"error message".</response>
+        /// <returns>An HTTP action result.</returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Tuple<string>))]
         [HttpPost("register")]
@@ -43,15 +43,15 @@ namespace JuniorHub.API.Controllers
 
 
         /// <summary>
-        /// Inicia sesión en el sistema.
+        /// Log in to the system.
         /// </summary>
         /// <remarks>
-        /// Este método autentica a un usuario basado en los datos proporcionados en el DTO de inicio de sesión.
+        /// This method authenticates a user based on the data provided in the login DTO.
         /// </remarks>
-        /// <param name="loginDto">Objeto que contiene la información necesaria para autenticar al usuario.</param>
-        /// <response code="200">Inicio de sesión exitoso, retorna "token":"valor del token"</response>
-        /// <response code="400">Información del LoginDto no válida</response>
-        /// <returns>Una acción de resultado HTTP.</returns>
+        /// <param name="loginDto">Object containing the information necessary to authenticate the user.</param>
+        /// <response code="200">Login successful. Returns "token":"token value".</response>
+        /// <response code="400">The login information is invalid.</response>
+        /// <returns>An HTTP action result.</returns>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Tuple<string>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Tuple<string>))]
         [HttpPost("login")]

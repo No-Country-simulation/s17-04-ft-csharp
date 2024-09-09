@@ -43,13 +43,22 @@ public class TechnologyService : ITechnologyService
         }
         if (baseResponse.Success)
         {
-            var newTechnology = _mapper.Map<Technology>(technologyToAdd);
+            try
+            {
+                var newTechnology = _mapper.Map<Technology>(technologyToAdd);
 
-            var techonologyCreated = await _repository.AddAsync(newTechnology);
-            await _repository.SaveChangesAsync();
+                var techonologyCreated = await _repository.AddAsync(newTechnology);
+                await _repository.SaveChangesAsync();
 
-            baseResponse.Data = _mapper.Map<TechnologiesDto>(techonologyCreated);
-            baseResponse.Message = "New technology added successfully.";
+                baseResponse.Data = _mapper.Map<TechnologiesDto>(techonologyCreated);
+                baseResponse.Message = "New technology added successfully.";
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Success = false;
+                baseResponse.Message = ex.Message;
+                _logger.LogError(ex, "An error occurred while adding technology.");
+            }
         }
 
         return baseResponse;
@@ -61,6 +70,10 @@ public class TechnologyService : ITechnologyService
         try
         {
             baseResponse.Data = await _repository.GetByIdAsyncProjectTo<TechnologyGetByIdDto>(technologyId);
+            if (baseResponse.Data == null)
+            {
+                throw new NotFoundException(nameof(Technology), technologyId);
+            }
         }
         catch (Exception ex)
         {
@@ -68,6 +81,7 @@ public class TechnologyService : ITechnologyService
             baseResponse.Message = ex.Message;
             _logger.LogError(ex, $"{ex.Message}");
         }
+
         return baseResponse;
     }
 
@@ -128,7 +142,7 @@ public class TechnologyService : ITechnologyService
             baseResponse.Data = true;
             baseResponse.Message = "Technology deleted successfully";
         }
-            
+
         return baseResponse;
     }
 
