@@ -124,20 +124,21 @@ export const startCreatingUserWithEmailPassword = ({
 
     console.log("res:", res);
 
-    if (!res.ok) {
-      // console.error("error data:", data);
-      return;
+    if (res.ok) {
+      startSignInWithEmailPassword({ email, password });
+      //   // console.error("error data:", data);
+      //   return;
     }
-    // console.log("well data :", data);
-    dispatch(
-      login({
-        uid: "",
-        photoURL: "",
-        email,
-        firstName: name,
-        lastName,
-      })
-    );
+    // // console.log("well data :", data);
+    // dispatch(
+    //   login({
+    //     uid: "",
+    //     photoURL: "",
+    //     email,
+    //     firstName: name,
+    //     lastName,
+    //   })
+    // );
 
     //TODO: if (!ok) return dispatch(logout(data));
 
