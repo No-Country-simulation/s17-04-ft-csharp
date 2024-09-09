@@ -19,7 +19,7 @@ public static class StartupExtensions
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddCloudServiceExtensions(builder.Configuration);
         builder.Services.AddMappingProfiles();
-        builder.Services.AddAutoMapper(typeof(EmployerProfile));
+        //builder.Services.AddAutoMapper(typeof(EmployerProfile));
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddSwagger();

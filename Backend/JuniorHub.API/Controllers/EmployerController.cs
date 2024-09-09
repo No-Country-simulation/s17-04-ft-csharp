@@ -16,33 +16,6 @@ namespace JuniorHub.API.Controllers;
     {
         _service = service;
     }
-    /// <summary>
-    /// Adds a new employer profile for the currently authenticated user.
-    /// </summary>
-    /// <param name="employerAddDto">The data for creating a new employer profile.</param>
-    /// <returns>A response indicating the success or failure of the operation.</returns>
-    /// <response code="200">The employer profile was created successfully.</response>
-    /// <response code="400">
-    /// The request was invalid due to validation errors or failed. 
-    /// The response could contain a validation error message or a BaseResponse object indicating failure.
-    /// </response>
-    [HttpPost()]
-    [Authorize(Roles = "Employer")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> AddEmployer(EmployerAddDto employerAddDto)
-    {
-        var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var response = await _service.AddEmployer(employerAddDto,int.Parse(idUser));
-        if (response.Success)
-        {
-           return Ok(response.Data);
-        }
-        else
-        {
-            return BadRequest(response);
-        }
-    }
 
     /// <summary>
     /// Gets the profile of a employer by their ID.
