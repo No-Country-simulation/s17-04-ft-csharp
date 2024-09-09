@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using JunioHub.Application.DTOs.Technology;
 
-namespace JunioHub.Application.Validators;
+namespace JunioHub.Application.Validators.Technology;
 
 public class AddTechnologyValidator : AbstractValidator<TechnologyAddDto>
 {
