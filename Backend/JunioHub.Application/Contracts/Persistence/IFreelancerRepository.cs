@@ -1,17 +1,9 @@
-﻿using JunioHub.Application.DTOs.Freelancer;
-using JunioHub.Application.DTOs;
-using JuniorHub.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JuniorHub.Domain.Entities;
 
-namespace JunioHub.Application.Contracts.Persistence
+namespace JunioHub.Application.Contracts.Persistence;
+
+public interface IFreelancerRepository : IGenericRepository<Freelancer>
 {
-    public interface IFreelancerRepository : IGenericRepository<Freelancer>
-    {
-        Task<Freelancer?> GetProfileFreelancer(int idUser);
-
-    }
+    Task<Freelancer?> GetProfileFreelancer(int userId);
+    Task<Freelancer?> GetFreelancerForValoration(int userId);
 }
