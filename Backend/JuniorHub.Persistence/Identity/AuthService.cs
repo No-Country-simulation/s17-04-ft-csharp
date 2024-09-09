@@ -20,10 +20,12 @@ namespace JuniorHub.Persistence.Identity
     internal class AuthService : IAuthService
     {
         private readonly UserManager<User> _userManager;
+        private readonly IEmployerRepository _repository;
         private readonly SignInManager<User> _signInManager;
         private readonly JwtConfiguration _jwtConfiguration;
-        public AuthService(SignInManager<User> signInManager, UserManager<User> userManager, JwtConfiguration jwtConfiguration)
+        public AuthService(SignInManager<User> signInManager, UserManager<User> userManager,IEmployerRepository repository, JwtConfiguration jwtConfiguration)
         {
+            _repository=repository;
             _signInManager = signInManager;
             _userManager = userManager;
             _jwtConfiguration = jwtConfiguration;
@@ -73,6 +75,35 @@ namespace JuniorHub.Persistence.Identity
 
             if (!addRoleResult.Succeeded)
                 return addRoleResult;
+
+            if (register.Role is Role.Employer)
+            {    
+                try
+                {
+                   var employer=new Employer()
+                   {
+                    UserId=userToRegister.Id,
+                   };
+                  
+                   var addEmployerResult=await _repository.AddAsync(employer);
+                   await _repository.SaveChangesAsync();
+
+                   if (addEmployerResult==null)
+                   {
+                      return IdentityResult.Failed(new IdentityError() 
+                    { 
+                      Description = "Could not save employer data, error" 
+                    });
+                  }
+                }
+                catch(Exception ex)
+                {
+                  return IdentityResult.Failed(new IdentityError() 
+                  {
+                     Description = $"An error occurred: {ex.Message}" 
+                  });
+                }
+            }        
 
             return IdentityResult.Success;
         }

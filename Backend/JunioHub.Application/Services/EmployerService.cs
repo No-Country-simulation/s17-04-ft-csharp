@@ -4,9 +4,7 @@ using AutoMapper;
 using JunioHub.Application.Contracts.Persistence;
 using JunioHub.Application.DTOs;
 using JunioHub.Application.DTOs.Employer;
-using JunioHub.Application.Validators;
 using JuniorHub.Domain.Entities;
-using JunioHub.Application.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using JunioHub.Application.DTOs.OfferDto;
 
@@ -29,39 +27,6 @@ public class EmployerService : IEmployerService
         _mapper = mapper;
         _logger = logger;
     }
-
-    public async Task<BaseResponse<EmployersDto>> AddEmployer(EmployerAddDto employerData,int idUser)
-    {
-        
-        var baseResponse = new BaseResponse<EmployersDto>();
-
-        var existsEmployer=await GetProfileEmployer(idUser);
-         if(existsEmployer.Success)
-        {
-                baseResponse = new BaseResponse<EmployersDto>(null, false, "Employer already exists", null);
-                return baseResponse;
-        }
-
-        if (baseResponse.Success)
-        {
-            var employer=new Employer()
-            {
-              Offers= employerData.Offers.Select(l=> _mapper.Map<Offer>(l)).ToList(),
-              Valoration=JuniorHub.Domain.Enums.ValorationEnum.Average,
-              UserId=idUser
-            };
-
-            var result=await _repository.AddAsync(employer);
-            await _repository.SaveChangesAsync();
- 
-            baseResponse.Data = _mapper.Map<EmployersDto>(result);
-            baseResponse.Message = "New employer added successfully.";
-           
-        }
-
-        return baseResponse;
-    }
-
     public async  Task<BaseResponse<EmployerUpdateDto>> UpdateEmployer(EmployerUpdateDto employerUpdateDto,int employerId)
     {
        BaseResponse<EmployerUpdateDto> baseResponse;
@@ -73,8 +38,7 @@ public class EmployerService : IEmployerService
                     baseResponse = new BaseResponse<EmployerUpdateDto>(null, false, "Employer not found", null);
                     return baseResponse;
                 }
-
-            existingEmployer.Valoration=employerUpdateDto.ValorationEnum;    
+    
             var existingEmployerUser = await _userManager.FindByIdAsync(employerId.ToString());
             
             existingEmployerUser = _mapper.Map(employerUpdateDto, existingEmployerUser);
