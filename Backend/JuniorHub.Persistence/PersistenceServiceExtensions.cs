@@ -38,6 +38,7 @@ public static class PersistenceServiceExtensions
 
         // repositories
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
+        services.AddScoped<IEmployerRepository,EmployerRepository>();
         services.AddScoped<IFreelancerRepository, FreelancerRepository>();
         services.AddScoped<IValorationRepository, ValorationRepository>();
 

@@ -12,6 +12,7 @@ public static class ApplicationServiceExtensions
     {
         // Add services
         services.AddScoped<ITechnologyService, TechnologyService>();
+        services.AddScoped<IEmployerService, EmployerService>();
         services.AddScoped<IFreelancerService, FreelancerService>();
         services.AddScoped<IValorationService, ValorationService>();
 

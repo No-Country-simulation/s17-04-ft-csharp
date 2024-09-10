@@ -488,3 +488,7 @@ appsettings.Development.json
 
 # Exclude Migrations folder in Persistence layer
 JuniorHub.Persistence/Migrations
+
+# Ignorar launch.json y tasks.json
+.vscode/launch.json
+.vscode/tasks.json

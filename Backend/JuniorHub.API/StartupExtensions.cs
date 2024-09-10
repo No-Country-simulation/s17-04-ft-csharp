@@ -4,6 +4,7 @@ using JuniorHub.Mapping;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using JuniorHub.API.Middleware;
+using JuniorHub.Mapping.Profiles;
 using JuniorHub.Cloudinary;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -18,6 +19,7 @@ public static class StartupExtensions
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddCloudServiceExtensions(builder.Configuration);
         builder.Services.AddMappingProfiles();
+        //builder.Services.AddAutoMapper(typeof(EmployerProfile));
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddSwagger();
