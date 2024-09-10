@@ -8,11 +8,15 @@ namespace JuniorHub.Persistence.Repositories;
 
 public class ValorationRepository : GenericRepository<Valoration>, IValorationRepository
 {
-    public ValorationRepository(JuniorHubContext dbContext, IMapper mapper) : base(dbContext, mapper)
+    public ValorationRepository(JuniorHubContext dbContext, IMapper mapper) 
+        : base(dbContext, mapper)
     {
     }
 
-    public async Task<bool> ValorationExistsAsync(string reviewer, int freelancerId, int employerId)
+    public async Task<bool> ValorationExistsAsync(
+        string reviewer, 
+        int freelancerId, 
+        int employerId)
     {
         return await _dbContext.Valorations
             .AnyAsync(v => v.Reviewer == reviewer && 

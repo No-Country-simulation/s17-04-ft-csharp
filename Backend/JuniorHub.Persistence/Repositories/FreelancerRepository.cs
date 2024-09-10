@@ -30,4 +30,10 @@ public class FreelancerRepository : GenericRepository<Freelancer>, IFreelancerRe
 
         return freelancer;
     }
+
+    public async Task<bool> FreelancerIdExistsAsync(int id)
+    {
+        return await _dbContext.Freelancers
+            .AnyAsync(f => f.Id == id);
+    }
 }
