@@ -30,6 +30,8 @@ public class FreelancerValorationRepository : GenericRepository<FreelancerValora
     {
         return await _dbContext.FreelancerValorations
                              .Where(v => v.FreelancerId == freelancerId)
+                             .Include(v => v.Employer)
+                             .ThenInclude(e => e.User)
                              .ToListAsync();
     }
 }
