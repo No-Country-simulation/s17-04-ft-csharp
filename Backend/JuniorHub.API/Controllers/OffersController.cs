@@ -28,7 +28,7 @@ namespace JuniorHub.API.Controllers
         /// <response code="200">The offer was successfully created and its details are returned.</response>
         /// <response code="400">The offer data is invalid. The error message is returned in the response.</response>
         /// <returns>An HTTP action result.</returns>
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OfferAddDto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OfferGetByIdDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost, Authorize(Roles = "Employer")]
         public async Task<ActionResult> AddOffer(OfferAddDto offerAddDto)
@@ -68,7 +68,7 @@ namespace JuniorHub.API.Controllers
         }
 
         /// <summary>
-        /// Retrieves a list of offers.
+        /// Returns a list of offers.
         /// </summary>
         /// <remarks>
         /// This endpoint allows a freelancer to search for offers by title, technology, and pagination.
@@ -93,7 +93,7 @@ namespace JuniorHub.API.Controllers
         }
 
         /// <summary>
-        /// Retrieves a specific offer by ID.
+        /// Returns a specific offer by ID.
         /// </summary>
         /// <remarks>
         /// This endpoint allows a freelancer to retrieve the details of a specific offer by providing its ID.
@@ -102,7 +102,7 @@ namespace JuniorHub.API.Controllers
         /// <response code="200">The offer details are returned.</response>
         /// <response code="400">The offer with the given ID could not be found or an error occurred.</response>
         /// <returns>An HTTP action result.</returns>
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OfferDto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OfferGetByIdDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet("{idOffer}"), Authorize(Roles = "Freelancer")]
         public async Task<ActionResult> GetOffers(int idOffer)
