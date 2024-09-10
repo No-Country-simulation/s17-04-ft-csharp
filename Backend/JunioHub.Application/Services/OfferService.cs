@@ -54,7 +54,7 @@ namespace JunioHub.Application.Services
                 await _offerRepository.SaveChangesAsync();
 
 
-                var offer = await _offerRepository.GetFullOfferAsync(offerToAdd.EmployerId);
+                var offer = await _offerRepository.GetFullOfferAsync(offerToAdd.Id);
                 var offerDto = _mapper.Map<OfferGetByIdDto>(offerToAdd);
                 offerDto.FullNameAuthor = string.Concat(offer.Employer.User.Name, " ", offer.Employer.User.LastName);
                 offerDto.UserId = offer.Employer.UserId;
@@ -137,12 +137,12 @@ namespace JunioHub.Application.Services
 
             if (!string.IsNullOrEmpty(title))
             {
-                offers = offers.Where(o => o.Title.ToLower().Contains(title.ToLower(), StringComparison.OrdinalIgnoreCase));
+                offers = offers.Where(o => o.Title.ToLower().Contains(title.ToLower()));
             }
 
             if (!string.IsNullOrEmpty(technology))
             {
-                offers = offers.Where(o => o.Technologies.Any(t => t.Name.ToLower().Contains(technology.ToLower(), StringComparison.OrdinalIgnoreCase)));
+                offers = offers.Where(o => o.Technologies.Any(t => t.Name.ToLower().Contains(technology.ToLower())));
             }
             var result = offers.Skip((page - 1) * 7).Take(7).ToList();
 

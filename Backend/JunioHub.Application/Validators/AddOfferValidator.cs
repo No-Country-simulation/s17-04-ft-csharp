@@ -29,7 +29,7 @@ namespace JunioHub.Application.Validators
                 .WithMessage("The state must be a valid enum value.");
 
             RuleFor(x => x.Price)
-                .GreaterThan(1000)
+                .GreaterThan(1000m)
                 .WithMessage("The price must be greater than 1000.");
 
             RuleFor(x => x.Technologies)
