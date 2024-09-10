@@ -29,7 +29,7 @@ namespace JunioHub.Application.Services
             _technologyRepository = technologyRepository;
         }
 
-        public async Task<BaseResponse<FreelancerDto>> AddFreelancer(FreelancerAddDto freelancer,int idUser)
+        public async Task<BaseResponse<FreelancerDto>> AddFreelancer(int idUser)
         {
             BaseResponse<FreelancerDto> baseResponse;
 
@@ -39,33 +39,19 @@ namespace JunioHub.Application.Services
                 baseResponse = new BaseResponse<FreelancerDto>(null, false, "Freelance already exists", null);
                 return baseResponse;
             }
-
-            
-
             try
             {
-                var technologyNames = freelancer.Technologies.Select(t => t.Name).ToList();
-                var existingTechnologies = (await _technologyRepository.GetAllAsync()).Where(t => technologyNames.Contains(t.Name)).ToList();
-
-                if (existingTechnologies.Count != technologyNames.Count)
-                {
-                    baseResponse = new BaseResponse<FreelancerDto>(null, false, "Some technologies do not exist", null);
-                    return baseResponse;
-                }
-
-
                 var freeLancer = new Freelancer()
                 {
-                    Description = freelancer.Description,
-                    Links = freelancer.Links.Select(l => _mapper.Map<Link>(l)).ToList(),
-                    Technologies = existingTechnologies,
+                    Description = " ",
+                    Links = new List<Link>(),
+                    Technologies = new List<Technology>(),
                     Valoration = JuniorHub.Domain.Enums.ValorationEnum.Average,
                     UserId = idUser
                 };
-
                 var result = await _freelancerRepository.AddAsync(freeLancer);
                 await _freelancerRepository.SaveChangesAsync();
-                baseResponse = new BaseResponse<FreelancerDto>(_mapper.Map<FreelancerDto>(result),true, $"New freelancer of idUser:{idUser} added successfully.", null);
+                baseResponse = new BaseResponse<FreelancerDto>(null,true, $"New freelancer of idUser:{idUser} added successfully.", null);
             }
             catch(Exception e)
             {

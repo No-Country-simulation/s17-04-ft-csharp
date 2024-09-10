@@ -9,7 +9,7 @@ namespace JunioHub.Application.Contracts.Services
     public interface IFreelancerService
     {
         Task<BaseResponse<FreelancerProfileDto>> GetProfileFreelancer(int idUser);
-        Task<BaseResponse<FreelancerDto>> AddFreelancer(FreelancerAddDto freelancer, int idUser);
+        Task<BaseResponse<FreelancerDto>> AddFreelancer(int idUser);
         Task<BaseResponse<FreelancerProfileDto>> UpdateFreelancer(FreelancerUpdateDto freelancerUpdateDto, int idUser);
     }
 }

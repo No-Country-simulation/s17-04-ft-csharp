@@ -1,4 +1,5 @@
 ﻿using JunioHub.Application.Contracts.Persistence;
+using JunioHub.Application.Contracts.Services;
 using JunioHub.Application.DTOs.Identity;
 using JuniorHub.Domain.Entities;
 using JuniorHub.Domain.Enums;
@@ -23,12 +24,14 @@ namespace JuniorHub.Persistence.Identity
         private readonly IEmployerRepository _repository;
         private readonly SignInManager<User> _signInManager;
         private readonly JwtConfiguration _jwtConfiguration;
-        public AuthService(SignInManager<User> signInManager, UserManager<User> userManager,IEmployerRepository repository, JwtConfiguration jwtConfiguration)
+        private readonly IFreelancerService _freelancerService;
+        public AuthService(SignInManager<User> signInManager, UserManager<User> userManager, IEmployerRepository repository, JwtConfiguration jwtConfiguration, IFreelancerService freelancerService)
         {
-            _repository=repository;
+            _repository = repository;
             _signInManager = signInManager;
             _userManager = userManager;
             _jwtConfiguration = jwtConfiguration;
+            _freelancerService = freelancerService;
         }
 
 
@@ -103,7 +106,28 @@ namespace JuniorHub.Persistence.Identity
                      Description = $"An error occurred: {ex.Message}" 
                   });
                 }
-            }        
+            }
+            else if(register.Role is Role.Freelancer)
+            {
+                try
+                {
+                    var result =  await _freelancerService.AddFreelancer(userToRegister.Id);
+                    if(!result.Success)
+                    {
+                        return IdentityResult.Failed(new IdentityError()
+                        {
+                            Description = $"An error occurred: {result.Message}"
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return IdentityResult.Failed(new IdentityError()
+                    {
+                        Description = $"An error occurred: {ex.Message}"
+                    });
+                }
+            }
 
             return IdentityResult.Success;
         }

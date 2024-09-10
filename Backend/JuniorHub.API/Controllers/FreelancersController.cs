@@ -17,7 +17,7 @@ namespace JuniorHub.API.Controllers
         public FreelancersController(IFreelancerService freelancerService)
         {
             _freelancerService = freelancerService;
-        }
+        }/*
         /// <summary>
         /// Adds a new freelancer profile for the currently authenticated user.
         /// </summary>
@@ -28,24 +28,24 @@ namespace JuniorHub.API.Controllers
         /// The request was invalid due to validation errors or failed. 
         /// The response could contain a validation error message or a BaseResponse object indicating failure.
         /// </response>
-        [HttpPost()]
-        [Authorize(Roles = "Freelancer")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> AddFreelancer(FreelancerAddDto freelancerAddDto)
-        {
-            var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await _freelancerService.AddFreelancer(freelancerAddDto, int.Parse(idUser));
+        //[HttpPost()]
+        //[Authorize(Roles = "Freelancer")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult> AddFreelancer(FreelancerAddDto freelancerAddDto)
+        //{
+        //    var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        //    var response = await _freelancerService.AddFreelancer(freelancerAddDto, int.Parse(idUser));
 
-            if (response.Success)
-            {
-                return Ok(response.Data);
-            }
-            else
-            {
-                return BadRequest(response);
-            }
-        }
+        //    if (response.Success)
+        //    {
+        //        return Ok(response.Data);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest(response);
+        //    }
+        //}*/
 
         /// <summary>
         /// Gets the profile of the currently authenticated freelancer.
