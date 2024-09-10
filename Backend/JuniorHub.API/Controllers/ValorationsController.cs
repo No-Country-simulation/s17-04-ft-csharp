@@ -30,25 +30,25 @@ public class ValorationsController : ControllerBase
     /// <response code="400">Invalid input data or the operation failed.</response>
     /// <response code="401">The user is not authorized to perform this action.</response>
     /// <returns>Returns an HTTP action result with the valoration details or an error message.</returns>
-    //[HttpPost("freelancer")]
-    //[Authorize(Roles = "Employer")]
-    //[ProducesResponseType(StatusCodes.Status200OK)]
-    //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-    //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    //public async Task<ActionResult<ValorationDto>> AddFreelancerValoration(ValorationToFreelancerDto valorationFreelancer)
-    //{
-    //    var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+    [HttpPost("freelancer")]
+    [Authorize(Roles = "Employer")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<ValorationDto>> AddFreelancerValoration(ValorationToFreelancerDto valorationFreelancer)
+    {
+        var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
-    //    var response = await _service.AddFreelancerValoration(int.Parse(userId), valorationFreelancer);
-    //    if (response.Success)
-    //    {
-    //        return Ok(response);
-    //    }
-    //    else
-    //    {
-    //        return BadRequest(response);
-    //    }
-    //}
+        var response = await _service.AddFreelancerValoration(int.Parse(userId), valorationFreelancer);
+        if (response.Success)
+        {
+            return Ok(response);
+        }
+        else
+        {
+            return BadRequest(response);
+        }
+    }
 
     /// <summary>
     /// Adds a rating (valoration) for an employer by a freelancer.

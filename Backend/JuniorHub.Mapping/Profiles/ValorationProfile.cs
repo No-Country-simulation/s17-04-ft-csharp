@@ -13,6 +13,5 @@ public class ValorationProfile : Profile
         CreateMap<ValorationToFreelancerDto, Valoration>();
 
         CreateMap<Valoration, ValorationDto>();
-
     }
 }

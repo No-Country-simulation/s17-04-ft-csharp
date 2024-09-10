@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using JunioHub.Application.Contracts.Persistence;
 using JunioHub.Application.Contracts.Services;
 using JunioHub.Application.DTOs;
@@ -15,18 +14,20 @@ public class ValorationService : IValorationService
 {
     private readonly IValorationRepository _valorationRepository;
     private readonly IFreelancerRepository _freelancerRepository;
-    //private readonly IEmployerRepository _employerRepository;
+    private readonly IEmployerRepository _employerRepository;
     private readonly IMapper _mapper;
     private readonly ILogger<ValorationService> _logger;
 
     public ValorationService(
         IValorationRepository valorationRepository,
         IFreelancerRepository freelancerRepository,
+        IEmployerRepository employerRepository,
         IMapper mapper,
         ILogger<ValorationService> logger)
     {
         _valorationRepository = valorationRepository;
         _freelancerRepository = freelancerRepository;
+        _employerRepository = employerRepository;
         _mapper = mapper;
         _logger = logger;
     }
@@ -35,11 +36,19 @@ public class ValorationService : IValorationService
     {
         var baseResponse = new BaseResponse<ValorationDto>();
 
-        //var employerId = await _employerRepository.GetEmployerId(userId);
-        //if (employerId == null)
-        //{
-        //    throw new NotFoundException(nameof(Employer), employerId);
-        //}
+        var employer = await _employerRepository.GetEmployerForValoration(userId);
+        if (employer == null)
+        {
+            throw new NotFoundException(nameof(Employer), employer.Id);
+        }
+
+        var freelancerIdExists = await _freelancerRepository
+            .FreelancerIdExistsAsync(valorationFreelancerDto.FreelancerId);
+
+        if (!freelancerIdExists)
+        {
+            throw new NotFoundException(nameof(Freelancer), valorationFreelancerDto.FreelancerId);
+        }
 
         var validator = new AddValorationToFreelancerValidator();
         var validationResult = await validator.ValidateAsync(valorationFreelancerDto);
@@ -57,6 +66,17 @@ public class ValorationService : IValorationService
             try
             {
                 var newValoration = _mapper.Map<Valoration>(valorationFreelancerDto);
+                newValoration.EmployerId = employer.Id;
+                //newValoration.Reviewer = $"{freelancer.User.LastName}, {freelancer.User.Name}";
+                newValoration.Reviewer = employer.User.Email;
+
+                var existsValoration = await _valorationRepository
+                    .ValorationExistsAsync(newValoration.Reviewer, newValoration.FreelancerId, newValoration.EmployerId);
+
+                if (existsValoration)
+                {
+                    throw new BadRequestException("A valoration with the same Reviewer, FreelancerId, and EmployerId already exists.");
+                }
 
                 var valorationCreated = await _valorationRepository.AddAsync(newValoration);
                 await _valorationRepository.SaveChangesAsync();
@@ -84,6 +104,14 @@ public class ValorationService : IValorationService
         if (freelancer == null)
         {
             throw new NotFoundException(nameof(Freelancer), freelancer.Id);
+        }
+
+        var employerIdExists = await _employerRepository
+            .EmployerIdExistsAsync(valorationEmployerDto.EmployerId);
+
+        if (!employerIdExists)
+        {
+            throw new NotFoundException(nameof(Employer), valorationEmployerDto.EmployerId);
         }
 
         var validator = new AddValorationToEmployerValidator();
