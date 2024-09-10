@@ -32,7 +32,7 @@ namespace JuniorHub.API.Controllers
 
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(new { Url = result.Data });
             }
             return BadRequest(result);
         }
