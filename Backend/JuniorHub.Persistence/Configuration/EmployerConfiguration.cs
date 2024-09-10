@@ -21,9 +21,14 @@ internal class EmployerConfiguration : IEntityTypeConfiguration<Employer>
             .HasForeignKey(o => o.EmployerId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasMany(e => e.Valorations)
-            .WithOne(v => v.Employer)
-            .HasForeignKey(v => v.EmployerId)
-            .OnDelete(DeleteBehavior.NoAction);
+        builder.HasMany(e => e.FreelancerValorations)
+               .WithOne(fv => fv.Employer)
+               .HasForeignKey(fv => fv.EmployerId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasMany(e => e.EmployerValorations)
+               .WithOne(ev => ev.Employer)
+               .HasForeignKey(ev => ev.EmployerId)
+               .OnDelete(DeleteBehavior.NoAction);
     }
 }

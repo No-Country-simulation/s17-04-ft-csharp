@@ -2,9 +2,9 @@
 
 namespace JunioHub.Application.DTOs.Valoration;
 
-public class ValorationDto
+public class FreelancerValorationDto
 {
     public int Id { get; set; }
     public ValorationEnum ValorationValue { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public string Reviewer { get; set; }
 }
