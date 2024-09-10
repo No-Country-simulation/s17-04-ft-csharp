@@ -36,6 +36,7 @@ public static class PersistenceServiceExtensions
         services.AddScoped<SignInManager<User>>();
         services.AddScoped<RoleManager<IdentityRole<int>>>();
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
+        services.AddScoped<IEmployerRepository,EmployerRepository>();
         services.AddScoped<IFreelancerRepository, FreelancerRepository>();
         services.AddAuthentication(options =>
         {

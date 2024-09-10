@@ -1,4 +1,5 @@
 ﻿using JuniorHub.Domain.Enums;
+using System.Text.Json.Serialization;
 
 namespace JuniorHub.Domain.Entities;
 
