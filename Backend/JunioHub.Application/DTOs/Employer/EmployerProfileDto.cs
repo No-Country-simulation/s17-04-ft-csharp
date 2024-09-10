@@ -1,4 +1,4 @@
-using JunioHub.Application.DTOs.OfferDto;
+using JunioHub.Application.DTOs.Offer;
 using JuniorHub.Domain.Enums;
 namespace JunioHub.Application.DTOs.Employer
 {

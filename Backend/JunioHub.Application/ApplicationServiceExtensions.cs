@@ -16,6 +16,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITechnologyService, TechnologyService>();
         services.AddScoped<IEmployerService, EmployerService>();
         services.AddScoped<IFreelancerService, FreelancerService>();
+        services.AddScoped<IOfferService, OfferService>();
         // FluentValidation configuration
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         

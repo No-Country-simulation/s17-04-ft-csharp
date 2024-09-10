@@ -6,7 +6,7 @@ using JunioHub.Application.DTOs;
 using JunioHub.Application.DTOs.Employer;
 using JuniorHub.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using JunioHub.Application.DTOs.OfferDto;
+using JunioHub.Application.DTOs.Offer;
 
 namespace JunioHub.Application.Services;
 

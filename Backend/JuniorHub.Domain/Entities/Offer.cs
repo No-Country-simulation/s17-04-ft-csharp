@@ -14,4 +14,5 @@ public class Offer
     public int EmployerId { get; set; }
     public Employer Employer { get; set; } = null!;
     public ICollection<Application> Applications { get; set; }
+    public ICollection<Technology> Technologies { get; set; }
 }

@@ -1,5 +1,5 @@
 
-using JunioHub.Application.DTOs.OfferDto;
+using JunioHub.Application.DTOs.Offer;
 namespace JunioHub.Application.DTOs.Employer;
     public class EmployerAddDto
     {

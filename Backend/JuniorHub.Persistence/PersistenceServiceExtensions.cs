@@ -38,6 +38,8 @@ public static class PersistenceServiceExtensions
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
         services.AddScoped<IEmployerRepository,EmployerRepository>();
         services.AddScoped<IFreelancerRepository, FreelancerRepository>();
+        services.AddScoped<IOfferRepository,OfferRepository>();
+        services.AddScoped<IApplicationRepository,ApplicationRepository>();
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

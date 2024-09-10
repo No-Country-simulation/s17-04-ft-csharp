@@ -1,7 +1,7 @@
 using AutoMapper;
 using JunioHub.Application.DTOs.Employer;
 using JuniorHub.Domain.Entities;
-using JunioHub.Application.DTOs.OfferDto;
+using JunioHub.Application.DTOs.Offer;
 
 namespace JuniorHub.Mapping.Profiles;
 
