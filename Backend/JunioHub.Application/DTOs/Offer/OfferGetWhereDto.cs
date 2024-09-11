@@ -1,10 +1,10 @@
 using JuniorHub.Domain.Enums;
 
-namespace JunioHub.Application.DTOs.OfferDto
+namespace JunioHub.Application.DTOs.Offer
 {
-    public class OfferAddDto
+    public class OfferGetWhereDto
     {
-         public string Title { get; set; } = null!;
+        public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public decimal Price { get; set; }
         public DateTime EstimatedTime { get; set; }

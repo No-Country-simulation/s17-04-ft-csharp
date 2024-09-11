@@ -8,8 +8,9 @@ namespace JuniorHub.Domain.Enums
 {
     public enum Difficult
     {
-        Junior,
-        SemiSenior,
-        Senior
+        Easy,
+        Medium,
+        Hard,
+        VeryHard
     }
 }

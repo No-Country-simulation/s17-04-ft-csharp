@@ -40,9 +40,10 @@ public static class PersistenceServiceExtensions
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
         services.AddScoped<IEmployerRepository,EmployerRepository>();
         services.AddScoped<IFreelancerRepository, FreelancerRepository>();
+        services.AddScoped<IOfferRepository,OfferRepository>();
+        services.AddScoped<IApplicationRepository,ApplicationRepository>();
         services.AddScoped<IFreelancerValorationRepository, FreelancerValorationRepository>();
         services.AddScoped<IEmployerValorationRepository, EmployerValorationRepository>();
-
 
         services.AddAuthentication(options =>
         {

@@ -14,5 +14,4 @@ public class EmployersDto
     public string UserLastName { get; set; } = null!;
     public ICollection<Offer> Offers { get; set; } = null!;
     public IEnumerable<ValorationDto> Valorations { get; set; } = Enumerable.Empty<ValorationDto>();
-
 }

@@ -1,4 +1,4 @@
-﻿using JunioHub.Application.Contracts.Services;
+using JunioHub.Application.Contracts.Services;
 using JunioHub.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -14,6 +14,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITechnologyService, TechnologyService>();
         services.AddScoped<IEmployerService, EmployerService>();
         services.AddScoped<IFreelancerService, FreelancerService>();
+        services.AddScoped<IOfferService, OfferService>();
         services.AddScoped<IFreelancerValorationService, FreelancerValorationService>();
         services.AddScoped<IEmployerValorationService, EmployerValorationService>();
 
