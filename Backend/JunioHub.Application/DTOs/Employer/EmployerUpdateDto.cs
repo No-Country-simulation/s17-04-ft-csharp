@@ -8,6 +8,5 @@ namespace JunioHub.Application.DTOs.Employer
         public string LastName { get; set; }
         public string Email { get; set; }
         public string? MediaUrl { get; set; }
-        public string Description { get; set; }
     }
 }
