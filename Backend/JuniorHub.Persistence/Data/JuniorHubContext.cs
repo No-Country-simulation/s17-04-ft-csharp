@@ -18,7 +18,9 @@ public class JuniorHubContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<Offer> Offers { get; set; }
     public DbSet<Application> Applications { get; set; }
     public DbSet<Technology> Technologies { get; set; }
-    public DbSet<Valoration> Valorations { get; set; }
+    public DbSet<FreelancerValoration> FreelancerValorations { get; set; }
+    public DbSet<EmployerValoration> EmployerValorations { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

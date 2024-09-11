@@ -1,5 +1,4 @@
 ﻿using JuniorHub.Domain.Enums;
-using System.Text.Json.Serialization;
 
 namespace JuniorHub.Domain.Entities;
 
@@ -10,6 +9,6 @@ public class Employer
     public int UserId { get; set; }
     public User User { get; set; } = null!;
     public ICollection<Offer> Offers { get; set; }
-    //Coleccion por que maximo va a tener 2, donde valora y donde es valorado.
-    public ICollection<Valoration> Valorations { get; set; }
+    public ICollection<FreelancerValoration> FreelancerValorations { get; set; } = new List<FreelancerValoration>();
+    public ICollection<EmployerValoration> EmployerValorations { get; set; } = new List<EmployerValoration>();
 }

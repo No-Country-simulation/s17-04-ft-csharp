@@ -1,29 +1,39 @@
 ﻿using AutoMapper;
 using JunioHub.Application.Contracts.Persistence;
-using JunioHub.Application.DTOs;
-using JunioHub.Application.DTOs.Freelancer;
 using JuniorHub.Domain.Entities;
 using JuniorHub.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace JuniorHub.Persistence.Repositories
+namespace JuniorHub.Persistence.Repositories;
+
+public class FreelancerRepository : GenericRepository<Freelancer>, IFreelancerRepository
 {
-    public class FreelancerRepository : GenericRepository<Freelancer>, IFreelancerRepository
+    public FreelancerRepository(JuniorHubContext dbContext, IMapper mapper) : base(dbContext, mapper)
     {
-        public FreelancerRepository(JuniorHubContext dbContext,IMapper mapper) : base(dbContext,mapper)
-        {
-        }
+    }
 
-        public async Task<Freelancer?> GetProfileFreelancer(int idUser)
-        {
-            var user = await _dbContext.Freelancers.Include(f=>f.Technologies).Include(f=>f.Links).FirstOrDefaultAsync(f=>f.UserId == idUser);
-            
-            return user;
-        }
+    public async Task<Freelancer?> GetProfileFreelancer(int userId)
+    {
+        var user = await _dbContext.Freelancers
+            .Include(f => f.Technologies)
+            .Include(f => f.Links)
+            .FirstOrDefaultAsync(f => f.UserId == userId);
+
+        return user;
+    }
+
+    public async Task<Freelancer?> GetFreelancerForValoration(int userId)
+    {
+        var freelancer = await _dbContext.Freelancers
+            .Include(f => f.User)
+            .FirstOrDefaultAsync(f => f.UserId == userId);
+
+        return freelancer;
+    }
+
+    public async Task<bool> FreelancerIdExistsAsync(int id)
+    {
+        return await _dbContext.Freelancers
+            .AnyAsync(f => f.Id == id);
     }
 }
