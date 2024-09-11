@@ -144,10 +144,10 @@ namespace JunioHub.Application.Services
             {
                 offers = offers.Where(o => o.Technologies.Any(t => t.Name.ToLower().Contains(technology.ToLower())));
             }
-            var result = offers.Skip((page - 1) * 7).Take(7).ToList();
+            var result = offers.Skip((page - 1) * 20).Take(20).ToList();
 
             int totalPosts = result.Count();
-            int totalPages = (int)Math.Ceiling((double)totalPosts / 7);
+            int totalPages = (int)Math.Ceiling((double)totalPosts / 20);
 
 
             var offerResult = new OffersPagedDto()
