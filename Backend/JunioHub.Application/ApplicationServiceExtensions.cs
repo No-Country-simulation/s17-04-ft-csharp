@@ -3,8 +3,6 @@ using JunioHub.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using FluentValidation;
-using FluentValidation.AspNetCore;
-
 
 namespace JunioHub.Application;
 
@@ -16,6 +14,9 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITechnologyService, TechnologyService>();
         services.AddScoped<IEmployerService, EmployerService>();
         services.AddScoped<IFreelancerService, FreelancerService>();
+        services.AddScoped<IFreelancerValorationService, FreelancerValorationService>();
+        services.AddScoped<IEmployerValorationService, EmployerValorationService>();
+
         // FluentValidation configuration
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         

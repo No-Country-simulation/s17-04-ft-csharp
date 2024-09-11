@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace JuniorHub.Domain.Enums;
 
-namespace JuniorHub.Domain.Enums
+public enum ValorationEnum
 {
-    public enum ValorationEnum
-    {
-        VeryBad,
-        Bad,
-        Average,
-        Good,
-        Excellent
-    }
+    VeryBad,
+    Bad,
+    Average,
+    Good,
+    Excellent
 }

@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using JuniorHub.Domain.Entities;
 
-namespace JunioHub.Application.Contracts.Persistence
+namespace JunioHub.Application.Contracts.Persistence;
+
+public interface IEmployerRepository :IGenericRepository<Employer>
 {
-    public interface IEmployerRepository :IGenericRepository<Employer>
-    {
-        Task<Employer?> GetProfileEmployer(int idUser);
-    }
+    Task<Employer?> GetProfileEmployer(int userId);
+    Task<Employer?> GetEmployerForValoration(int userId);
+    Task<bool> EmployerIdExistsAsync(int id);
 }

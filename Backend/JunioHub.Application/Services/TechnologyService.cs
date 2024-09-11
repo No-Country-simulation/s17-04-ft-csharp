@@ -4,7 +4,7 @@ using JunioHub.Application.Contracts.Services;
 using JunioHub.Application.DTOs;
 using JunioHub.Application.DTOs.Technology;
 using JunioHub.Application.Exceptions;
-using JunioHub.Application.Validators;
+using JunioHub.Application.Validators.Technology;
 using JuniorHub.Domain.Entities;
 using Microsoft.Extensions.Logging;
 

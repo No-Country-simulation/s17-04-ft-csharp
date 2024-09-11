@@ -25,9 +25,14 @@ internal class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
             .HasForeignKey(a => a.FreelancerId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        builder.HasMany(f => f.Valorations)
-            .WithOne(v => v.Freelancer)
-            .HasForeignKey(v => v.FreelancerId)
-            .OnDelete(DeleteBehavior.NoAction);
+        builder.HasMany(f => f.FreelancerValorations)
+               .WithOne(fv => fv.Freelancer)
+               .HasForeignKey(fv => fv.FreelancerId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasMany(f => f.EmployerValorations)
+               .WithOne(ev => ev.Freelancer)
+               .HasForeignKey(ev => ev.FreelancerId)
+               .OnDelete(DeleteBehavior.NoAction);
     }
 }
