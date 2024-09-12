@@ -22,13 +22,12 @@ public class FreelancerRepository : GenericRepository<Freelancer>, IFreelancerRe
         return user;
     }
 
-    public async Task<Freelancer?> GetFreelancerForValoration(int userId)
+    public async Task<int> GetFreelancerId(int userId)
     {
-        var freelancer = await _dbContext.Freelancers
-            .Include(f => f.User)
-            .FirstOrDefaultAsync(f => f.UserId == userId);
-
-        return freelancer;
+        return await _dbContext.Freelancers
+            .Where(f => f.UserId == userId)
+            .Select(f => f.Id)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<bool> FreelancerIdExistsAsync(int id)

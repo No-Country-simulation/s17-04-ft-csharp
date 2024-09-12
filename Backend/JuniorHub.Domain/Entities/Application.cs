@@ -8,5 +8,5 @@ public class Application
     public int? FreelancerId { get; set; } 
     public Freelancer Freelancer { get; set; }
     public bool Selected { get; set; }
-    public DateTime ApplicaionDate { get; set; }
+    public DateTime ApplicationDate { get; set; } = DateTime.UtcNow;
 }

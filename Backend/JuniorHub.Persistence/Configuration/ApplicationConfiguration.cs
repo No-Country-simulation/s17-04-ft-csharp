@@ -20,5 +20,8 @@ internal class ApplicationConfiguration : IEntityTypeConfiguration<Application>
                .WithMany(f => f.Applications)
                .HasForeignKey(a => a.FreelancerId)
                .OnDelete(DeleteBehavior.SetNull);
+
+        builder.Property(a => a.ApplicationDate)
+            .HasDefaultValueSql("GETUTCDATE()");
     }
 }

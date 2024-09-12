@@ -36,10 +36,10 @@ public class EmployerValorationService : IEmployerValorationService
     {
         var baseResponse = new BaseResponse<ValorationDto>();
 
-        var freelancer = await _freelancerRepository.GetFreelancerForValoration(userId);
-        if (freelancer == null)
+        var freelancerId = await _freelancerRepository.GetFreelancerId(userId);
+        if (freelancerId == 0)
         {
-            throw new NotFoundException(nameof(Freelancer), freelancer.Id);
+            throw new NotFoundException(nameof(Freelancer), freelancerId);
         }
 
         var employerIdExists = await _employerRepository
@@ -66,9 +66,7 @@ public class EmployerValorationService : IEmployerValorationService
             try
             {
                 var newValoration = _mapper.Map<EmployerValoration>(valorationEmployerDto);
-                newValoration.FreelancerId = freelancer.Id;
-                //newValoration.Reviewer = $"{freelancer.User.LastName}, {freelancer.User.Name}";
-                //newValoration.Reviewer = freelancer.User.Email;
+                newValoration.FreelancerId = freelancerId;
 
                 var existsValoration = await _employerValorationRepository
                     .ValorationExistsAsync(newValoration.FreelancerId, newValoration.EmployerId);
