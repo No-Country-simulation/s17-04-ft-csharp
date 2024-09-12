@@ -16,7 +16,7 @@ public class JuniorHubContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<Freelancer> Freelancers { get; set; }
     public DbSet<Link> Links { get; set; }
     public DbSet<Offer> Offers { get; set; }
-    public DbSet<Application> Applications { get; set; }
+    public DbSet<OfferApplication> OfferApplications { get; set; }
     public DbSet<Technology> Technologies { get; set; }
     public DbSet<FreelancerValoration> FreelancerValorations { get; set; }
     public DbSet<EmployerValoration> EmployerValorations { get; set; }

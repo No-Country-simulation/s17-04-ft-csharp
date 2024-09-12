@@ -1,5 +1,5 @@
-﻿using JunioHub.Application.Contracts.Persistence;
-using JunioHub.Application.DTOs.Identity;
+﻿using JuniorHub.Application.Contracts.Persistence;
+using JuniorHub.Application.DTOs.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;

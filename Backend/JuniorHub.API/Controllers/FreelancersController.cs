@@ -1,6 +1,6 @@
-﻿using JunioHub.Application.Contracts.Services;
-using JunioHub.Application.DTOs.Freelancer;
-using JunioHub.Application.DTOs.Technology;
+﻿using JuniorHub.Application.Contracts.Services;
+using JuniorHub.Application.DTOs.Freelancer;
+using JuniorHub.Application.DTOs.Technology;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

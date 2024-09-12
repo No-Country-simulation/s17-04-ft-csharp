@@ -1,5 +1,5 @@
-﻿using JunioHub.Application.Contracts.Persistence;
-using JunioHub.Application.DTOs.Technology;
+﻿using JuniorHub.Application.Contracts.Persistence;
+using JuniorHub.Application.DTOs.Technology;
 using JuniorHub.Domain.Entities;
 using Moq;
 

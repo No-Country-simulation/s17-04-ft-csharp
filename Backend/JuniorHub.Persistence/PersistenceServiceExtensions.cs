@@ -1,4 +1,4 @@
-using JunioHub.Application.Contracts.Persistence;
+using JuniorHub.Application.Contracts.Persistence;
 using JuniorHub.Domain.Entities;
 using JuniorHub.Domain.Enums;
 using JuniorHub.Domain.Helpers;
@@ -41,7 +41,7 @@ public static class PersistenceServiceExtensions
         services.AddScoped<IEmployerRepository,EmployerRepository>();
         services.AddScoped<IFreelancerRepository, FreelancerRepository>();
         services.AddScoped<IOfferRepository,OfferRepository>();
-        services.AddScoped<IApplicationRepository,ApplicationRepository>();
+        services.AddScoped<IOfferApplicationRepository,OfferApplicationRepository>();
         services.AddScoped<IFreelancerValorationRepository, FreelancerValorationRepository>();
         services.AddScoped<IEmployerValorationRepository, EmployerValorationRepository>();
 

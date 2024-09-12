@@ -1,4 +1,4 @@
-using JunioHub.Application.Contracts.Persistence;
+using JuniorHub.Application.Contracts.Persistence;
 using JuniorHub.Domain.Entities;
 using AutoMapper;
 using JuniorHub.Persistence.Data;

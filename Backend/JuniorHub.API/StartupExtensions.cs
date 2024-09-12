@@ -1,4 +1,4 @@
-﻿using JunioHub.Application;
+﻿using JuniorHub.Application;
 using JuniorHub.API.Middleware;
 using JuniorHub.Cloudinary;
 using JuniorHub.Mapping;

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JunioHub.Application\JunioHub.Application.csproj" />
+    <ProjectReference Include="..\JuniorHub.Application\JuniorHub.Application.csproj" />
     <ProjectReference Include="..\JuniorHub.Cloudinary\JuniorHub.Cloudinary.csproj" />
     <ProjectReference Include="..\JuniorHub.Mapping\JuniorHub.Mapping.csproj" />
     <ProjectReference Include="..\JuniorHub.Persistence\JuniorHub.Persistence.csproj" />

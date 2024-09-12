@@ -1,5 +1,5 @@
-﻿using JunioHub.Application.Contracts.Services;
-using JunioHub.Application.DTOs.Valoration;
+﻿using JuniorHub.Application.Contracts.Services;
+using JuniorHub.Application.DTOs.Valoration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

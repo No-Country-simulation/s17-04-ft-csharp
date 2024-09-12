@@ -1,22 +1,21 @@
-﻿using JunioHub.Application.Contracts.Cloudinary;
+﻿using JuniorHub.Application.Contracts.Cloudinary;
 using JuniorHub.Cloudinary.Helpers;
 using JuniorHub.Cloudinary.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JuniorHub.Cloudinary
+namespace JuniorHub.Cloudinary;
+
+public static class CloudinaryServiceExtensions
 {
-    public static class CloudinaryServiceExtensions
+    public static IServiceCollection AddCloudServiceExtensions(this IServiceCollection services,IConfiguration configuration)
     {
-        public static IServiceCollection AddCloudServiceExtensions(this IServiceCollection services,IConfiguration configuration)
-        {
-            var cloudConfiguration = new CloudinaryConfiguration();
-            configuration.Bind("CloudinaryConfiguration", cloudConfiguration);
+        var cloudConfiguration = new CloudinaryConfiguration();
+        configuration.Bind("CloudinaryConfiguration", cloudConfiguration);
 
-            services.AddSingleton(cloudConfiguration);
-            services.AddScoped<ICloudinaryService, CloudinaryService>();
+        services.AddSingleton(cloudConfiguration);
+        services.AddScoped<ICloudinaryService, CloudinaryService>();
 
-            return services;
-        }
+        return services;
     }
 }

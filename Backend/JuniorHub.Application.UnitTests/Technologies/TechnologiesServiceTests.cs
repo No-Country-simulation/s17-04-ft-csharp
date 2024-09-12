@@ -1,9 +1,9 @@
 ﻿using Moq;
 using Xunit;
 using Microsoft.Extensions.Logging;
-using JunioHub.Application.Services;
+using JuniorHub.Application.Services;
 using JuniorHub.Application.Tests.Mocks;
-using JunioHub.Application.DTOs.Technology;
+using JuniorHub.Application.DTOs.Technology;
 using AutoMapper;
 using JuniorHub.Domain.Entities;
 

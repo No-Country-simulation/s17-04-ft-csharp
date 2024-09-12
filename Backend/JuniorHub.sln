@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.API", "JuniorHub.API\JuniorHub.API.csproj", "{6BB06540-E82C-4BC5-A5D8-362E5A574AEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JunioHub.Application", "JunioHub.Application\JunioHub.Application.csproj", "{3B24D0C4-F74A-4CB0-8A16-024F6B656DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Application", "JuniorHub.Application\JuniorHub.Application.csproj", "{3B24D0C4-F74A-4CB0-8A16-024F6B656DAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Domain", "JuniorHub.Domain\JuniorHub.Domain.csproj", "{31B517D0-D333-43D7-9434-99F596C2EEDA}"
 EndProject
@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Persistence", "Ju
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Mapping", "JuniorHub.Mapping\JuniorHub.Mapping.csproj", "{895CC903-9F23-4BE8-B546-988D0D85BFF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuniorHub.Cloudinary", "JuniorHub.Cloudinary\JuniorHub.Cloudinary.csproj", "{9926939F-F117-4CC0-82DC-06F6DB0B34A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Cloudinary", "JuniorHub.Cloudinary\JuniorHub.Cloudinary.csproj", "{9926939F-F117-4CC0-82DC-06F6DB0B34A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Application.UnitTests", "JuniorHub.Application.UnitTests\JuniorHub.Application.UnitTests.csproj", "{2D649515-833C-4EA4-9181-34E2C89A118E}"
 EndProject

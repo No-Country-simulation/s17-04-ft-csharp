@@ -1,5 +1,5 @@
-using JunioHub.Application.Contracts.Services;
-using JunioHub.Application.DTOs.Employer;
+using JuniorHub.Application.Contracts.Services;
+using JuniorHub.Application.DTOs.Employer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
