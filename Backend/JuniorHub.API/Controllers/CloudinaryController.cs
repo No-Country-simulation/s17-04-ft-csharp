@@ -1,5 +1,5 @@
-﻿using JunioHub.Application.Contracts.Cloudinary;
-using JunioHub.Application.DTOs;
+﻿using JuniorHub.Application.Contracts.Cloudinary;
+using JuniorHub.Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

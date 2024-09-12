@@ -1,8 +1,8 @@
-﻿using JunioHub.Application.Contracts.Cloudinary;
+﻿using JuniorHub.Application.Contracts.Cloudinary;
 using Microsoft.AspNetCore.Http;
 using CloudinaryDotNet.Actions;
 using CloudinaryDotNet;
-using JunioHub.Application.DTOs;
+using JuniorHub.Application.DTOs;
 
 namespace JuniorHub.Cloudinary.Services
 {

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JunioHub.Application\JunioHub.Application.csproj" />
+    <ProjectReference Include="..\JuniorHub.Application\JuniorHub.Application.csproj" />
     <ProjectReference Include="..\JuniorHub.Domain\JuniorHub.Domain.csproj" />
   </ItemGroup>
 

@@ -1,17 +1,16 @@
 using AutoMapper;
-using JunioHub.Application.DTOs.Offer;
+using JuniorHub.Application.DTOs.Offer;
 using JuniorHub.Domain.Entities;
 
-namespace JuniorHub.Mapping.Profiles
+namespace JuniorHub.Mapping.Profiles;
+
+public class OfferProfile : Profile
 {
-    public class OfferProfile : Profile
+    public OfferProfile()
     {
-        public OfferProfile()
-        {
-            CreateMap<OfferAddDto, Offer>();
-            CreateMap<Offer, OfferDto>();
-            CreateMap<Offer, OfferGetByIdDto>();
-            CreateMap<OfferUpdateDto, Offer>().ReverseMap();
-        }
+        CreateMap<OfferAddDto, Offer>();
+        CreateMap<Offer, OfferDto>();
+        CreateMap<Offer, OfferGetByIdDto>();
+        CreateMap<OfferUpdateDto, Offer>().ReverseMap();
     }
 }

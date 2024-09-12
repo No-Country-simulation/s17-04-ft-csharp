@@ -1,4 +1,4 @@
-﻿using JunioHub.Application.Exceptions;
+﻿using JuniorHub.Application.Exceptions;
 using System.Net;
 using System.Text.Json;
 

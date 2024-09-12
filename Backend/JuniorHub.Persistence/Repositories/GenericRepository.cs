@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using JunioHub.Application.Contracts.Persistence;
+using JuniorHub.Application.Contracts.Persistence;
 using JuniorHub.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 

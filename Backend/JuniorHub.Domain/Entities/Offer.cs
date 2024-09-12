@@ -13,6 +13,6 @@ public class Offer
     public Difficult Difficult { get; set; }
     public int EmployerId { get; set; }
     public Employer Employer { get; set; } = null!;
-    public ICollection<Application> Applications { get; set; }
+    public ICollection<OfferApplication> Applications { get; set; }
     public ICollection<Technology> Technologies { get; set; }
 }

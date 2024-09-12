@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using JunioHub.Application.DTOs.Technology;
+using JuniorHub.Application.DTOs.Technology;
 using JuniorHub.Domain.Entities;
 
 namespace JuniorHub.Mapping.Profiles;
