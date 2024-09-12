@@ -37,10 +37,10 @@ public class FreelancerValorationService : IFreelancerValorationService
     {
         var baseResponse = new BaseResponse<ValorationDto>();
 
-        var employer = await _employerRepository.GetEmployerForValoration(userId);
-        if (employer == null)
+        var employerId = await _employerRepository.GetEmployerId(userId);
+        if (employerId == 0)
         {
-            throw new NotFoundException(nameof(Employer), employer.Id);
+            throw new NotFoundException(nameof(Employer), employerId);
         }
 
         var freelancerIdExists = await _freelancerRepository
@@ -64,19 +64,19 @@ public class FreelancerValorationService : IFreelancerValorationService
         }
         if (baseResponse.Success)
         {
+            var newValoration = _mapper.Map<FreelancerValoration>(valorationFreelancerDto);
+            newValoration.EmployerId = employerId;
+
+            var existsValoration = await _freelancerValorationRepository
+                .ValorationExistsAsync(newValoration.FreelancerId, newValoration.EmployerId);
+
+            if (existsValoration)
+            {
+                throw new BadRequestException("A valoration with the same Reviewer FreelancerId and EmployerId already exists.");
+            }
+
             try
             {
-                var newValoration = _mapper.Map<FreelancerValoration>(valorationFreelancerDto);
-                newValoration.EmployerId = employer.Id;
-
-                var existsValoration = await _freelancerValorationRepository
-                    .ValorationExistsAsync(newValoration.FreelancerId, newValoration.EmployerId);
-
-                if (existsValoration)
-                {
-                    throw new BadRequestException("A valoration with the same Reviewer, FreelancerId, and EmployerId already exists.");
-                }
-
                 var valorationCreated = await _freelancerValorationRepository.AddAsync(newValoration);
                 await _freelancerValorationRepository.SaveChangesAsync();
 

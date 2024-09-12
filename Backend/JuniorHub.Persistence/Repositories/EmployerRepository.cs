@@ -38,13 +38,12 @@ public class EmployerRepository : GenericRepository<Employer>, IEmployerReposito
         return employer;
     }
 
-    public async Task<Employer?> GetEmployerForValoration(int userId)
+    public async Task<int> GetEmployerId(int userId)
     {
-        var employer = await _dbContext.Employers
-            .Include(f => f.User)
-            .FirstOrDefaultAsync(f => f.UserId == userId);
-
-        return employer;
+        return await _dbContext.Employers
+            .Where(f => f.UserId == userId)
+            .Select(f => f.Id)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<bool> EmployerIdExistsAsync(int id)

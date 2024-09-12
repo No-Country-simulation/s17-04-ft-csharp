@@ -43,6 +43,16 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return entity;
     }
 
+    public async Task<IEnumerable<TDto?>> GetByPropertyAsyncProjectTo<TDto>(string propertyName, object value) where TDto : class
+    {
+        var entity = await _dbContext.Set<T>()
+            .Where(e => EF.Property<object>(e, propertyName).Equals(value))
+            .ProjectTo<TDto>(_mapper.ConfigurationProvider)
+            .ToListAsync();
+
+        return entity;
+    }
+
     public async Task<IReadOnlyList<T>> GetAllAsync()
     {
         return await _dbContext.Set<T>().ToListAsync();

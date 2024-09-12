@@ -1,13 +1,8 @@
-﻿using JuniorHub.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace JunioHub.Application.Contracts.Persistence;
 
-namespace JunioHub.Application.Contracts.Persistence
+public interface IApplicationRepository : IGenericRepository<JuniorHub.Domain.Entities.Application>
 {
-    public interface IApplicationRepository : IGenericRepository<JuniorHub.Domain.Entities.Application>
-    {
-    }
+    Task<bool> ApplicationOfferExistsAsync(int freelancerId, int offerId);
+    Task<bool> FreelancerApplicationExistsAsync(int freelancerId, int applicationId);
 }
