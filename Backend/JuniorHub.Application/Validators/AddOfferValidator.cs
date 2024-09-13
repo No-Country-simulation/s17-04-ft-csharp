@@ -32,6 +32,10 @@ namespace JuniorHub.Application.Validators
                 .GreaterThan(1000m)
                 .WithMessage("The price must be greater than 1000.");
 
+            RuleFor(x=>x.EstimatedTime)
+                .IsInEnum()
+                .WithMessage("The estimated time must be a valid enum value.");
+
             RuleFor(x => x.Technologies)
                 .NotEmpty()
                 .WithMessage("The offer must include at least one technology.");
