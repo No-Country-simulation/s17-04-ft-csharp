@@ -2,6 +2,7 @@ using AutoMapper;
 using JuniorHub.Application.DTOs.Employer;
 using JuniorHub.Domain.Entities;
 using JuniorHub.Application.DTOs.Offer;
+using JuniorHub.Domain.Utilities;
 
 namespace JuniorHub.Mapping.Profiles;
 
@@ -27,6 +28,7 @@ public class EmployerProfile : Profile
             .ForMember(dest => dest.Offers, opt => opt.MapFrom(src => src.Offers));
 
         CreateMap<Offer, OfferGetWhereDto>()
+            .ForMember(dest => dest.EstimatedTime, opt => opt.MapFrom(src => src.EstimatedTime.GetDescription()))
             .ForMember(dest => dest.Technologies, opt => opt.MapFrom(src => src.Technologies));
 
     }
