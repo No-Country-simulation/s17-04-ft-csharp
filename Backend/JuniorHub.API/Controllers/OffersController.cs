@@ -66,7 +66,7 @@ namespace JuniorHub.API.Controllers
             }
             return Ok(response.Data);
         }
-
+        /*
         /// <summary>
         /// Returns a list of offers.
         /// </summary>
@@ -79,12 +79,37 @@ namespace JuniorHub.API.Controllers
         /// <response code="200">A list of offers matching the search criteria is returned.</response>
         /// <response code="400">The search criteria is invalid.</response>
         /// <returns>An HTTP action result.</returns>
+        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OffersPagedDto))]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[HttpGet(), Authorize(Roles = "Freelancer")]
+        //public async Task<ActionResult> GetOffers(string title = null, string technology = null, int page = 1)
+        //{
+        //    var response = await _offerService.GetOffers(title, technology, page);
+        //    if (!response.Success)
+        //    {
+        //        return BadRequest(response);
+        //    }
+        //    return Ok(response.Data);
+        //}
+        */
+
+        /// <summary>
+        /// Returns a list of offers.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint allows a freelancer to search for offers by title, technology, and pagination.
+        /// </remarks>
+        /// <param name="title">Optional. The title of the offer to filter by.</param>
+        /// <param name="page">Optional. The page number for pagination. Defaults to 1.</param>
+        /// <response code="200">A list of offers matching the search criteria is returned.</response>
+        /// <response code="400">The search criteria is invalid.</response>
+        /// <returns>An HTTP action result.</returns>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OffersPagedDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet(), Authorize(Roles = "Freelancer")]
-        public async Task<ActionResult> GetOffers(string title = null, string technology = null, int page = 1)
+        public async Task<ActionResult> GetOffers(string? search = null, int page = 1)
         {
-            var response = await _offerService.GetOffers(title, technology, page);
+            var response = await _offerService.GetOffers(search, page);
             if (!response.Success)
             {
                 return BadRequest(response);

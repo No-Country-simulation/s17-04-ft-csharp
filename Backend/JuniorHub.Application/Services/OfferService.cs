@@ -160,6 +160,35 @@ namespace JuniorHub.Application.Services
             return new BaseResponse<OffersPagedDto>(offerResult,true,null,null);
         }
 
+        public async Task<BaseResponse<OffersPagedDto>> GetOffers(string? search, int page)
+        {
+            var offers = _offerRepository.GetAllOfferQuery();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                offers = offers.Where(o => o.Title.ToLower().Contains(search.ToLower()) || o.Technologies.Any(t => t.Name.ToLower().Contains(search.ToLower())));
+            }
+
+            //if (!string.IsNullOrEmpty(technology))
+            //{
+            //    offers = offers.Where(o => o.Technologies.Any(t => t.Name.ToLower().Contains(technology.ToLower())));
+            //}
+            var result = offers.Skip((page - 1) * 20).Take(20).ToList();
+
+            int totalPosts = result.Count();
+            int totalPages = (int)Math.Ceiling((double)totalPosts / 20);
+
+
+            var offerResult = new OffersPagedDto()
+            {
+                currentPage = page,
+                totalPages = totalPages,
+                Offers = result.Select(o => _mapper.Map<OfferDto>(o)).ToList()
+            };
+
+            return new BaseResponse<OffersPagedDto>(offerResult, true, null, null);
+        }
+
         public async Task<BaseResponse<OfferUpdateDto>> UpdateOffer(OfferUpdateDto offerUpdateDto, int idOffer, int idUser)
         {
             BaseResponse<OfferUpdateDto> baseResponse;

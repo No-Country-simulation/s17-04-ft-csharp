@@ -9,5 +9,6 @@ public interface IOfferService
     Task<BaseResponse<OfferUpdateDto>> UpdateOffer(OfferUpdateDto offerUpdateDto,int idOffer,int idUser);
     Task<BaseResponse<OfferGetByIdDto>> GetOffer(int idOffer);
     Task<BaseResponse<OffersPagedDto>> GetOffers(string? title, string? technology, int page);
+    Task<BaseResponse<OffersPagedDto>> GetOffers(string? search, int page);
     Task<BaseResponse<bool>> DeleteOffer(int idOffer, int idUser);
 }
