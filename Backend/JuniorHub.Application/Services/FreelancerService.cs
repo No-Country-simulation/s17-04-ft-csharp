@@ -128,7 +128,7 @@ namespace JuniorHub.Application.Services
 
                 foreach(var link in freelancerUpdateDto.Links)
                 {
-                    if(link.Id !=0 && !(await _linkRepository.LinkExistsAsync(link.Id)))
+                    if(link.Id !=0 && !(await _linkRepository.LinkExistsAsync(link.Id,existingFreelancer.Id)))
                     {
                         baseResponse = new BaseResponse<FreelancerProfileDto>(null, false, "Some links do not exist", null);
                         return baseResponse;

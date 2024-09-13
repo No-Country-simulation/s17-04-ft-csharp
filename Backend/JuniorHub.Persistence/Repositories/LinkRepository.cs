@@ -17,9 +17,9 @@ namespace JuniorHub.Persistence.Repositories
         {
         }
 
-        public async Task<bool> LinkExistsAsync(int idLink)
+        public async Task<bool> LinkExistsAsync(int idLink, int idFreelancer)
         {
-            return await _dbContext.Links.AnyAsync(l => l.Id == idLink);
+            return await _dbContext.Links.AnyAsync(l => l.Id == idLink && l.FreelancerId == idFreelancer);
         }
     }
 }
