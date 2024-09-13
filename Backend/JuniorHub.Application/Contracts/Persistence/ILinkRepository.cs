@@ -9,6 +9,6 @@ namespace JuniorHub.Application.Contracts.Persistence
 {
     public interface ILinkRepository : IGenericRepository<Link>
     {
-        Task<bool> LinkExistsAsync(int idLink);
+        Task<bool> LinkExistsAsync(int idLink,int idFreelancer);
     }
 }
