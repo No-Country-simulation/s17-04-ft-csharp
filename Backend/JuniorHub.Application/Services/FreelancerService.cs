@@ -19,14 +19,16 @@ namespace JuniorHub.Application.Services
         private readonly ITechnologyRepository _technologyRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<FreelancerService> _logger;
+        private readonly ILinkRepository _linkRepository;
         public FreelancerService(IFreelancerRepository freelancerRepository, UserManager<User> userManager
-            , IMapper mapper, ILogger<FreelancerService> logger, ITechnologyRepository technologyRepository)
+            , IMapper mapper, ILogger<FreelancerService> logger, ITechnologyRepository technologyRepository, ILinkRepository linkRepository)
         {
             _freelancerRepository = freelancerRepository;
             _userManager = userManager;
             _mapper = mapper;
             _logger = logger;
             _technologyRepository = technologyRepository;
+            _linkRepository = linkRepository;
         }
 
         public async Task<BaseResponse<FreelancerDto>> AddFreelancer(int idUser)
@@ -124,6 +126,17 @@ namespace JuniorHub.Application.Services
                     return baseResponse;
                 }
 
+                foreach(var link in freelancerUpdateDto.Links)
+                {
+                    if(link.Id !=0 && !(await _linkRepository.LinkExistsAsync(link.Id)))
+                    {
+                        baseResponse = new BaseResponse<FreelancerProfileDto>(null, false, "Some links do not exist", null);
+                        return baseResponse;
+                    }
+                    
+                }
+
+
                 var existingFreelancerUser = await _userManager.FindByIdAsync(idUser.ToString());
 
                 existingFreelancerUser = _mapper.Map(freelancerUpdateDto, existingFreelancerUser);
@@ -156,21 +169,6 @@ namespace JuniorHub.Application.Services
                         existingFreelancer.Links.Add(_mapper.Map<Link>(updatedLink));
                     }
                 }
-
-
-                //foreach (var updatedLink in freelancerUpdateDto.Links)
-                //{
-                //    var link = existingFreelancer.Links.FirstOrDefault(l => l.Id == updatedLink.Id);
-                //    if (link is not null)
-                //    {
-                //        link.Url = updatedLink.Url;
-                //        link.Name = updatedLink.Name;
-                //    }
-                //    else
-                //    {
-                //        existingFreelancer.Links.Add(_mapper.Map<Link>(updatedLink));
-                //    }
-                //}
 
                 var updateUserResult = await _userManager.UpdateAsync(existingFreelancerUser);
                 _freelancerRepository.Update(existingFreelancer);
