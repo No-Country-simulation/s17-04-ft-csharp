@@ -10,6 +10,9 @@ public class EmployerValorationProfile : Profile
     {
         CreateMap<ValorationToEmployerDto, EmployerValoration>();
 
-        CreateMap<EmployerValoration, ValorationDto>();
+        CreateMap<EmployerValoration, ValorationAddDto>();
+
+        CreateMap<EmployerValoration, ValorationResponseDto>()
+            .ForMember(dest => dest.Reviewer, opt => opt.MapFrom(src => $"{src.Freelancer.User.Name} {src.Freelancer.User.LastName}"));
     }
 }

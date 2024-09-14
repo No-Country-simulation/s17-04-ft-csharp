@@ -5,6 +5,6 @@ namespace JuniorHub.Application.Contracts.Services;
 
 public interface IFreelancerValorationService
 {
-    Task<BaseResponse<ValorationDto>> AddFreelancerValoration(int userId, ValorationToFreelancerDto valorationFreelancer);
-    Task<BaseResponse<IEnumerable<FreelancerValorationDto>>> GetAllValorationsForFreelancerAsync(int freelancerId);
+    Task<BaseResponse<ValorationAddDto>> AddFreelancerValoration(int userId, ValorationToFreelancerDto valorationFreelancer);
+    Task<BaseResponse<IEnumerable<ValorationResponseDto>>> GetAllValorationsForFreelancerAsync(int freelancerId);
 }

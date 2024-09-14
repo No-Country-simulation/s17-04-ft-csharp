@@ -5,5 +5,6 @@ namespace JuniorHub.Application.Contracts.Services;
 
 public interface IEmployerValorationService
 {
-    Task<BaseResponse<ValorationDto>> AddEmployerValoration(int userId, ValorationToEmployerDto valorationEmployer);
+    Task<BaseResponse<ValorationAddDto>> AddEmployerValoration(int userId, ValorationToEmployerDto valorationEmployer);
+    Task<BaseResponse<IEnumerable<ValorationResponseDto>>> GetAllValorationsForEmployerAsync(int employerId);
 }

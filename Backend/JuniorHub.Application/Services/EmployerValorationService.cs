@@ -7,6 +7,7 @@ using JuniorHub.Application.Exceptions;
 using JuniorHub.Application.Validators.Valoration;
 using JuniorHub.Domain.Entities;
 using Microsoft.Extensions.Logging;
+using JuniorHub.Domain.Enums;
 
 namespace JuniorHub.Application.Services;
 
@@ -32,9 +33,9 @@ public class EmployerValorationService : IEmployerValorationService
         _logger = logger;
     }
 
-    public async Task<BaseResponse<ValorationDto>> AddEmployerValoration(int userId, ValorationToEmployerDto valorationEmployerDto)
+    public async Task<BaseResponse<ValorationAddDto>> AddEmployerValoration(int userId, ValorationToEmployerDto valorationEmployerDto)
     {
-        var baseResponse = new BaseResponse<ValorationDto>();
+        var baseResponse = new BaseResponse<ValorationAddDto>();
 
         var freelancerId = await _freelancerRepository.GetFreelancerId(userId);
         if (freelancerId == 0)
@@ -79,7 +80,9 @@ public class EmployerValorationService : IEmployerValorationService
                 var valorationCreated = await _employerValorationRepository.AddAsync(newValoration);
                 await _employerValorationRepository.SaveChangesAsync();
 
-                baseResponse.Data = _mapper.Map<ValorationDto>(valorationCreated);
+                await UpdateEmployerAverageValorationAsync(newValoration.EmployerId);
+
+                baseResponse.Data = _mapper.Map<ValorationAddDto>(valorationCreated);
                 baseResponse.Message = "New valoration added successfully.";
             }
             catch (Exception ex)
@@ -92,4 +95,54 @@ public class EmployerValorationService : IEmployerValorationService
 
         return baseResponse;
     }
+
+    public async Task<BaseResponse<IEnumerable<ValorationResponseDto>>> GetAllValorationsForEmployerAsync(int employerId)
+    {
+        var baseResponse = new BaseResponse<IEnumerable<ValorationResponseDto>>();
+
+        var employerExists = await _employerValorationRepository
+            .EmployerIdExistsAsync(employerId);
+
+        if (!employerExists)
+        {
+            throw new NotFoundException(nameof(EmployerValoration), employerId);
+        }
+
+        try
+        {
+            var employerValorations = await _employerValorationRepository
+                                                .GetReviewersByEmployerIdAsync(employerId);
+            
+            baseResponse.Data = _mapper.Map<IEnumerable<ValorationResponseDto>>(employerValorations);
+        }
+        catch (Exception ex)
+        {
+            baseResponse.Success = false;
+            baseResponse.Message = ex.Message;
+            _logger.LogError(ex.Message);
+        }
+
+        return baseResponse;
+    }
+
+    private async Task UpdateEmployerAverageValorationAsync(int employerId)
+    {
+        var valorationValues = await _employerValorationRepository
+            .GetValorationValuesByEmployerIdAsync(employerId);
+
+        var averageValoration = valorationValues.Any()
+            ? valorationValues.Average(v => (int)v)
+            : 0;
+
+        var roundedAverage = (ValorationEnum)Math.Round(averageValoration);
+
+        var employer = await _employerRepository.GetByIdAsync(employerId);
+        if (employer != null)
+        {
+            employer.Valoration = roundedAverage;
+            _employerRepository.Update(employer);
+            await _employerRepository.SaveChangesAsync();
+        }
+    }
+
 }

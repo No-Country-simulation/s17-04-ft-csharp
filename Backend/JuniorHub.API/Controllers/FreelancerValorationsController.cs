@@ -1,4 +1,5 @@
 ﻿using JuniorHub.Application.Contracts.Services;
+using JuniorHub.Application.DTOs.Offer;
 using JuniorHub.Application.DTOs.Valoration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -32,10 +33,8 @@ public class FreelancerValorationsController : ControllerBase
     /// <returns>Returns an HTTP action result with the valoration details or an error message.</returns>
     [HttpPost()]
     [Authorize(Roles = "Employer")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ValorationDto>> AddFreelancerValoration(ValorationToFreelancerDto valorationFreelancer)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ValorationAddDto))]
+    public async Task<ActionResult<ValorationAddDto>> AddFreelancerValoration(ValorationToFreelancerDto valorationFreelancer)
     {
         var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
@@ -59,10 +58,10 @@ public class FreelancerValorationsController : ControllerBase
     /// If no valuations are found, the response will still indicate success with an empty list.
     /// </returns>
     /// <response code="200">Returns a BaseResponse containing the list of FreelancerValorationDto, which includes all the valuations for the specified freelancer.</response>
+    /// <response code="400">Invalid input data or the operation failed.</response>
     /// <response code="404">If no valuations are found for the specified freelancer ID.</response>
     [HttpGet("{freelancerId}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ValorationResponseDto))]
     public async Task<ActionResult> GetAllValorationsForFreelancer(int freelancerId)
     {
         var response = await _service.GetAllValorationsForFreelancerAsync(freelancerId);

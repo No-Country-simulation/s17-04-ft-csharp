@@ -32,10 +32,8 @@ public class EmployerValorationsController : ControllerBase
     /// <returns>Returns an HTTP action result with the valoration details or an error message.</returns>
     [HttpPost()]
     [Authorize(Roles = "Freelancer")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ValorationDto>> AddEmployerValoration(ValorationToEmployerDto valorationEmployer)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ValorationAddDto))]
+    public async Task<ActionResult<ValorationAddDto>> AddEmployerValoration(ValorationToEmployerDto valorationEmployer)
     {
         var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
@@ -48,5 +46,25 @@ public class EmployerValorationsController : ControllerBase
         {
             return BadRequest(response);
         }
+    }
+
+    /// <summary>
+    /// Retrieves all valuations for a specific employer.
+    /// </summary>
+    /// <param name="employerId">The ID of the employer to retrieve valuations for.</param>
+    /// <returns>
+    /// A list of all valuations associated with the specified employer ID.
+    /// If no valuations are found, the response will still indicate success with an empty list.
+    /// </returns>
+    /// <response code="200">Returns a BaseResponse containing the list of EmployerValorationDto, which includes all the valuations for the specified freelancer.</response>
+    /// <response code="400">Invalid input data or the operation failed.</response>
+    /// <response code="404">If no valuations are found for the specified employer ID.</response>
+    [HttpGet("{employerId}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ValorationResponseDto))]
+    public async Task<ActionResult> GetAllValorationsForEmployer(int employerId)
+    {
+        var response = await _service.GetAllValorationsForEmployerAsync(employerId);
+
+        return Ok(response);
     }
 }
