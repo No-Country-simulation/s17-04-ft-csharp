@@ -6,5 +6,10 @@ public class NotFoundException : Exception
         : base($"{name} ({key}) is not found")
     {
     }
+
+    public NotFoundException(string name, object key1, object key2)
+        : base($"{name} with ({key1}) from employer is not found")
+    {
+    }
 }
 
