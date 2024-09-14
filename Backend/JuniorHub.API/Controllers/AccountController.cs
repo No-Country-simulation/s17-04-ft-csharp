@@ -1,6 +1,5 @@
 ﻿using JuniorHub.Application.Contracts.Persistence;
 using JuniorHub.Application.DTOs.Identity;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +32,7 @@ namespace JuniorHub.API.Controllers
         public async Task<IActionResult> Register(RegisterDto registroDto)
         {
             var result = await _authService.RegisterAsync(registroDto);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return Ok();
             }
@@ -59,7 +58,7 @@ namespace JuniorHub.API.Controllers
         {
             (IdentityResult identityResult, string? token) result = await _authService.LoginAsync(loginDto);
 
-            if(!result.identityResult.Succeeded)
+            if (!result.identityResult.Succeeded)
             {
                 return BadRequest(new { Error = result.identityResult.Errors.First().Description });
             }
