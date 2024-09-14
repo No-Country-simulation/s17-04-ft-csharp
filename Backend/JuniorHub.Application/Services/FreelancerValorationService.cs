@@ -8,6 +8,7 @@ using JuniorHub.Application.Validators.Valoration;
 using JuniorHub.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using JuniorHub.Domain.Enums;
 
 namespace JuniorHub.Application.Services;
 
@@ -33,9 +34,9 @@ public class FreelancerValorationService : IFreelancerValorationService
         _logger = logger;
     }
 
-    public async Task<BaseResponse<ValorationDto>> AddFreelancerValoration(int userId, ValorationToFreelancerDto valorationFreelancerDto)
+    public async Task<BaseResponse<ValorationAddDto>> AddFreelancerValoration(int userId, ValorationToFreelancerDto valorationFreelancerDto)
     {
-        var baseResponse = new BaseResponse<ValorationDto>();
+        var baseResponse = new BaseResponse<ValorationAddDto>();
 
         var employerId = await _employerRepository.GetEmployerId(userId);
         if (employerId == 0)
@@ -64,23 +65,25 @@ public class FreelancerValorationService : IFreelancerValorationService
         }
         if (baseResponse.Success)
         {
-            var newValoration = _mapper.Map<FreelancerValoration>(valorationFreelancerDto);
-            newValoration.EmployerId = employerId;
-
-            var existsValoration = await _freelancerValorationRepository
-                .ValorationExistsAsync(newValoration.FreelancerId, newValoration.EmployerId);
-
-            if (existsValoration)
-            {
-                throw new BadRequestException("A valoration with the same Reviewer FreelancerId and EmployerId already exists.");
-            }
-
             try
             {
+                var newValoration = _mapper.Map<FreelancerValoration>(valorationFreelancerDto);
+                newValoration.EmployerId = employerId;
+
+                var existsValoration = await _freelancerValorationRepository
+                    .ValorationExistsAsync(newValoration.FreelancerId, newValoration.EmployerId);
+
+                if (existsValoration)
+                {
+                    throw new BadRequestException("A valoration with the same Reviewer FreelancerId and EmployerId already exists.");
+                }
+
                 var valorationCreated = await _freelancerValorationRepository.AddAsync(newValoration);
                 await _freelancerValorationRepository.SaveChangesAsync();
 
-                baseResponse.Data = _mapper.Map<ValorationDto>(valorationCreated);
+                await UpdateFreelancerAverageValorationAsync(newValoration.FreelancerId);
+
+                baseResponse.Data = _mapper.Map<ValorationAddDto>(valorationCreated);
                 baseResponse.Message = "New valoration added successfully.";
             }
             catch (Exception ex)
@@ -94,9 +97,9 @@ public class FreelancerValorationService : IFreelancerValorationService
         return baseResponse;
     }
 
-    public async Task<BaseResponse<IEnumerable<FreelancerValorationDto>>> GetAllValorationsForFreelancerAsync(int freelancerId)
+    public async Task<BaseResponse<IEnumerable<ValorationResponseDto>>> GetAllValorationsForFreelancerAsync(int freelancerId)
     {
-        var baseResponse = new BaseResponse<IEnumerable<FreelancerValorationDto>>();
+        var baseResponse = new BaseResponse<IEnumerable<ValorationResponseDto>>();
 
         var freelancerExists = await _freelancerValorationRepository
             .FreelancerIdExistsAsync(freelancerId);
@@ -106,11 +109,12 @@ public class FreelancerValorationService : IFreelancerValorationService
             throw new NotFoundException(nameof(FreelancerValoration), freelancerId);
         }
 
-
         try
         {
-            var freelancerValorations = await _freelancerValorationRepository.GetAllByFreelancerIdAsync(freelancerId);
-            var freelancerValorationsResponse = _mapper.Map<IEnumerable<FreelancerValorationDto>>(freelancerValorations);
+            var freelancerValorations = await _freelancerValorationRepository
+                                                .GetReviewersByFreelancerIdAsync(freelancerId);
+
+            var freelancerValorationsResponse = _mapper.Map<IEnumerable<ValorationResponseDto>>(freelancerValorations);
             baseResponse.Data = freelancerValorationsResponse;
         }
         catch (Exception ex)
@@ -121,6 +125,26 @@ public class FreelancerValorationService : IFreelancerValorationService
         }
 
         return baseResponse;
+    }
+
+    private async Task UpdateFreelancerAverageValorationAsync(int freelancerId)
+    {
+        var valorationValues = await _freelancerValorationRepository
+            .GetValorationValuesByFreelancerIdAsync(freelancerId);
+
+        var averageValoration = valorationValues.Any()
+            ? valorationValues.Average(v => (int)v)
+            : 0;
+
+        var roundedAverage = (ValorationEnum)Math.Round(averageValoration);
+
+        var freelancer = await _freelancerRepository.GetByIdAsync(freelancerId);
+        if (freelancer != null)
+        {
+            freelancer.Valoration = roundedAverage;
+            _freelancerRepository.Update(freelancer);
+            await _freelancerRepository.SaveChangesAsync();
+        }
     }
 
 }

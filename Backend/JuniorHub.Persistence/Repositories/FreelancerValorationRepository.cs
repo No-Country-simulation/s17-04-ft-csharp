@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JuniorHub.Application.Contracts.Persistence;
 using JuniorHub.Domain.Entities;
+using JuniorHub.Domain.Enums;
 using JuniorHub.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,12 +27,20 @@ public class FreelancerValorationRepository : GenericRepository<FreelancerValora
             .AnyAsync(v => v.FreelancerId == freelancerId);
     }
 
-    public async Task<IEnumerable<FreelancerValoration>> GetAllByFreelancerIdAsync(int freelancerId)
+    public async Task<IEnumerable<FreelancerValoration>> GetReviewersByFreelancerIdAsync(int freelancerId)
     {
         return await _dbContext.FreelancerValorations
                              .Where(v => v.FreelancerId == freelancerId)
                              .Include(v => v.Employer)
                              .ThenInclude(e => e.User)
                              .ToListAsync();
+    }
+
+    public async Task<IEnumerable<ValorationEnum>> GetValorationValuesByFreelancerIdAsync(int freelancerId)
+    {
+        return await _dbContext.FreelancerValorations
+                                .Where(v => v.FreelancerId == freelancerId)
+                                .Select(v => v.ValorationValue)
+                                .ToListAsync();
     }
 }
