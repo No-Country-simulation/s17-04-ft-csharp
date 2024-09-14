@@ -8,4 +8,5 @@ public interface IOfferApplicationService
     Task<BaseResponse<bool>> ApplyToOfferAsync(int freelancerId, ApplyOfferDto applyOfferDto);
     Task<BaseResponse<bool>> DeleteApplicationAsync(int userId, int applicationId);
     Task<BaseResponse<IEnumerable<ApplicationByOfferDto?>>> GetApplicationsByOfferIdAsync(int userId, int offerId);
+    Task<BaseResponse<bool>> SelectApplicationAsync(int userId, int offerId, int applicationId);
 }

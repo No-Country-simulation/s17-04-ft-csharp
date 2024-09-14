@@ -29,8 +29,6 @@ public class OfferApplicationsController : ControllerBase
     [HttpPost("applications")]
     [Authorize(Roles = "Freelancer")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> ApplyToOffer([FromBody] ApplyOfferDto applyOfferDto)
     {
         var userId = int.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
@@ -50,8 +48,6 @@ public class OfferApplicationsController : ControllerBase
     [HttpDelete("applications/{id}")]
     [Authorize(Roles = "Freelancer")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult> DeleteApplication(int id)
     {
         var userId = int.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
@@ -69,7 +65,6 @@ public class OfferApplicationsController : ControllerBase
     [HttpGet("offers/{offerId}/applications")]
     [Authorize(Roles = "Employer")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetApplicationsByOfferId(int offerId)
     {
         var userId = int.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
@@ -77,4 +72,24 @@ public class OfferApplicationsController : ControllerBase
 
         return Ok(applications);
     }
+
+    /// <summary>
+    /// Selects an application for a specific offer and closes the offer.
+    /// </summary>
+    /// <param name="offerId">The ID of the offer.</param>
+    /// <param name="applicationId">The ID of the application to select.</param>
+    /// <returns>Confirmation of the selected application and offer closure.</returns>
+    /// <response code="200">Application selected and offer closed.</response>
+    /// <response code="404">Offer or application not found.</response>
+    [HttpPut("offers/{offerId}/applications/{applicationId}/select")]
+    [Authorize(Roles = "Employer")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> SelectApplication(int offerId, int applicationId)
+    {
+        var userId = int.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
+        var response = await _service.SelectApplicationAsync(userId, offerId, applicationId);
+
+        return Ok(response);
+    }
+
 }

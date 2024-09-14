@@ -143,7 +143,7 @@ public class OfferApplicationService : IOfferApplicationService
         var existingOffer = await _offerRepository
                 .EmployerOfferExistsAsync(employerId, offerId);
 
-        if (!existingOffer)
+        if (existingOffer)
         {
             throw new NotFoundException(nameof(Offer), offerId);
         }
@@ -158,4 +158,49 @@ public class OfferApplicationService : IOfferApplicationService
 
         return baseResponse;
     }
+
+    public async Task<BaseResponse<bool>> SelectApplicationAsync(int userId, int offerId, int applicationId)
+    {
+        var employerId = await _employerRepository.GetEmployerId(userId);
+        if (employerId == 0)
+        {
+            throw new NotFoundException(nameof(Employer), employerId);
+        }
+
+        var existingOffer = await _offerRepository.EmployerOfferExistsAsync(employerId, offerId);
+        if (!existingOffer)
+        {
+            throw new NotFoundException(nameof(Offer), offerId, employerId);
+        }
+
+        var application = await _applicationRepository.GetByIdAsync(applicationId);
+        if (application == null || application.OfferId != offerId)
+        {
+            throw new NotFoundException(nameof(OfferApplication), applicationId);
+        }
+
+        var baseResponse = new BaseResponse<bool>();
+        try
+        {
+            application.Selected = true;
+            _applicationRepository.Update(application);
+            await _applicationRepository.SaveChangesAsync();
+
+            var offer = await _offerRepository.GetByIdAsync(offerId);
+            offer.State = State.Closed;
+            _offerRepository.Update(offer);
+            await _offerRepository.SaveChangesAsync();
+
+            baseResponse.Data = true;
+            baseResponse.Message = "Application selected and offer closed.";
+        }
+        catch (Exception ex)
+        {
+            baseResponse.Success = false;
+            baseResponse.Message = ex.Message;
+            _logger.LogError(ex, "An error occurred while update Offer Application.");
+        }
+        return baseResponse;
+    }
+
 }
