@@ -163,12 +163,11 @@ namespace JuniorHub.Application.Services
 
         public async Task<BaseResponse<OffersPagedDto>> GetOffers(string? search, int page)
         {
-            var offers = _offerRepository.GetAllOfferQuery();
+            var offers = _offerRepository.GetAllOfferQuery().Where(o => o.State == State.Open);
 
             if (!string.IsNullOrEmpty(search))
             {
-                offers = offers.Where(o=>o.State == State.Open)
-                    .Where(o => o.Title.ToLower().Contains(search.ToLower()) 
+                offers = offers.Where(o => o.Title.ToLower().Contains(search.ToLower())
                     || o.Technologies.Any(t => t.Name.ToLower().Contains(search.ToLower())));
             }
 
