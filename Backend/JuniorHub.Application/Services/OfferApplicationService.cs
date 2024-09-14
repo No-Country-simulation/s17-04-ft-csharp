@@ -143,7 +143,7 @@ public class OfferApplicationService : IOfferApplicationService
         var existingOffer = await _offerRepository
                 .EmployerOfferExistsAsync(employerId, offerId);
 
-        if (existingOffer)
+        if (!existingOffer)
         {
             throw new NotFoundException(nameof(Offer), offerId);
         }
