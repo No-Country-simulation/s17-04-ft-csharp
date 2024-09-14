@@ -16,6 +16,7 @@ public class EmployerRepository : GenericRepository<Employer>, IEmployerReposito
     public async Task<Employer?> GetProfileEmployer(int userId)
     {
         var employer = await _dbContext.Employers
+                                .Include(e => e.User)
                                 .Include(e => e.Offers) 
                                 .ThenInclude(o => o.Technologies) 
                                 .FirstOrDefaultAsync(e => e.UserId == userId);

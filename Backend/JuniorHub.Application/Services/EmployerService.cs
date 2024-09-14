@@ -6,7 +6,6 @@ using JuniorHub.Application.DTOs;
 using JuniorHub.Application.DTOs.Employer;
 using JuniorHub.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using JuniorHub.Application.DTOs.Offer;
 
 namespace JuniorHub.Application.Services;
 
@@ -67,26 +66,19 @@ public class EmployerService : IEmployerService
         return baseResponse;
     }
 
-    public async Task<BaseResponse<EmployerProfileDto>> GetProfileEmployer(int idUser)
+    public async Task<BaseResponse<EmployerProfileDto>> GetProfileEmployer(int userId)
     {
         var baseResponse = new BaseResponse<EmployerProfileDto>();
 
         try
         {
-            var employer = await _repository.GetProfileEmployer(idUser);
+            var employer = await _repository.GetProfileEmployer(userId);
             if (employer is null)
             {
                 return baseResponse = new BaseResponse<EmployerProfileDto>(null, false, "This user does not have a employer", null);
             }
 
-            var user = await _userManager.FindByIdAsync(idUser.ToString());
-
-            var employerProfileDto = _mapper.Map<EmployerProfileDto>(user);
-            _mapper.Map(employer, employerProfileDto);
-
-            employerProfileDto.Offers = employer.Offers
-                .Select(o => _mapper.Map<OfferGetWhereDto>(o))
-                .ToList();
+            var employerProfileDto = _mapper.Map<EmployerProfileDto>(employer);
 
             baseResponse = new BaseResponse<EmployerProfileDto>(employerProfileDto, true, "", null);
         }
