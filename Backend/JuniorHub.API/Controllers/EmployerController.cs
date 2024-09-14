@@ -8,9 +8,9 @@ namespace JuniorHub.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-    public class EmployerController : ControllerBase
-    {
-        private readonly IEmployerService _service;
+public class EmployerController : ControllerBase
+{
+    private readonly IEmployerService _service;
 
     public EmployerController(IEmployerService service)
     {
@@ -28,19 +28,20 @@ namespace JuniorHub.API.Controllers;
     /// The response could contain a validation error message or a BaseResponse object indicating failure.
     /// </response>
     /// <response code="404">The employer with the specified ID was not found.</response>
-    [HttpGet("{id}")]
+    [HttpGet("{userId}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EmployerProfileDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<EmployerProfileDto>> GetEmployerById(int id)
+    public async Task<ActionResult<EmployerProfileDto>> GetEmployerById(int userId)
     {
-        var response= await _service.GetProfileEmployer(id);
+        var response = await _service.GetProfileEmployer(userId);
 
         if (response.Success)
         {
-           return Ok(response.Data);
+            return Ok(response.Data);
         }
-        else{
+        else
+        {
             return NotFound(response);
         }
     }
@@ -62,15 +63,15 @@ namespace JuniorHub.API.Controllers;
     public async Task<ActionResult> UpdateEmployer(EmployerUpdateDto employerUpdateDto)
     {
         var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var response = await _service.UpdateEmployer(employerUpdateDto,int.Parse(idUser));
+        var response = await _service.UpdateEmployer(employerUpdateDto, int.Parse(idUser));
         if (response.Success)
-            {
-                return Ok(response.Data);
-            }
-            else
-            {
-                return BadRequest(response);
-            }
+        {
+            return Ok(response.Data);
+        }
+        else
+        {
+            return BadRequest(response);
+        }
     }
 
     /// <summary>
@@ -86,19 +87,19 @@ namespace JuniorHub.API.Controllers;
     [Authorize(Roles = "Employer")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EmployerProfileDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<EmployerProfileDto>> GetAllEMployers()
+    public async Task<ActionResult<EmployerProfileDto>> GetEmployer()
     {
         var idUser = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var response= await _service.GetProfileEmployer(int.Parse(idUser));
-        
-         if (response.Success)
-            {
-                return Ok(response.Data);
-            }
-            else
-            {
-                return BadRequest(response);
-            }
+        var response = await _service.GetProfileEmployer(int.Parse(idUser));
+
+        if (response.Success)
+        {
+            return Ok(response.Data);
+        }
+        else
+        {
+            return BadRequest(response);
+        }
     }
 
-    }
+}
