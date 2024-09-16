@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Cloudinary", "Jun
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JuniorHub.Application.UnitTests", "JuniorHub.Application.UnitTests\JuniorHub.Application.UnitTests.csproj", "{2D649515-833C-4EA4-9181-34E2C89A118E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuniorHub.SendGrid", "JuniorHub.SendGrid\JuniorHub.SendGrid.csproj", "{87FD2021-9DAE-4D29-9181-B036804425EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{2D649515-833C-4EA4-9181-34E2C89A118E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D649515-833C-4EA4-9181-34E2C89A118E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D649515-833C-4EA4-9181-34E2C89A118E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87FD2021-9DAE-4D29-9181-B036804425EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87FD2021-9DAE-4D29-9181-B036804425EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87FD2021-9DAE-4D29-9181-B036804425EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87FD2021-9DAE-4D29-9181-B036804425EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{895CC903-9F23-4BE8-B546-988D0D85BFF8} = {5D51CB70-27B2-484A-81D8-9AADA3FAE474}
 		{9926939F-F117-4CC0-82DC-06F6DB0B34A9} = {6CEAFB69-5780-429B-B8FF-CAB18868DFB2}
 		{2D649515-833C-4EA4-9181-34E2C89A118E} = {B7F3E1AA-6887-4C61-B3A7-0E455F7D8652}
+		{87FD2021-9DAE-4D29-9181-B036804425EB} = {6CEAFB69-5780-429B-B8FF-CAB18868DFB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4229AC8E-0F07-462E-B82D-845981A12E85}
