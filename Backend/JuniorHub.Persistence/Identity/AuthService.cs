@@ -15,7 +15,7 @@ using System.Text;
 
 namespace JuniorHub.Persistence.Identity;
 
-internal class AuthService : IAuthService
+public class AuthService : IAuthService
 {
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
@@ -74,13 +74,6 @@ internal class AuthService : IAuthService
                 Description = "Email already in use"
             });
 
-        //var userToRegister = new User
-        //{
-        //    Name = register.Name,
-        //    Email = register.Email,
-        //    LastName = register.LastName,
-        //    UserName = register.Email
-        //};
         var userToRegister = _mapper.Map<User>(register);
 
         var createUserResult = await _userManager.CreateAsync(userToRegister, register.Password);
