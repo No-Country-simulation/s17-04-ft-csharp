@@ -40,12 +40,12 @@ JuniorHub es una plataforma web diseñada para conectar programadores y diseñad
     <td align='center'>
       <div>
        <h4>Team Leader</h4>
-        <a href="https://www.linkedin.com/in/TL/" target="_blank" rel="author">
+        <a href="https://www.linkedin.com/in/jesteban77/" target="_blank" rel="author">
           <img width="110" src="https://avatars.githubusercontent.com/u/86074229?v=4"/>
         </a>
           <h4 style="margin-top: 1rem;">Javier Edgar<br>Esteban</h4>
         <div style='display: flex; flex-direction: column'>
-          <a href="https://www.linkedin.com/in/TL/" target="_blank">
+          <a href="https://www.linkedin.com/in/jesteban77/" target="_blank">
             <img style='width:8rem' src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white="/>
           </a>
         </div>
