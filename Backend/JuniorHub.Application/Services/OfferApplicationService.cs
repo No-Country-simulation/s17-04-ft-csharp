@@ -188,7 +188,7 @@ public class OfferApplicationService : IOfferApplicationService
         {
             application.Selected = true;
 
-            var sendEmailResult = await _emailService.SendEmailToFreelancer(application.FreelancerId!.Value, offerId, userId);
+            var sendEmailResult = await _emailService.SendEmailToFreelancer(application.FreelancerId!.Value, offerId);
 
             if (!sendEmailResult)
             {
