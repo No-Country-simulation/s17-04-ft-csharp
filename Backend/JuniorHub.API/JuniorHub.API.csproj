@@ -21,6 +21,7 @@
     <ProjectReference Include="..\JuniorHub.Cloudinary\JuniorHub.Cloudinary.csproj" />
     <ProjectReference Include="..\JuniorHub.Mapping\JuniorHub.Mapping.csproj" />
     <ProjectReference Include="..\JuniorHub.Persistence\JuniorHub.Persistence.csproj" />
+    <ProjectReference Include="..\JuniorHub.SendGrid\JuniorHub.SendGrid.csproj" />
   </ItemGroup>
 
 </Project>

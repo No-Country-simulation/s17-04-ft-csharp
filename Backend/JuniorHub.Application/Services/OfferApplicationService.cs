@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JuniorHub.Application.Contracts.Persistence;
+using JuniorHub.Application.Contracts.SendGrid;
 using JuniorHub.Application.Contracts.Services;
 using JuniorHub.Application.DTOs;
 using JuniorHub.Application.DTOs.Application;
@@ -19,6 +20,7 @@ public class OfferApplicationService : IOfferApplicationService
     private readonly IEmployerRepository _employerRepository;
     private readonly IMapper _mapper;
     private readonly ILogger<OfferApplicationService> _logger;
+    private readonly IEmailService _emailService;
 
 
     public OfferApplicationService(
@@ -27,7 +29,8 @@ public class OfferApplicationService : IOfferApplicationService
         IFreelancerRepository freelancerRepository,
         IEmployerRepository employerRepository,
         IMapper mapper,
-        ILogger<OfferApplicationService> logger)
+        ILogger<OfferApplicationService> logger,
+        IEmailService emailService)
     {
         _offerRepository = offerRepository;
         _applicationRepository = applicationRepository;
@@ -35,6 +38,7 @@ public class OfferApplicationService : IOfferApplicationService
         _employerRepository = employerRepository;
         _mapper = mapper;
         _logger = logger;
+        _emailService = emailService;
     }
 
     public async Task<BaseResponse<bool>> ApplyToOfferAsync(int userId, ApplyOfferDto applyOfferDto)
@@ -190,6 +194,8 @@ public class OfferApplicationService : IOfferApplicationService
             offer.State = State.Closed;
             _offerRepository.Update(offer);
             await _offerRepository.SaveChangesAsync();
+
+            await _emailService.SendEmailToFreelancer(application.FreelancerId.Value, offerId, userId);
 
             baseResponse.Data = true;
             baseResponse.Message = "Application selected and offer closed.";

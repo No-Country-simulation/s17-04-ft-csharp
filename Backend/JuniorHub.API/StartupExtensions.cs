@@ -1,6 +1,7 @@
 ﻿using JuniorHub.Application;
 using JuniorHub.API.Middleware;
 using JuniorHub.Cloudinary;
+using JuniorHub.SendGrid;
 using JuniorHub.Mapping;
 using JuniorHub.Persistence;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,8 @@ public static class StartupExtensions
         builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddCloudServiceExtensions(builder.Configuration);
+        builder.Services.AddSendGridServiceExtensions(builder.Configuration);
+        
         builder.Services.AddMappingProfiles();
 
         builder.Services.AddHttpContextAccessor();

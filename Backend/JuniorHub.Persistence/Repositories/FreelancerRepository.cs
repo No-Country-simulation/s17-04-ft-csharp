@@ -15,6 +15,7 @@ public class FreelancerRepository : GenericRepository<Freelancer>, IFreelancerRe
     public async Task<Freelancer?> GetProfileFreelancer(int userId)
     {
         var user = await _dbContext.Freelancers
+            .Include(f=>f.User)
             .Include(f => f.Technologies)
             .Include(f => f.Links)
             .FirstOrDefaultAsync(f => f.UserId == userId);
