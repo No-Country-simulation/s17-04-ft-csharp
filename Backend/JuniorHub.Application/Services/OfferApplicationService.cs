@@ -187,15 +187,25 @@ public class OfferApplicationService : IOfferApplicationService
         try
         {
             application.Selected = true;
+
+            var sendEmailResult = await _emailService.SendEmailToFreelancer(application.FreelancerId!.Value, offerId, userId);
+
+            if (!sendEmailResult)
+            {
+                baseResponse.Success = false;
+                baseResponse.Message = "An error ocurred while sending the notification email";
+                return baseResponse;
+            }
+
             _applicationRepository.Update(application);
             await _applicationRepository.SaveChangesAsync();
 
             var offer = await _offerRepository.GetByIdAsync(offerId);
             offer.State = State.Closed;
+
             _offerRepository.Update(offer);
             await _offerRepository.SaveChangesAsync();
 
-            await _emailService.SendEmailToFreelancer(application.FreelancerId.Value, offerId, userId);
 
             baseResponse.Data = true;
             baseResponse.Message = "Application selected and offer closed.";
