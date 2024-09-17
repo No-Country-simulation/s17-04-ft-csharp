@@ -10,5 +10,6 @@ public class LinkProfile : Profile
     {
         CreateMap<Link,LinkDto>().ReverseMap();
         CreateMap<LinkAddDto, Link>();
+        CreateMap<Link, LinksOffersApplications>();
     }
 }

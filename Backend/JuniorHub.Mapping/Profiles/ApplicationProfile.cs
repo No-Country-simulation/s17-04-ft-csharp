@@ -16,6 +16,7 @@ public class ApplicationProfile : Profile
         CreateMap<OfferApplication, ApplicationByOfferDto>()
             .ForMember(dest => dest.FreelancerName, opt => opt.MapFrom(src => src.Freelancer.User.LastName + ", " + src.Freelancer.User.Name))
             .ForMember(dest => dest.FreelancerDescription, opt => opt.MapFrom(src => src.Freelancer.Description))
-            .ForMember(dest => dest.Technologies, opt => opt.MapFrom(src => src.Freelancer.Technologies));
+            .ForMember(dest => dest.Technologies, opt => opt.MapFrom(src => src.Freelancer.Technologies))
+            .ForMember(dest => dest.Links, opt => opt.MapFrom(src => src.Freelancer.Links)); ;
     }
 }
