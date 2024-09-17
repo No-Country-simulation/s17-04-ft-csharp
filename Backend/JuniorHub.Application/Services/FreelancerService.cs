@@ -55,21 +55,21 @@ public class FreelancerService : IFreelancerService
             var githubLink = new Link
             {
                 Name = "GitHub",
-                Url = "https://github.com/tu-usuario", 
+                Url = "", 
                 FreelancerId = idUser 
             };
 
             var linkedInLink = new Link
             {
                 Name = "LinkedIn",
-                Url = "https://www.linkedin.com/in/tu-perfil", 
+                Url = "", 
                 FreelancerId = idUser 
             };
 
             var portfolioLink = new Link
             {
                 Name = "Portafolio",
-                Url = "https://tu-portafolio.com", 
+                Url = "", 
                 FreelancerId = idUser 
             };
 
