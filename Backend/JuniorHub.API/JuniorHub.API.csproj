@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>CS8618;CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JuniorHub.Application\JuniorHub.Application.csproj" />
+    <ProjectReference Include="..\JuniorHub.Cloudinary\JuniorHub.Cloudinary.csproj" />
+    <ProjectReference Include="..\JuniorHub.Mapping\JuniorHub.Mapping.csproj" />
+    <ProjectReference Include="..\JuniorHub.Persistence\JuniorHub.Persistence.csproj" />
+    <ProjectReference Include="..\JuniorHub.SendGrid\JuniorHub.SendGrid.csproj" />
+  </ItemGroup>
+
+</Project>
